@@ -11,6 +11,7 @@ class HomePage: UIViewController {
 
     @IBOutlet weak var btnHeading: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    
     var arrStudents = [StudentModel]()
     
     var stringUsername: String = ""
