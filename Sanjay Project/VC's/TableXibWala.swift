@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 class TableXibWala: UIViewController {
 
@@ -14,12 +15,13 @@ class TableXibWala: UIViewController {
     var arrFrnds = [CellModel]()
     var tappedIndex = 0
     var userDefaults = UserDefaults.standard
+    let reachability = try! Reachability()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let imgFound = UIImage(named: "calendar")//nil coalescing
         {
-            arrFrnds.append(CellModel(name: "Sanjay", img: imgFound, favStatus: false, isAddedAsFrnd: false))
+            arrFrnds.append(CellModel(name: "Sanjay", img: imgFound, favStatus: false, isAddedAsFrnd: false, urlString: "https://raw.githubusercontent.com/SDWebImage/SDWebImage/master/SDWebImage_logo.png"))
         }
         
         arrFrnds.append(CellModel(name: "Aman", img: UIImage(named: "profile")!, favStatus: false, isAddedAsFrnd: false))
@@ -27,6 +29,32 @@ class TableXibWala: UIViewController {
         
         //registerNib
         tableView.register(UINib(nibName: "HeavyCell", bundle: nil), forCellReuseIdentifier: "HeavyCell")
+        tableView.register(UINib(nibName: ImageCell.identifier, bundle: nil), forCellReuseIdentifier: ImageCell.identifier)
+        
+        checkInternet()
+    }
+    
+    
+    
+    func checkInternet()
+    {
+        reachability.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        }
+        
+        reachability.whenUnreachable = { _ in
+            print("Not reachable")
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
     }
 }
 
@@ -34,32 +62,40 @@ extension TableXibWala: UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HeavyCell", for: indexPath) as? HeavyCell
-        cell?.lblUserName.text = arrFrnds[indexPath.row].name
-        cell?.imgUserProfile.image = arrFrnds[indexPath.row].img
-        
-        if arrFrnds[indexPath.row].favStatus ?? false
+        if indexPath.row == 0
         {
-            cell?.imgFavorite.image =  UIImage(systemName: "heart.fill")
+            let cell = tableView.dequeueReusableCell(withIdentifier: ImageCell.identifier, for: indexPath) as? ImageCell
+            cell?.configure(model: arrFrnds[indexPath.row])
+            return cell ?? UITableViewCell()
         }
-        else
-        {
-            cell?.imgFavorite.image = UIImage(systemName: "heart")
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HeavyCell", for: indexPath) as? HeavyCell
+            cell?.lblUserName.text = arrFrnds[indexPath.row].name
+            cell?.imgUserProfile.image = arrFrnds[indexPath.row].img
+            
+            if arrFrnds[indexPath.row].favStatus ?? false
+            {
+                cell?.imgFavorite.image =  UIImage(systemName: "heart.fill")
+            }
+            else
+            {
+                cell?.imgFavorite.image = UIImage(systemName: "heart")
+            }
+            
+            let tagGestureFavImg = UITapGestureRecognizer(target: self, action: #selector(tappedFavButton))
+            let tagGestureBtnFav = UITapGestureRecognizer(target: self, action: #selector(tappedBtnAddFrnd(_:)))
+            
+            cell?.imgFavorite.isUserInteractionEnabled = true
+            cell?.imgFavorite.tag = indexPath.row
+            cell?.btnAddFrnd.tag = indexPath.row
+            
+            
+            cell?.imgFavorite.addGestureRecognizer(tagGestureFavImg)
+            cell?.btnAddFrnd.addGestureRecognizer(tagGestureBtnFav)
+            return cell ?? UITableViewCell()
         }
-        
-        let tagGestureFavImg = UITapGestureRecognizer(target: self, action: #selector(tappedFavButton))
-        let tagGestureBtnFav = UITapGestureRecognizer(target: self, action: #selector(tappedBtnAddFrnd(_:)))
-
-        cell?.imgFavorite.isUserInteractionEnabled = true
-        cell?.imgFavorite.tag = indexPath.row
-        cell?.btnAddFrnd.tag = indexPath.row
-        
-        
-        cell?.imgFavorite.addGestureRecognizer(tagGestureFavImg)
-        cell?.btnAddFrnd.addGestureRecognizer(tagGestureBtnFav)
        
-       
-        return cell ?? UITableViewCell()
+        return UITableViewCell()
     }
     
    
@@ -79,7 +115,7 @@ extension TableXibWala: UITableViewDataSource, UITableViewDelegate
             vc.arr = arrFrnds
             //use delegate protocols for backward from destincation to source
 //            Step 4
-            vc.delegate = self //current class reference.
+            //vc.delegate = self //current class reference.
             vc.modelGot = arrFrnds[tappedIndex]
         }
     }
@@ -131,14 +167,16 @@ class CellModel
 {
     var name: String? = ""
     var img: UIImage?
+    var urlString : String?
     var favStatus: Bool?
     var isAddedAsFrnd: Bool?
     
-    init(name: String? = nil, img: UIImage? = nil, favStatus: Bool? = nil, isAddedAsFrnd: Bool? = nil) {
+    init(name: String? = nil, img: UIImage? = nil, favStatus: Bool? = nil, isAddedAsFrnd: Bool? = nil, urlString: String? = nil) {
         self.name = name
         self.img = img
         self.favStatus = favStatus
         self.isAddedAsFrnd = isAddedAsFrnd
+        self.urlString = urlString
     }
 }
 
