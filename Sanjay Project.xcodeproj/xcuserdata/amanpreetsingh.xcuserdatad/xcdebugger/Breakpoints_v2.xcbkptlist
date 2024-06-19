@@ -14,26 +14,42 @@
             filePath = "Sanjay Project/VC&apos;s/HomePage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "69B65D11-236C-4294-9A6C-59A6A4D23472"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sanjay Project/VC&apos;s/HomePage.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "loadStudentData()"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "514259F1-E090-46CA-B901-1A36F3F2B252 - 9215366a1302d294"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sanjay_Project.HomePage.viewDidLoad() -&gt; ()"
+                  moduleName = "Sanjay Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amanpreetsingh/Documents/Xcode%20Projects/Sanjay%20Project/Sanjay%20Project/VC&apos;s/HomePage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  uuid = "514259F1-E090-46CA-B901-1A36F3F2B252 - 9215366a1302d2f7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sanjay_Project.HomePage.viewDidLoad() -&gt; ()"
+                  moduleName = "Sanjay Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amanpreetsingh/Documents/Xcode%20Projects/Sanjay%20Project/Sanjay%20Project/VC&apos;s/HomePage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "220">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

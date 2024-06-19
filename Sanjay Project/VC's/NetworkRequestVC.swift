@@ -10,7 +10,6 @@ import UIKit
 class NetworkRequestVC: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     @IBOutlet weak var lblContent: UILabel!
     
     override func viewDidLoad() {
@@ -72,6 +71,7 @@ class NetworkRequestVC: UIViewController {
                 self.activityIndicator.stopAnimating()
                // self.drawLabel("content = \(resposneModel as AnyObject)")
                 self.lblContent.text = "\(responseModel as AnyObject)"
+                self.lblContent.sizeToFit()
             }
             
         } catch {
@@ -97,54 +97,4 @@ class NetworkRequestVC: UIViewController {
         // Set width constraint to limit the label width
         label.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
     }
-}
-
-struct Location: Decodable {
-    let lat, lng, generationtimeMS: Double?
-    let utcOffsetSeconds: Int?
-    let timezone, timezoneAbbreviation: String?
-    let elevation: Int?
-    let current: Current?
-    let hourly: Hourly?
-  
-
-    enum CodingKeys: String, CodingKey {
-        case lat = "latitude"
-        case lng = "longitude"
-        case generationtimeMS = "generationtime_ms"
-        case utcOffsetSeconds = "utc_offset_seconds"
-        case timezone
-        case timezoneAbbreviation = "timezone_abbreviation"
-        case elevation
-        case current
-        case hourly
-    }
-}
-
-struct Current: Decodable {
-    let time: String?
-    let interval : Int?
-    let windSpeed10M, temperature2M: Double?
-
-    enum CodingKeys: String, CodingKey {
-        case time, interval
-        case temperature2M = "temperature_2m"
-        case windSpeed10M = "wind_speed_10m"
-    }
-}
-
-// MARK: - Hourly
-struct Hourly: Codable {
-    let time: [String]?
-    let temperature2M: [Double]?
-    let relativeHumidity2M: [Int]?
-    let windSpeed10M: [Double]?
-
-    enum CodingKeys: String, CodingKey {
-        case time
-        case temperature2M = "temperature_2m"
-        case relativeHumidity2M = "relative_humidity_2m"
-        case windSpeed10M = "wind_speed_10m"
-    }
-    
 }

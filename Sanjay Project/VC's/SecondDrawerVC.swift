@@ -1,29 +1,21 @@
 //
-//  SecondViewController.swift
+//  SecondDrawerVC.swift
 //  Sanjay Project
 //
-//  Created by Amanpreet Singh on 14/06/24.
+//  Created by Amanpreet Singh on 19/06/24.
 //
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondDrawerVC: UIViewController {
 
-    @IBOutlet weak var btnMain: UIButton!
-    var titleString: String =  ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Hi \(titleString)"
-        btnMain.setTitle(titleString, for: .normal)
 
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func actionClose(_ sender: Any) {
-        dismiss(animated: true)
-    }
-    
+
     /*
     // MARK: - Navigation
 
