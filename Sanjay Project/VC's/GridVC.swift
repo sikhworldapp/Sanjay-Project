@@ -34,11 +34,26 @@ class GridVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func actionAddNewStudent(_ sender: Any) {
+        performSegue(withIdentifier: "toAddStudent", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openNext"
         {
             if let vc = segue.destination as? SecondViewController{
                 vc.titleString = arrStudents[tappedIndex].name
+            }
+        }
+        else if segue.identifier == "toAddStudent"
+        {
+            if let vc = segue.destination as? AddStudentVC{
+               // Step 1 //  assign Another class's vc
+                vc.newStudentModel =  { studentModel in //Step 4
+                    self.arrStudents.append(studentModel)
+                    self.collectionView.reloadData()
+                    
+                }
             }
         }
     }

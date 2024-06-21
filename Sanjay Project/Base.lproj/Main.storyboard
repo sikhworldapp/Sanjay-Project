@@ -489,10 +489,16 @@ EEVudGVyIExhc3QgTmFtZQ
                     </view>
                     <navigationItem key="navigationItem" title="Astrology" largeTitleDisplayMode="always" id="le2-9u-Lks">
                         <barButtonItem key="backBarButtonItem" title="Go to Home" id="MI1-ec-Lvc"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bES-5P-Hfq">
+                            <connections>
+                                <action selector="actionAddNewStudent:" destination="7um-YB-gXI" id="uAS-oE-hR3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="68K-Lt-xCA" id="elx-DK-E7q"/>
                         <segue destination="iYM-cJ-NAG" kind="show" identifier="openNext" id="cdd-N9-old"/>
+                        <segue destination="kL6-JX-1F0" kind="show" identifier="toAddStudent" id="FDP-FB-Pr0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="neD-gA-55u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -544,23 +550,109 @@ EEVudGVyIExhc3QgTmFtZQ
             </objects>
             <point key="canvasLocation" x="2710.6870229007632" y="753.52112676056345"/>
         </scene>
-        <!--View Controller-->
+        <!--Add StudentVC-->
         <scene sceneID="RrC-m3-WlZ">
             <objects>
-                <viewController id="kL6-JX-1F0" sceneMemberID="viewController">
+                <viewController id="kL6-JX-1F0" customClass="AddStudentVC" customModule="Sanjay_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Fv-9y-pFO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfM-Au-N0U">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter name" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3gX-8a-6RO">
+                                        <rect key="frame" x="20" y="118" width="353" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="hgI-1W-BEO"/>
+                                        </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new Student entry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTN-wQ-EBY">
+                                        <rect key="frame" x="20" y="20" width="353" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uo1-tN-VyG">
+                                        <rect key="frame" x="20" y="91" width="353" height="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFk-el-ztv">
+                                        <rect key="frame" x="20" y="645" width="353" height="50"/>
+                                        <color key="backgroundColor" name="commonLabelColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="f5W-IJ-Kcq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Add Student"/>
+                                        <connections>
+                                            <action selector="actionAddStudent:" destination="kL6-JX-1F0" eventType="touchUpInside" id="4sX-xi-Bpj"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose class (Grade) : " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srE-sh-Vid">
+                                        <rect key="frame" x="20" y="190" width="353" height="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7c-eN-2h4">
+                                        <rect key="frame" x="20" y="223" width="353" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="7Q7-m7-hyT"/>
+                                        </constraints>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hFk-el-ztv" secondAttribute="trailing" constant="20" id="5MG-xU-vka"/>
+                                    <constraint firstAttribute="trailing" secondItem="uo1-tN-VyG" secondAttribute="trailing" constant="20" id="5i5-mg-Rif"/>
+                                    <constraint firstItem="srE-sh-Vid" firstAttribute="leading" secondItem="VfM-Au-N0U" secondAttribute="leading" constant="20" id="8jw-d9-gap"/>
+                                    <constraint firstItem="HTN-wQ-EBY" firstAttribute="top" secondItem="VfM-Au-N0U" secondAttribute="top" constant="20" id="B1u-yA-PqK"/>
+                                    <constraint firstItem="srE-sh-Vid" firstAttribute="top" secondItem="3gX-8a-6RO" secondAttribute="bottom" constant="22" id="ESu-4I-SJ5"/>
+                                    <constraint firstItem="uo1-tN-VyG" firstAttribute="leading" secondItem="VfM-Au-N0U" secondAttribute="leading" constant="20" id="Ft4-Wo-LxV"/>
+                                    <constraint firstItem="T7c-eN-2h4" firstAttribute="leading" secondItem="VfM-Au-N0U" secondAttribute="leading" constant="20" id="IiP-Or-fe0"/>
+                                    <constraint firstAttribute="trailing" secondItem="srE-sh-Vid" secondAttribute="trailing" constant="20" id="KDz-NG-wdD"/>
+                                    <constraint firstItem="3gX-8a-6RO" firstAttribute="leading" secondItem="VfM-Au-N0U" secondAttribute="leading" constant="20" id="R45-SV-mBW"/>
+                                    <constraint firstAttribute="trailing" secondItem="HTN-wQ-EBY" secondAttribute="trailing" constant="20" id="VxY-0S-MPk"/>
+                                    <constraint firstItem="HTN-wQ-EBY" firstAttribute="leading" secondItem="VfM-Au-N0U" secondAttribute="leading" constant="20" id="Yn5-Mn-brO"/>
+                                    <constraint firstAttribute="trailing" secondItem="3gX-8a-6RO" secondAttribute="trailing" constant="20" id="ajq-QU-50U"/>
+                                    <constraint firstItem="hFk-el-ztv" firstAttribute="leading" secondItem="VfM-Au-N0U" secondAttribute="leading" constant="20" id="apv-UV-dJM"/>
+                                    <constraint firstAttribute="bottom" secondItem="hFk-el-ztv" secondAttribute="bottom" constant="20" id="dTv-rB-Pbv"/>
+                                    <constraint firstItem="uo1-tN-VyG" firstAttribute="top" secondItem="HTN-wQ-EBY" secondAttribute="bottom" constant="50" id="nnL-cI-pOS"/>
+                                    <constraint firstAttribute="trailing" secondItem="T7c-eN-2h4" secondAttribute="trailing" constant="20" id="pWh-JE-sRR"/>
+                                    <constraint firstItem="T7c-eN-2h4" firstAttribute="top" secondItem="srE-sh-Vid" secondAttribute="bottom" constant="16" id="zCF-wb-5A7"/>
+                                    <constraint firstItem="3gX-8a-6RO" firstAttribute="top" secondItem="uo1-tN-VyG" secondAttribute="bottom" constant="10" id="zgy-rr-n6m"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="U4X-wp-FKD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="VfM-Au-N0U" firstAttribute="leading" secondItem="U4X-wp-FKD" secondAttribute="leading" id="2kg-5f-awM"/>
+                            <constraint firstItem="VfM-Au-N0U" firstAttribute="top" secondItem="U4X-wp-FKD" secondAttribute="top" id="Hug-pm-5KZ"/>
+                            <constraint firstItem="U4X-wp-FKD" firstAttribute="trailing" secondItem="VfM-Au-N0U" secondAttribute="trailing" id="gQd-ld-FCD"/>
+                            <constraint firstItem="U4X-wp-FKD" firstAttribute="bottom" secondItem="VfM-Au-N0U" secondAttribute="bottom" id="tmh-yC-nkj"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fWf-n0-joR"/>
+                    <connections>
+                        <outlet property="pickerRollNo" destination="T7c-eN-2h4" id="kFM-9I-DcA"/>
+                        <outlet property="txtName" destination="3gX-8a-6RO" id="Gkp-Hv-XO4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ce2-fZ-ICL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5205" y="770"/>
+            <point key="canvasLocation" x="3595" y="1454"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
         <image name="arrowshape.right" catalog="system" width="128" height="104"/>
