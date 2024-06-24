@@ -7,11 +7,21 @@
 
 import UIKit
 
-class AddStudentVC: UIViewController
-
+class AddStudentVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, FeesAddingDelegate
 {
+    func feesAdded(fees: Double) {
+        print("your fees is: \(fees)")
+        btnAddFees.setTitle("\(fees)", for: .normal)
+    }
+    
+   
+    @IBOutlet weak var btnAddFees: UIButton!
     @IBOutlet weak var pickerRollNo: UIPickerView!
-    @IBOutlet weak var txtName: UITextView!
+    @IBOutlet weak var txtName: UITextView! //multiline
+    @IBOutlet weak var txtRollNo: UITextField! //textfiled like edittext.android
+    @IBOutlet weak var txtSchoolName: UITextField!
+   
+    @IBOutlet weak var viewBack: UIView!
     
     var arrClass = [String]()
     var selectedClass = 5
@@ -26,7 +36,70 @@ class AddStudentVC: UIViewController
         {
             arrClass.append("\(i)")
         }
+        txtName.delegate = self
+        txtSchoolName.delegate = self
+        txtRollNo.delegate = self
+        txtName.resignFirstResponder()
+        
+        viewBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
         // Do any additional setup after loading the view.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAddFees"
+        {
+            if let vc = segue.destination as? AddStudentFeesVC
+            {
+                vc.delegate = self
+              //  vc.txtFees?.text = btnAddFees.title(for: .normal) //must not call any UI componenet in prepareSegue.
+                vc.string = btnAddFees.title(for: .normal) ?? ""
+            }
+        }
+    }
+    
+    @objc func hideKeyboard()
+    {
+        self.view.endEditing(true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == txtRollNo
+        {
+            if textField.text?.count ?? 0 > 2
+            {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           textField.resignFirstResponder()
+           return true
+       }
+    
+    @IBAction func actionDone(_ sender: Any) {
+        txtRollNo.resignFirstResponder()
+    }
+    
+    // UITextViewDelegate method
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+        return true
+    }
+    
+    // Optional: Detect when return key is pressed and resign first responder
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    @IBAction func actionAddFees(_ sender: Any) {
+        performSegue(withIdentifier: "toAddFees", sender: nil)
     }
     
     @IBAction func actionAddStudent(_ sender: Any) {
@@ -61,4 +134,9 @@ extension AddStudentVC : UIPickerViewDataSource, UIPickerViewDelegate {
         selectedClass = Int(arrClass[row]) ?? 5
         
     }
+}
+
+protocol FeesAddingDelegate
+{
+    func feesAdded(fees: Double)
 }
