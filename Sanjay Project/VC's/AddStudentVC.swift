@@ -42,7 +42,38 @@ class AddStudentVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, F
         txtName.resignFirstResponder()
         
         viewBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
+        
+        retrieveDate()
+        returnDictionary()
         // Do any additional setup after loading the view.
+    }
+    
+    func retrieveDate()
+    {
+        var tuple = AppConstants.shared.returnTodayDate()
+        var arr = tuple.1
+        print(arr)
+       
+        
+    }
+    
+    func returnName()
+    {
+        var fullNameOBject = AppConstants.shared.returnName()
+        
+        print("HI \(fullNameOBject.0) \(fullNameOBject.1)!!")
+       
+        
+    }
+    
+    func returnDictionary()
+    {
+        var fullNameOBject = AppConstants.shared.dictionaryExample()
+        
+        var x = fullNameOBject["key1"]
+        print(x)
+       
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

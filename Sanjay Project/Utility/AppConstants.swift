@@ -30,4 +30,29 @@ class AppConstants
         
     }
     
+    func returnTodayDate() -> (Int, [String]) //tuple
+    {
+        let dateString : String = "\(Date())"
+        
+        return (1, [dateString, "aman", "sanjay"])
+    }
+    
+    func returnName() -> (String,String)
+    {
+        let fName = "Sanjay"
+        let lName = "Kumar"
+        return (fName,lName)
+    }
+    
+    func dictionaryExample() -> [String:String]
+    {
+        let fName = "Sanjay"
+        let lName = "Kumar"
+        
+        return ["key1": fName,
+                "key2": lName]
+    }
+    
 }
+
+

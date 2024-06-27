@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sign Up Form-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SignUpForm" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="SignUpForm" customModule="Sanjay_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi signup please" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-yZ-tkW">
+                                <rect key="frame" x="133.66666666666666" y="415.66666666666669" width="125.99999999999997" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LPt-yZ-tkW" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="22A-rf-Epk"/>
+                            <constraint firstItem="LPt-yZ-tkW" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="MoZ-vW-HOL"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2224" y="584"/>
+        </scene>
+        <!--Sign Up With MobileVC-->
+        <scene sceneID="EWn-Av-63c">
+            <objects>
+                <viewController storyboardIdentifier="SignUpWithMobile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ekQ-2C-XLw" customClass="SignUpWithMobileVC" customModule="Sanjay_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Aa-B9-U91">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Signup using mobile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhz-YH-pgK">
+                                <rect key="frame" x="119.66666666666669" y="415.66666666666669" width="154" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5b-xA-eVn">
+                                <rect key="frame" x="159" y="468" width="75" height="41"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="actionSendMobile:" destination="ekQ-2C-XLw" eventType="touchUpInside" id="dSf-di-33g"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PYl-m7-S11"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fhz-YH-pgK" firstAttribute="centerY" secondItem="5Aa-B9-U91" secondAttribute="centerY" id="A6I-D1-5mC"/>
+                            <constraint firstItem="fhz-YH-pgK" firstAttribute="centerX" secondItem="5Aa-B9-U91" secondAttribute="centerX" id="RGf-si-cZN"/>
+                            <constraint firstItem="d5b-xA-eVn" firstAttribute="centerX" secondItem="fhz-YH-pgK" secondAttribute="centerX" id="q92-km-VlT"/>
+                            <constraint firstItem="d5b-xA-eVn" firstAttribute="top" secondItem="fhz-YH-pgK" secondAttribute="bottom" constant="31.333333333333314" id="szj-fn-o6T"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="jja-lZ-hRC" kind="show" identifier="toSignUpForm" id="tFg-LE-GAY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ebd-Sb-iN3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1060" y="-11"/>
+        </scene>
+        <!--SignUpForm-->
+        <scene sceneID="ZUc-kv-y6p">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignUp" referencedIdentifier="SignUpForm" id="jja-lZ-hRC" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="bCC-JB-jUe"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oy3-QI-vdX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688" y="262"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
