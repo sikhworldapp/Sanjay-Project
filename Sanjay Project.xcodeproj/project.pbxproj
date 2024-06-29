@@ -12,6 +12,8 @@
 		6D106BDF2C2DBA7A00186BA5 /* SignUpForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D106BDE2C2DBA7A00186BA5 /* SignUpForm.swift */; };
 		6D106BE12C2DBE0400186BA5 /* SignUpWithMobileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D106BE02C2DBE0400186BA5 /* SignUpWithMobileVC.swift */; };
 		6D180A6B2C2021A6000BCB4B /* NetworkRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D180A6A2C2021A6000BCB4B /* NetworkRequestVC.swift */; };
+		6D1B04C32C30600F0099537E /* CustomTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B04C22C30600F0099537E /* CustomTabBarVC.swift */; };
+		6D4150372C305D730041A848 /* CallsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4150362C305D730041A848 /* CallsVC.swift */; };
 		6D69BCE42C04D36F00D03B3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69BCE32C04D36F00D03B3E /* AppDelegate.swift */; };
 		6D69BCE62C04D36F00D03B3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69BCE52C04D36F00D03B3E /* SceneDelegate.swift */; };
 		6D69BCE82C04D36F00D03B3E /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69BCE72C04D36F00D03B3E /* SignUpVC.swift */; };
@@ -47,6 +49,8 @@
 		6D106BDE2C2DBA7A00186BA5 /* SignUpForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpForm.swift; sourceTree = "<group>"; };
 		6D106BE02C2DBE0400186BA5 /* SignUpWithMobileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWithMobileVC.swift; sourceTree = "<group>"; };
 		6D180A6A2C2021A6000BCB4B /* NetworkRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestVC.swift; sourceTree = "<group>"; };
+		6D1B04C22C30600F0099537E /* CustomTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarVC.swift; sourceTree = "<group>"; };
+		6D4150362C305D730041A848 /* CallsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsVC.swift; sourceTree = "<group>"; };
 		6D69BCE02C04D36F00D03B3E /* Sanjay Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sanjay Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D69BCE32C04D36F00D03B3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D69BCE52C04D36F00D03B3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,10 +133,10 @@
 				6D106BDB2C2DB91B00186BA5 /* storyboards */,
 				6DEE5B1E2C232546005D4F54 /* Utility */,
 				6D0C308D2C10BB3F00E5B550 /* models */,
+				6DD9012F2C0A1D58000A14D4 /* VC's */,
 				6DA344212C0E166800E08102 /* cells */,
 				6D69BCE32C04D36F00D03B3E /* AppDelegate.swift */,
 				6D69BCE52C04D36F00D03B3E /* SceneDelegate.swift */,
-				6DD9012F2C0A1D58000A14D4 /* VC's */,
 				6D69BCEC2C04D37100D03B3E /* Assets.xcassets */,
 				6D69BCEE2C04D37100D03B3E /* LaunchScreen.storyboard */,
 				6D69BCF12C04D37100D03B3E /* Info.plist */,
@@ -186,6 +190,8 @@
 				6DDE1AAF2C29CA6300782038 /* AddStudentFeesVC.swift */,
 				6D106BDE2C2DBA7A00186BA5 /* SignUpForm.swift */,
 				6D106BE02C2DBE0400186BA5 /* SignUpWithMobileVC.swift */,
+				6D4150362C305D730041A848 /* CallsVC.swift */,
+				6D1B04C22C30600F0099537E /* CustomTabBarVC.swift */,
 			);
 			path = "VC's";
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				6DEE5B222C232BD0005D4F54 /* SecondDrawerVC.swift in Sources */,
 				6DBE41292C1C1E050028C994 /* ImageCell.swift in Sources */,
 				6DEE5B1C2C23229D005D4F54 /* GridItem.swift in Sources */,
+				6D4150372C305D730041A848 /* CallsVC.swift in Sources */,
 				6D90D16A2C25C267002C36FA /* AddStudentVC.swift in Sources */,
 				6D106BE12C2DBE0400186BA5 /* SignUpWithMobileVC.swift in Sources */,
 				6D180A6B2C2021A6000BCB4B /* NetworkRequestVC.swift in Sources */,
@@ -309,6 +316,7 @@
 				6DBE413A2C1C2C240028C994 /* SecondViewController.swift in Sources */,
 				6DA344232C0E16C500E08102 /* HomeItemCell.swift in Sources */,
 				6D8275782C189A1200C9D8A1 /* Home2VC.swift in Sources */,
+				6D1B04C32C30600F0099537E /* CustomTabBarVC.swift in Sources */,
 				6DD9012E2C0A1D4B000A14D4 /* HomePage.swift in Sources */,
 				6DBE41382C1C2AAD0028C994 /* LifecycleVC.swift in Sources */,
 				6DD901312C0A20F2000A14D4 /* LogoutVC.swift in Sources */,
@@ -468,7 +476,7 @@
 				INFOPLIST_FILE = "Sanjay Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = SignUp;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -495,7 +503,7 @@
 				INFOPLIST_FILE = "Sanjay Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = SignUp;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

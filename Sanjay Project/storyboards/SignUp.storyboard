@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5cN-i8-uOS">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
@@ -33,24 +33,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2224" y="584"/>
+            <point key="canvasLocation" x="1778" y="671"/>
         </scene>
         <!--Sign Up With MobileVC-->
         <scene sceneID="EWn-Av-63c">
             <objects>
                 <viewController storyboardIdentifier="SignUpWithMobile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ekQ-2C-XLw" customClass="SignUpWithMobileVC" customModule="Sanjay_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Aa-B9-U91">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Signup using mobile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhz-YH-pgK">
-                                <rect key="frame" x="119.66666666666669" y="415.66666666666669" width="154" height="21"/>
+                                <rect key="frame" x="119.66666666666669" y="410.66666666666669" width="154" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5b-xA-eVn">
-                                <rect key="frame" x="159" y="468" width="75" height="41"/>
+                                <rect key="frame" x="159" y="463" width="75" height="41"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Button"/>
                                 <connections>
@@ -59,7 +59,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PYl-m7-S11"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                         <constraints>
                             <constraint firstItem="fhz-YH-pgK" firstAttribute="centerY" secondItem="5Aa-B9-U91" secondAttribute="centerY" id="A6I-D1-5mC"/>
                             <constraint firstItem="fhz-YH-pgK" firstAttribute="centerX" secondItem="5Aa-B9-U91" secondAttribute="centerX" id="RGf-si-cZN"/>
@@ -67,6 +67,7 @@
                             <constraint firstItem="d5b-xA-eVn" firstAttribute="top" secondItem="fhz-YH-pgK" secondAttribute="bottom" constant="31.333333333333314" id="szj-fn-o6T"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="58d-qe-qBF"/>
                     <connections>
                         <segue destination="jja-lZ-hRC" kind="show" identifier="toSignUpForm" id="tFg-LE-GAY"/>
                     </connections>
@@ -74,6 +75,106 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ebd-Sb-iN3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1060" y="-11"/>
+        </scene>
+        <!--Messages-->
+        <scene sceneID="rVL-wl-RvD">
+            <objects>
+                <viewController id="oVr-sj-mwI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="08b-sV-UJc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See your messages at here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjs-XT-pQc">
+                                <rect key="frame" x="84.666666666666686" y="415.66666666666669" width="224" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pst-T8-1Or">
+                                <rect key="frame" x="343" y="80" width="30" height="28.666666666666671"/>
+                                <color key="tintColor" systemColor="systemMintColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FEj-Xg-kJ5"/>
+                                    <constraint firstAttribute="width" constant="30" id="U7b-zz-feX"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Wyo-zX-EjT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fjs-XT-pQc" firstAttribute="centerY" secondItem="08b-sV-UJc" secondAttribute="centerY" id="0CI-mb-DyG"/>
+                            <constraint firstItem="fjs-XT-pQc" firstAttribute="centerX" secondItem="08b-sV-UJc" secondAttribute="centerX" id="0Id-rl-CVw"/>
+                            <constraint firstItem="Wyo-zX-EjT" firstAttribute="trailing" secondItem="pst-T8-1Or" secondAttribute="trailing" constant="20" id="T9b-uc-Lqd"/>
+                            <constraint firstItem="pst-T8-1Or" firstAttribute="top" secondItem="Wyo-zX-EjT" secondAttribute="top" constant="20" id="oAr-Jx-QaZ"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Messages" image="message" catalog="system" selectedImage="message.fill" id="nRR-j6-E8T"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="glh-IW-mVR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3606.8702290076335" y="-346.47887323943661"/>
+        </scene>
+        <!--Calls-->
+        <scene sceneID="WgA-Vf-qyZ">
+            <objects>
+                <viewController id="llf-Ed-zLE" customClass="CallsVC" customModule="Sanjay_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IOb-qR-C4i">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See your call at here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vam-zK-zGS">
+                                <rect key="frame" x="111.66666666666667" y="415.66666666666669" width="169.66666666666663" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCP-bY-bUk">
+                                <rect key="frame" x="125" y="458" width="143" height="41"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="View messages"/>
+                                <connections>
+                                    <action selector="actionView:" destination="llf-Ed-zLE" eventType="touchUpInside" id="2uR-Al-Q04"/>
+                                    <segue destination="ekQ-2C-XLw" kind="show" id="R72-ZT-mm6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RQd-Ap-Fdx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wCP-bY-bUk" firstAttribute="centerX" secondItem="vam-zK-zGS" secondAttribute="centerX" id="icg-sx-SEp"/>
+                            <constraint firstItem="wCP-bY-bUk" firstAttribute="top" secondItem="vam-zK-zGS" secondAttribute="bottom" constant="21.333333333333314" id="pSV-gk-H0d"/>
+                            <constraint firstItem="vam-zK-zGS" firstAttribute="centerY" secondItem="IOb-qR-C4i" secondAttribute="centerY" id="v5s-lH-gvK"/>
+                            <constraint firstItem="vam-zK-zGS" firstAttribute="centerX" secondItem="IOb-qR-C4i" secondAttribute="centerX" id="xMC-N0-5bi"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Calls" image="phone" catalog="system" selectedImage="phone.fill" id="n1r-XU-DQE">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6to-67-IUO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2813" y="-745"/>
+        </scene>
+        <!--Custom Tab BarVC-->
+        <scene sceneID="63V-Ty-Fwy">
+            <objects>
+                <tabBarController id="5cN-i8-uOS" customClass="CustomTabBarVC" customModule="Sanjay_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fdh-yM-DzR">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemPinkColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="qC3-R7-u4J" kind="relationship" relationship="viewControllers" id="NJO-CS-R5U"/>
+                        <segue destination="llf-Ed-zLE" kind="relationship" relationship="viewControllers" id="oki-PG-PN1"/>
+                        <segue destination="oVr-sj-mwI" kind="relationship" relationship="viewControllers" id="hjg-fg-l6s"/>
+                        <segue destination="ltb-hK-i9q" kind="relationship" relationship="viewControllers" id="WCa-gv-BHK"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZnA-k9-8Nx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1908" y="-440"/>
         </scene>
         <!--SignUpForm-->
         <scene sceneID="ZUc-kv-y6p">
@@ -85,10 +186,70 @@
             </objects>
             <point key="canvasLocation" x="1688" y="262"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="Kp8-Yi-2B0">
+            <objects>
+                <viewController id="qC3-R7-u4J" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="diu-dn-R2U">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Yae-4e-Lnw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="udR-pl-14A"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egQ-0o-Nde" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2857" y="445"/>
+        </scene>
+        <!--Status-->
+        <scene sceneID="4gh-Bi-7Vh">
+            <objects>
+                <viewController id="ltb-hK-i9q" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zpf-0q-P0G">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See your Status at here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5P-gM-Zge">
+                                <rect key="frame" x="99" y="415.66666666666669" width="195" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f5s-XZ-RXe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="b5P-gM-Zge" firstAttribute="centerX" secondItem="Zpf-0q-P0G" secondAttribute="centerX" id="Bcd-Za-rJK"/>
+                            <constraint firstItem="b5P-gM-Zge" firstAttribute="centerY" secondItem="Zpf-0q-P0G" secondAttribute="centerY" id="CJJ-px-GU5"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Status" image="message" catalog="system" selectedImage="message.fill" id="0c9-Kl-YrU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FGl-vv-L3z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3740" y="358"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="message" catalog="system" width="128" height="116"/>
+        <image name="message.fill" catalog="system" width="128" height="114"/>
+        <image name="person" catalog="system" width="128" height="121"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="phone" catalog="system" width="128" height="115"/>
+        <image name="phone.fill" catalog="system" width="128" height="114"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
