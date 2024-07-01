@@ -8,16 +8,13 @@
 import UIKit
 
 class CustomTabBarVC: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        delegate = self
-        
+ 
         if let items = tabBar.items, items.count > 3 {
-                    items[3].isEnabled = false
-                }
-        
+            items[3].isEnabled = false
+        }
     }
-
 }
 

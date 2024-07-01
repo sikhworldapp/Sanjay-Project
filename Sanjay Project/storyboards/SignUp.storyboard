@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5cN-i8-uOS">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -123,13 +124,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See your call at here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vam-zK-zGS">
-                                <rect key="frame" x="111.66666666666667" y="415.66666666666669" width="169.66666666666663" height="21"/>
+                                <rect key="frame" x="111.66666666666667" y="180" width="169.66666666666663" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCP-bY-bUk">
-                                <rect key="frame" x="125" y="458" width="143" height="41"/>
+                                <rect key="frame" x="125" y="222.33333333333334" width="143" height="41.000000000000028"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="View messages"/>
                                 <connections>
@@ -137,19 +138,51 @@
                                     <segue destination="ekQ-2C-XLw" kind="show" id="R72-ZT-mm6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGz-p7-uG8">
+                                <rect key="frame" x="134.66666666666666" y="283.33333333333331" width="123.99999999999997" height="41"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="View content"/>
+                                <connections>
+                                    <action selector="actionViewContents:" destination="llf-Ed-zLE" eventType="touchUpInside" id="BbZ-zF-3Ks"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" title="Enable dark mode" translatesAutoresizingMaskIntoConstraints="NO" id="GUD-9z-P3U">
+                                <rect key="frame" x="324" y="104" width="51" height="31"/>
+                                <color key="onTintColor" systemColor="systemRedColor"/>
+                                <color key="thumbTintColor" systemColor="systemYellowColor"/>
+                                <connections>
+                                    <action selector="actionValueChanged:" destination="llf-Ed-zLE" eventType="valueChanged" id="JFk-85-X7e"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on lights" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cB-gh-Mt4">
+                                <rect key="frame" x="144.66666666666666" y="109" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RQd-Ap-Fdx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wCP-bY-bUk" firstAttribute="centerX" secondItem="vam-zK-zGS" secondAttribute="centerX" id="icg-sx-SEp"/>
+                            <constraint firstItem="GUD-9z-P3U" firstAttribute="centerY" secondItem="6cB-gh-Mt4" secondAttribute="centerY" id="08o-re-IWJ"/>
+                            <constraint firstItem="vam-zK-zGS" firstAttribute="centerX" secondItem="6cB-gh-Mt4" secondAttribute="centerX" id="1Rf-bb-rRh"/>
+                            <constraint firstItem="LGz-p7-uG8" firstAttribute="top" secondItem="wCP-bY-bUk" secondAttribute="bottom" constant="20" id="AtV-Nj-48e"/>
+                            <constraint firstItem="vam-zK-zGS" firstAttribute="top" secondItem="6cB-gh-Mt4" secondAttribute="bottom" constant="50" id="NLY-eH-QMG"/>
+                            <constraint firstItem="6cB-gh-Mt4" firstAttribute="centerX" secondItem="RQd-Ap-Fdx" secondAttribute="centerX" id="P9X-2a-e7e"/>
+                            <constraint firstItem="LGz-p7-uG8" firstAttribute="centerX" secondItem="wCP-bY-bUk" secondAttribute="centerX" id="aL0-f5-JkP"/>
+                            <constraint firstItem="6cB-gh-Mt4" firstAttribute="top" secondItem="RQd-Ap-Fdx" secondAttribute="top" constant="50" id="j2J-zb-uhs"/>
+                            <constraint firstItem="wCP-bY-bUk" firstAttribute="centerX" secondItem="vam-zK-zGS" secondAttribute="centerX" id="p0M-Wh-vqu"/>
                             <constraint firstItem="wCP-bY-bUk" firstAttribute="top" secondItem="vam-zK-zGS" secondAttribute="bottom" constant="21.333333333333314" id="pSV-gk-H0d"/>
-                            <constraint firstItem="vam-zK-zGS" firstAttribute="centerY" secondItem="IOb-qR-C4i" secondAttribute="centerY" id="v5s-lH-gvK"/>
-                            <constraint firstItem="vam-zK-zGS" firstAttribute="centerX" secondItem="IOb-qR-C4i" secondAttribute="centerX" id="xMC-N0-5bi"/>
+                            <constraint firstItem="RQd-Ap-Fdx" firstAttribute="trailing" secondItem="GUD-9z-P3U" secondAttribute="trailing" constant="20" id="z3V-ll-8EX"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Calls" image="phone" catalog="system" selectedImage="phone.fill" id="n1r-XU-DQE">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="constraintTopButtonViewCotent" destination="j2J-zb-uhs" id="yyE-8D-Svy"/>
+                        <outlet property="lblDarkModel" destination="6cB-gh-Mt4" id="HJt-wN-z58"/>
+                        <outlet property="uiswitch" destination="GUD-9z-P3U" id="hXH-D3-ey6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6to-67-IUO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -243,13 +276,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
