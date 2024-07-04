@@ -11,7 +11,7 @@ class GridVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var arrStudents = [StudentModel]()
+    var arrStudents = [ProductModel]()
     
     var appConstants = AppConstants.shared
     var tappedIndex = 0
@@ -41,8 +41,8 @@ class GridVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openNext"
         {
-            if let vc = segue.destination as? SecondViewController{
-                vc.titleString = arrStudents[tappedIndex].name
+            if let vc = segue.destination as? CustomerAddingInCartVC{
+                vc.titleString = arrStudents[tappedIndex].pName
             }
         }
         else if segue.identifier == "toAddStudent"
@@ -80,7 +80,7 @@ extension GridVC: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridItem", for: indexPath) as? GridItem
-        cell?.lblContent.text = arrStudents[indexPath.row].name
+        cell?.lblContent.text = arrStudents[indexPath.row].pName
         cell?.imgLogo.image = UIImage(named: "calendar")
         return cell ?? UICollectionViewCell()
         

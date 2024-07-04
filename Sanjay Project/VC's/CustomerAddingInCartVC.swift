@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class CustomerAddingInCartVC: UIViewController {
 
     @IBOutlet weak var btnMain: UIButton!
     var titleString: String =  ""

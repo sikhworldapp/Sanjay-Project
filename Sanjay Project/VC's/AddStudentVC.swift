@@ -25,7 +25,7 @@ class AddStudentVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, F
     
     var arrClass = [String]()
     var selectedClass = 5
-    var newStudentModel : ((StudentModel) ->(Void))?  = nil ///Step 2
+    var newStudentModel : ((ProductModel) ->(Void))?  = nil ///Step 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,28 +50,28 @@ class AddStudentVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, F
     
     func retrieveDate()
     {
-        var tuple = AppConstants.shared.returnTodayDate()
-        var arr = tuple.1
-        print(arr)
+//        var tuple = AppConstants.shared.returnTodayDate()
+//        var arr = tuple.1
+//        print(arr)
        
         
     }
     
     func returnName()
     {
-        var fullNameOBject = AppConstants.shared.returnName()
-        
-        print("HI \(fullNameOBject.0) \(fullNameOBject.1)!!")
+//        var fullNameOBject = AppConstants.shared.returnName()
+//        
+//        print("HI \(fullNameOBject.0) \(fullNameOBject.1)!!")
        
         
     }
     
     func returnDictionary()
     {
-        var fullNameOBject = AppConstants.shared.dictionaryExample()
-        
-        var x = fullNameOBject["key1"]
-        print(x)
+//        var fullNameOBject = AppConstants.shared.dictionaryExample()
+//        
+//        var x = fullNameOBject["key1"]
+//        print(x)
        
         
     }
@@ -135,7 +135,7 @@ class AddStudentVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, F
     
     @IBAction func actionAddStudent(_ sender: Any) {
         //Step 3
-        newStudentModel?(StudentModel(name: txtName.text ?? "", classStudent: selectedClass, rollNo: selectedClass, fees: 1000, isPresent: true))
+//        newStudentModel?(ProductModel(name: txtName.text ?? "", classStudent: selectedClass, rollNo: selectedClass, fees: 1000, isPresent: true))
         navigationController?.popViewController(animated: true)
     }
 }

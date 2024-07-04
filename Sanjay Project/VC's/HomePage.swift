@@ -12,7 +12,7 @@ class HomePage: UIViewController {
     @IBOutlet weak var btnHeading: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var arrStudents = [StudentModel]()
+    var arrStudents = [ProductModel]()
     
     var stringUsername: String = ""
     var appConstants = AppConstants.shared
@@ -42,7 +42,7 @@ extension HomePage : UITableViewDataSource, UITableViewDelegate
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as? HomeItemCell
         cell?.imgLogo.image = UIImage(named: "calendar")!
-        cell?.lblName.text = "\(arrStudents[indexPath.row].name) \(indexPath.row)"
+        cell?.lblName.text = "\(arrStudents[indexPath.row].pName) \(indexPath.row)"
         return cell ?? UITableViewCell()
     }
     
@@ -52,7 +52,7 @@ extension HomePage : UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("you tapped: \(indexPath.row)")
-        btnHeading.setTitle(arrStudents[indexPath.row].name, for: .normal)
+        btnHeading.setTitle(arrStudents[indexPath.row].pName, for: .normal)
        
     }
 }

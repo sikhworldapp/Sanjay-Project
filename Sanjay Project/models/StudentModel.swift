@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct StudentModel
+struct ProductModel
 {
-    var name: String
-    var classStudent: Int
-    var rollNo: Int
-    var fees: Double
-    var isPresent: Bool
+    var id: Int
+    var pName: String
+    var price: Double
+    var inStock: Int
+    var addedByCustomer: Int
 }

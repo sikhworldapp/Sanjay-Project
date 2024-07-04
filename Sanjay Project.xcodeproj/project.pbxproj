@@ -13,6 +13,8 @@
 		6D106BE12C2DBE0400186BA5 /* SignUpWithMobileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D106BE02C2DBE0400186BA5 /* SignUpWithMobileVC.swift */; };
 		6D180A6B2C2021A6000BCB4B /* NetworkRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D180A6A2C2021A6000BCB4B /* NetworkRequestVC.swift */; };
 		6D1B04C32C30600F0099537E /* CustomTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1B04C22C30600F0099537E /* CustomTabBarVC.swift */; };
+		6D342E242C36F3BA00526247 /* ChooseProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D342E232C36F3BA00526247 /* ChooseProductVC.swift */; };
+		6D342E272C36F5BA00526247 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D342E262C36F5BA00526247 /* ProductCell.swift */; };
 		6D4150372C305D730041A848 /* CallsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4150362C305D730041A848 /* CallsVC.swift */; };
 		6D69BCE42C04D36F00D03B3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69BCE32C04D36F00D03B3E /* AppDelegate.swift */; };
 		6D69BCE62C04D36F00D03B3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69BCE52C04D36F00D03B3E /* SceneDelegate.swift */; };
@@ -30,7 +32,7 @@
 		6DBE41332C1C27C80028C994 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DBE41322C1C27C80028C994 /* SDWebImage */; };
 		6DBE41362C1C28F30028C994 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 6DBE41352C1C28F30028C994 /* Reachability */; };
 		6DBE41382C1C2AAD0028C994 /* LifecycleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBE41372C1C2AAD0028C994 /* LifecycleVC.swift */; };
-		6DBE413A2C1C2C240028C994 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBE41392C1C2C240028C994 /* SecondViewController.swift */; };
+		6DBE413A2C1C2C240028C994 /* CustomerAddingInCartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBE41392C1C2C240028C994 /* CustomerAddingInCartVC.swift */; };
 		6DBEA6F92C135A8D004543F1 /* HeavyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBEA6F72C135A8D004543F1 /* HeavyCell.swift */; };
 		6DBEA6FA2C135A8D004543F1 /* HeavyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBEA6F82C135A8D004543F1 /* HeavyCell.xib */; };
 		6DBEA6FC2C135D67004543F1 /* TableXibWala.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBEA6FB2C135D67004543F1 /* TableXibWala.swift */; };
@@ -52,6 +54,8 @@
 		6D106BE02C2DBE0400186BA5 /* SignUpWithMobileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWithMobileVC.swift; sourceTree = "<group>"; };
 		6D180A6A2C2021A6000BCB4B /* NetworkRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestVC.swift; sourceTree = "<group>"; };
 		6D1B04C22C30600F0099537E /* CustomTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarVC.swift; sourceTree = "<group>"; };
+		6D342E232C36F3BA00526247 /* ChooseProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseProductVC.swift; sourceTree = "<group>"; };
+		6D342E262C36F5BA00526247 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		6D4150362C305D730041A848 /* CallsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsVC.swift; sourceTree = "<group>"; };
 		6D69BCE02C04D36F00D03B3E /* Sanjay Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sanjay Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D69BCE32C04D36F00D03B3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +72,7 @@
 		6DBE41272C1C1E050028C994 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		6DBE41282C1C1E050028C994 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		6DBE41372C1C2AAD0028C994 /* LifecycleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleVC.swift; sourceTree = "<group>"; };
-		6DBE41392C1C2C240028C994 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		6DBE41392C1C2C240028C994 /* CustomerAddingInCartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAddingInCartVC.swift; sourceTree = "<group>"; };
 		6DBEA6F72C135A8D004543F1 /* HeavyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavyCell.swift; sourceTree = "<group>"; };
 		6DBEA6F82C135A8D004543F1 /* HeavyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeavyCell.xib; sourceTree = "<group>"; };
 		6DBEA6FB2C135D67004543F1 /* TableXibWala.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableXibWala.swift; sourceTree = "<group>"; };
@@ -115,6 +119,14 @@
 			path = storyboards;
 			sourceTree = "<group>";
 		};
+		6D342E252C36F59400526247 /* ProductCell */ = {
+			isa = PBXGroup;
+			children = (
+				6D342E262C36F5BA00526247 /* ProductCell.swift */,
+			);
+			path = ProductCell;
+			sourceTree = "<group>";
+		};
 		6D69BCD72C04D36F00D03B3E = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +164,7 @@
 		6DA344212C0E166800E08102 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				6D342E252C36F59400526247 /* ProductCell */,
 				6DEE5B192C23227A005D4F54 /* GridItem */,
 				6DBE41262C1C1DEE0028C994 /* ImageCell */,
 				6DBEA6F62C135A56004543F1 /* HeavyCell */,
@@ -195,7 +208,7 @@
 				6DBEA6FB2C135D67004543F1 /* TableXibWala.swift */,
 				6D8275772C189A1200C9D8A1 /* Home2VC.swift */,
 				6DBE41372C1C2AAD0028C994 /* LifecycleVC.swift */,
-				6DBE41392C1C2C240028C994 /* SecondViewController.swift */,
+				6DBE41392C1C2C240028C994 /* CustomerAddingInCartVC.swift */,
 				6D180A6A2C2021A6000BCB4B /* NetworkRequestVC.swift */,
 				6DEE5B172C2321E6005D4F54 /* GridVC.swift */,
 				6DEE5B212C232BD0005D4F54 /* SecondDrawerVC.swift */,
@@ -205,6 +218,7 @@
 				6D106BE02C2DBE0400186BA5 /* SignUpWithMobileVC.swift */,
 				6D4150362C305D730041A848 /* CallsVC.swift */,
 				6D1B04C22C30600F0099537E /* CustomTabBarVC.swift */,
+				6D342E232C36F3BA00526247 /* ChooseProductVC.swift */,
 			);
 			path = "VC's";
 			sourceTree = "<group>";
@@ -316,6 +330,7 @@
 				6DEE5B202C232553005D4F54 /* AppConstants.swift in Sources */,
 				6D106BDF2C2DBA7A00186BA5 /* SignUpForm.swift in Sources */,
 				6D69BCE82C04D36F00D03B3E /* SignUpVC.swift in Sources */,
+				6D342E272C36F5BA00526247 /* ProductCell.swift in Sources */,
 				6DEE5B222C232BD0005D4F54 /* SecondDrawerVC.swift in Sources */,
 				6DBE41292C1C1E050028C994 /* ImageCell.swift in Sources */,
 				6DEE5B1C2C23229D005D4F54 /* GridItem.swift in Sources */,
@@ -325,11 +340,12 @@
 				6D180A6B2C2021A6000BCB4B /* NetworkRequestVC.swift in Sources */,
 				6D69BCE42C04D36F00D03B3E /* AppDelegate.swift in Sources */,
 				6DA617E62C32F85B0006D3C2 /* BaseViewController.swift in Sources */,
+				6D342E242C36F3BA00526247 /* ChooseProductVC.swift in Sources */,
 				6DBEA6FC2C135D67004543F1 /* TableXibWala.swift in Sources */,
 				6DEE5B182C2321E7005D4F54 /* GridVC.swift in Sources */,
 				6DEE5B162C231EE1005D4F54 /* LatLngModel.swift in Sources */,
 				6D69BCE62C04D36F00D03B3E /* SceneDelegate.swift in Sources */,
-				6DBE413A2C1C2C240028C994 /* SecondViewController.swift in Sources */,
+				6DBE413A2C1C2C240028C994 /* CustomerAddingInCartVC.swift in Sources */,
 				6DA344232C0E16C500E08102 /* HomeItemCell.swift in Sources */,
 				6D8275782C189A1200C9D8A1 /* Home2VC.swift in Sources */,
 				6D1B04C32C30600F0099537E /* CustomTabBarVC.swift in Sources */,
@@ -492,7 +508,7 @@
 				INFOPLIST_FILE = "Sanjay Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = SignUp;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -520,7 +536,7 @@
 				INFOPLIST_FILE = "Sanjay Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = SignUp;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
