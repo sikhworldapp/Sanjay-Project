@@ -15,3 +15,9 @@ struct ProductModel
     var inStock: Int
     var addedByCustomer: Int
 }
+
+struct MainProductModel
+{
+    var id: Int
+    var selectedProduct: ProductModel
+}

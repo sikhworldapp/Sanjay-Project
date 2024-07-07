@@ -1,38 +1,15 @@
 //
-//  ChooseProductVC.swift
+//  CrossProductVC ++.swift
 //  Sanjay Project
 //
-//  Created by Amanpreet Singh on 04/07/24.
+//  Created by Amanpreet Singh on 07/07/24.
 //
 
 import UIKit
 
-class ChooseProductVC: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var imgDownArrow: UIImageView!
-    @IBOutlet weak var tableViewProducts: UITableView!
-    @IBOutlet weak var tfProdName: UITextField!
-    
-    var arrProducts = [ProductModel]()
-    var filteredProducts = [ProductModel]()
-  
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableViewProducts.isHidden = true
-        
-        
-        imgDownArrow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleTable)))
-        
-        tableViewProducts.delegate = self
-        tableViewProducts.dataSource = self
-        tfProdName.delegate = self
-        
-        arrProducts.append(contentsOf: AppConstants.shared.loadProducts())
-        filteredProducts.append(contentsOf: arrProducts)
-        tableViewProducts.reloadData()
-        
-     }
-    
+extension ChooseProductVC
+{
+    // MARK: - Searching.
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == tfProdName {
             // Create the new text string with the proposed change
@@ -41,50 +18,70 @@ class ChooseProductVC: UIViewController, UITextFieldDelegate {
             
             if newText.isEmpty {
                 // If the new text is empty, hide the table view and show all products
-                tableViewProducts.isHidden = true
+                hideTable()
                 filteredProducts.removeAll()
                 filteredProducts.append(contentsOf: arrProducts)
-                imgDownArrow.image = UIImage(systemName: "arrow.down.circle.fill")
+                imgDownArrow.image = downArrowImg
             } else {
                 // If the new text is not empty, filter the products and show the table view
-                tableViewProducts.isHidden = false
+                showTable()
                 filteredProducts.removeAll()
                 filteredProducts.append(contentsOf: arrProducts.filter { $0.pName.lowercased().contains(newText.lowercased()) })
-                imgDownArrow.image = UIImage(systemName: "xmark.circle.fill")
+                imgDownArrow.image = crossImg
             }
             
             // Reload the table view in both cases
-            tableViewProducts.reloadData()
+            // tableViewProducts.reloadData()
+        }
+        else if textField == tfQuantity
+        {
+            let totalAmount = (arrProducts[tappedIndex].price) * (Double(tfQuantity.text ?? "0.0") ?? 0.0)
+            tfAmount.text = "$" + String(totalAmount)
+            
+            
+            
+            let stringPcs = (Int(tfQuantity.text ?? "0") ?? 0) > 1 ? "Pcs" : "pc"
+            tfUnit.text =  stringPcs
         }
         return true
     }
-
     
     @objc func toggleTable()
     {
-        if imgDownArrow.image == UIImage(systemName: "xmark.circle.fill")// cross img
+        if imgDownArrow.image == crossImg// cross img
         {
-            tableViewProducts.isHidden = true
+            hideTable()
             tfProdName.text = ""
-            imgDownArrow.image = UIImage(systemName: "arrow.down.circle.fill")
+            imgDownArrow.image = downArrowImg
             
             filteredProducts.removeAll()
             filteredProducts.append(contentsOf: arrProducts)
-            tableViewProducts.reloadData()
+            //tableViewProducts.reloadData()
         }
         else
         {
             tableViewProducts.isHidden = !tableViewProducts.isHidden
         }
-        
+    }
+    
+    func hideTable()
+    {
+        tableViewProducts.isHidden = true
+    }
+    
+    func showTable()
+    {
+        tableViewProducts.isHidden = false
     }
 }
 
+// MARK: - UITableViewDataSource +  UITableViewDelegate.
 extension ChooseProductVC: UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as? ProductCell
         cell?.lblProdName.text = filteredProducts[indexPath.row].pName
+        cell?.lblPrice.text =  "$" + String(filteredProducts[indexPath.row].price)
         return cell ?? UITableViewCell()
     }
     
@@ -93,10 +90,29 @@ extension ChooseProductVC: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tappedIndex = indexPath.row
         print("tapped: \(indexPath.row)")
         tfProdName.text = filteredProducts[indexPath.row].pName
-        imgDownArrow.image = UIImage(systemName: "xmark.circle.fill")
-        tableViewProducts.isHidden = true
+        imgDownArrow.image = crossImg
+        hideTable()
+        
+        //Quantity
+        print("set quantity to 1 when selected.")
+        tfQuantity.text = "1"
+        
+        //PIECE HANDLING
+        let stringPcs = (Int(tfUnit.text ?? "0") ?? 0) > 1 ? "Pcs" : "pc"
+        tfUnit.text =  stringPcs
+        
+        //PRICE SETTING
+        tfPrice.text =  "$" + String(filteredProducts[indexPath.row].price)
+        
+        //Total amount setting
+        tfAmount.text = "$\(filteredProducts[indexPath.row].price)"
+        
+        tfUnit.resignFirstResponder()
+        
     }
     
 }
+

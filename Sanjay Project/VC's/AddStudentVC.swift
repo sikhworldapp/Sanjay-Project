@@ -27,6 +27,8 @@ class AddStudentVC: UIViewController, UITextViewDelegate, UITextFieldDelegate, F
     var selectedClass = 5
     var newStudentModel : ((ProductModel) ->(Void))?  = nil ///Step 2
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         pickerRollNo.dataSource = self

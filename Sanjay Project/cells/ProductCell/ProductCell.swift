@@ -11,4 +11,6 @@ class ProductCell: UITableViewCell {
     
     @IBOutlet weak var lblProdName: UILabel!
     
+    @IBOutlet weak var lblPrice: UILabel!
+    
 }
