@@ -35,8 +35,21 @@ extension ChooseProductVC
         }
         else if textField == tfQuantity
         {
-            let totalAmount = (arrProducts[tappedIndex].price) * (Double(tfQuantity.text ?? "0.0") ?? 0.0)
-            tfAmount.text = "$" + String(totalAmount)
+            let quantity = Double(tfQuantity.text ?? "0.0") ?? 0.0
+                   let price = arrProducts[tappedIndex].price
+            let totalAmount = price * quantity
+            let roundedAmount = round(totalAmount * 1000) / 1000
+                    
+                    // Format as currency with 2 decimal places explicitly
+                    let formatter = NumberFormatter()
+                    formatter.numberStyle = .currency
+                    formatter.currencySymbol = "$"
+                    formatter.minimumFractionDigits = 2
+                    formatter.maximumFractionDigits = 2
+                    
+                    if let formattedAmount = formatter.string(from: NSNumber(value: roundedAmount)) {
+                        tfAmount.text = formattedAmount
+                    }
             
             
             

@@ -62,7 +62,17 @@ class ChooseProductVC: UIViewController, UITextFieldDelegate {
      }
     
     @IBAction func actionDoneAdding(_ sender: Any) {
-        newProductAdded!(filteredProducts[tappedIndex])
+        var selectedProdModel = filteredProducts[tappedIndex]
+        selectedProdModel.qty = Int(tfQuantity.text ?? "1") ?? 1
+        
+        
+        if let amountText = tfAmount.text {
+            let cleanedAmount = amountText.replacingOccurrences(of: "[^0-9.]", with: "", options: .regularExpression)
+            selectedProdModel.amount = Double(cleanedAmount) ?? 0.0
+        }
+        
+        
+        newProductAdded!(selectedProdModel)
         navigationController?.popViewController(animated: true)
     }
 }

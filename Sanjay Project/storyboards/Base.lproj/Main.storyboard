@@ -1079,21 +1079,30 @@ EEVudGVyIExhc3QgTmFtZQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QNu-Uv-QxK">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="153" width="393" height="665"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="eaC-Ht-GiA" id="84n-DV-89Z"/>
                                     <outlet property="delegate" destination="eaC-Ht-GiA" id="trN-Sd-hRO"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List of added items" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUb-db-B3B">
+                                <rect key="frame" x="20" y="123" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ehw-sE-gS9"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
                         <constraints>
                             <constraint firstItem="QNu-Uv-QxK" firstAttribute="leading" secondItem="Ehw-sE-gS9" secondAttribute="leading" id="3n8-1W-yLj"/>
                             <constraint firstItem="Ehw-sE-gS9" firstAttribute="trailing" secondItem="QNu-Uv-QxK" secondAttribute="trailing" id="M0x-mb-Km2"/>
-                            <constraint firstItem="QNu-Uv-QxK" firstAttribute="top" secondItem="Ehw-sE-gS9" secondAttribute="top" id="PfK-tS-Ksf"/>
+                            <constraint firstItem="QNu-Uv-QxK" firstAttribute="top" secondItem="Ehw-sE-gS9" secondAttribute="top" constant="50" id="PfK-tS-Ksf"/>
                             <constraint firstItem="Ehw-sE-gS9" firstAttribute="bottom" secondItem="QNu-Uv-QxK" secondAttribute="bottom" id="Qgh-Xm-zJu"/>
+                            <constraint firstItem="Ehw-sE-gS9" firstAttribute="trailing" secondItem="MUb-db-B3B" secondAttribute="trailing" constant="20" id="hbG-gO-IGM"/>
+                            <constraint firstItem="MUb-db-B3B" firstAttribute="top" secondItem="Ehw-sE-gS9" secondAttribute="top" constant="20" id="pTd-Ye-S3Y"/>
+                            <constraint firstItem="MUb-db-B3B" firstAttribute="leading" secondItem="K5Q-x6-5RV" secondAttribute="leading" constant="20" id="zaa-Xz-1ao"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dashboard Products" largeTitleDisplayMode="always" id="FoZ-Dk-C9P">
@@ -1137,10 +1146,10 @@ EEVudGVyIExhc3QgTmFtZQ
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
-        <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
-        <image name="arrowshape.down.circle" catalog="system" width="128" height="123"/>
-        <image name="arrowshape.right" catalog="system" width="128" height="104"/>
-        <image name="cart.fill" catalog="system" width="128" height="102"/>
+        <image name="arrowshape.backward.fill" catalog="system" width="32" height="32"/>
+        <image name="arrowshape.down.circle" catalog="system" width="32" height="32"/>
+        <image name="arrowshape.right" catalog="system" width="32" height="32"/>
+        <image name="cart.fill" catalog="system" width="32" height="32"/>
         <namedColor name="commonBackgroundColor">
             <color red="0.86500000953674316" green="1" blue="0.83300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1154,13 +1163,13 @@ EEVudGVyIExhc3QgTmFtZQ
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

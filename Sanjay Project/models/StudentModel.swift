@@ -11,6 +11,8 @@ struct ProductModel
 {
     var id: Int
     var pName: String
+    var qty: Int? = 0
+    var amount: Double? = 0.0 //its total of all same item.
     var price: Double
     var inStock: Int
     var addedByCustomer: Int
