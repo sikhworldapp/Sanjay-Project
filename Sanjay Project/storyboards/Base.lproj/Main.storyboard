@@ -1057,6 +1057,7 @@ EEVudGVyIExhc3QgTmFtZQ
                     </view>
                     <navigationItem key="navigationItem" id="0VU-Rj-LND"/>
                     <connections>
+                        <outlet property="btnAddEditDel" destination="t16-ao-MFa" id="552-n7-EiU"/>
                         <outlet property="imgDownArrow" destination="wC0-Bg-Qik" id="hu1-4c-czn"/>
                         <outlet property="tableViewProducts" destination="KfY-6N-5wN" id="w8F-FM-Cox"/>
                         <outlet property="tfAmount" destination="G5K-p2-VYs" id="4nx-fW-q7q"/>
@@ -1119,6 +1120,7 @@ EEVudGVyIExhc3QgTmFtZQ
                     <connections>
                         <outlet property="tableView" destination="QNu-Uv-QxK" id="QAq-SO-nil"/>
                         <segue destination="Drm-Ke-LgW" kind="show" identifier="toAddNewProduct" id="y6C-Kh-Are"/>
+                        <segue destination="Drm-Ke-LgW" kind="show" identifier="toEditProduct" id="csF-xu-qML"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBS-Cw-Ljj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1144,12 +1146,15 @@ EEVudGVyIExhc3QgTmFtZQ
             <point key="canvasLocation" x="5275.5725190839694" y="828.87323943661977"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="csF-xu-qML"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
-        <image name="arrowshape.backward.fill" catalog="system" width="32" height="32"/>
-        <image name="arrowshape.down.circle" catalog="system" width="32" height="32"/>
-        <image name="arrowshape.right" catalog="system" width="32" height="32"/>
-        <image name="cart.fill" catalog="system" width="32" height="32"/>
+        <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
+        <image name="arrowshape.down.circle" catalog="system" width="128" height="123"/>
+        <image name="arrowshape.right" catalog="system" width="128" height="104"/>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
         <namedColor name="commonBackgroundColor">
             <color red="0.86500000953674316" green="1" blue="0.83300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1163,13 +1168,13 @@ EEVudGVyIExhc3QgTmFtZQ
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
-            <color red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

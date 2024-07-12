@@ -40,10 +40,37 @@ class DashboardProductsVC: UIViewController {
         {
             if let vc = segue.destination as? ChooseProductVC{
                // Step 1 //  assign Another class's vc
-                vc.newProductAdded =  { studentModel in //Step 4
-                    self.arrSelectedProducts.append(MainProductModel(id: studentModel.id, selectedProduct: studentModel))
+                vc.newProductAdded =  { productModel in //Step 4
+                    self.arrSelectedProducts.append(MainProductModel(id: productModel.id, selectedProduct: productModel))
                     
                 }
+                
+                
+            }
+        }
+        else  if segue.identifier == "toEditProduct"
+        {
+            
+            if let index = sender as? Int {
+                print("getting index: \(index)")
+                
+                if let vc = segue.destination as? ChooseProductVC
+                {
+                    vc.editableProductModel = arrSelectedProducts[index].selectedProduct
+                    vc.tappedIndex = index
+                    vc.sameProductEdited =  { productModel in //Step 4
+                        
+                        self.arrSelectedProducts[index] = MainProductModel(id: productModel.id, selectedProduct: productModel)
+
+                        
+                    }
+                }
+                
+                
+            }
+            else
+            {
+                print("index sender is nil")
             }
         }
     }
@@ -65,6 +92,11 @@ extension DashboardProductsVC : UITableViewDataSource, UITableViewDelegate
         
         cell?.lblAmount.text = "$\(arrSelectedProducts[indexPath.row].selectedProduct.amount ?? 0)"
         
+        cell?.btnEditTapped =
+        {
+            print("called \(indexPath.row)")
+            self.performSegue(withIdentifier: "toEditProduct", sender: indexPath.row)
+        }
         
         return cell ?? UITableViewCell()
     }

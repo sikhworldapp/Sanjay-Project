@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ChooseProductVC: UIViewController, UITextFieldDelegate {
-
+class ChooseProductVC: BaseViewController, UITextFieldDelegate {
+    
     @IBOutlet weak var imgDownArrow: UIImageView!
     @IBOutlet weak var tableViewProducts: UITableView!
     @IBOutlet weak var tfProdName: UITextField!
@@ -16,7 +16,7 @@ class ChooseProductVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tfPrice: UITextField!
     @IBOutlet weak var tfUnit: UITextField!
     @IBOutlet weak var tfAmount: UITextField!
-   
+    @IBOutlet weak var btnAddEditDel: UIButton!
     
     var arrProducts = [ProductModel](){
         didSet{
@@ -37,11 +37,14 @@ class ChooseProductVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    var editableProductModel : ProductModel? = nil
+    
     var tappedIndex = 0
     
     var crossImg = UIImage(systemName: "xmark.circle.fill")
     var downArrowImg = UIImage(systemName: "arrow.down.circle.fill")
-    var newProductAdded: ((ProductModel) ->())? = nil
+    var newProductAdded: ((ProductModel) ->())? = nil //will be set from previous vc..already displaying..
+    var sameProductEdited: ((ProductModel) ->())? = nil //will be set from previous vc..already displaying.
     
     
     override func viewDidLoad() {
@@ -58,22 +61,65 @@ class ChooseProductVC: UIViewController, UITextFieldDelegate {
         arrProducts.append(contentsOf: AppConstants.shared.loadProducts())
         filteredProducts.append(contentsOf: arrProducts)
         
-        
-     }
-    
-    @IBAction func actionDoneAdding(_ sender: Any) {
-        var selectedProdModel = filteredProducts[tappedIndex]
-        selectedProdModel.qty = Int(tfQuantity.text ?? "1") ?? 1
-        
-        
-        if let amountText = tfAmount.text {
-            let cleanedAmount = amountText.replacingOccurrences(of: "[^0-9.]", with: "", options: .regularExpression)
-            selectedProdModel.amount = Double(cleanedAmount) ?? 0.0
+        if let modelToEdit = editableProductModel
+        {
+            print("to edit and fill the contents.")
+            tfProdName.text = modelToEdit.pName.description
+            // tfUnit = modelToEdit.
+            tfQuantity.text = modelToEdit.qty?.description
+            tfPrice.text = modelToEdit.price.description
+            tfAmount.text = modelToEdit.amount?.description
+            
+            btnAddEditDel.setTitle("Edit", for: .normal)
+        }
+        else
+        {
+            print("you need to select")
         }
         
         
-        newProductAdded!(selectedProdModel)
-        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func actionDoneAdding(_ sender: Any) {
+        if tappedIndex >= 0 {
+            if let modelToEdit = editableProductModel
+            {
+                var selectedProdModel = modelToEdit
+                selectedProdModel.qty = Int(tfQuantity.text ?? "1") ?? 1
+                
+                
+                if let amountText = tfAmount.text {
+                    let cleanedAmount = amountText.replacingOccurrences(of: "[^0-9.]", with: "", options: .regularExpression)
+                    selectedProdModel.amount = Double(cleanedAmount) ?? 0.0
+                }
+                
+                sameProductEdited!(selectedProdModel)
+                
+            }
+            
+            else //it will add new entry
+            {
+                var selectedProdModel = filteredProducts[tappedIndex]
+                selectedProdModel.qty = Int(tfQuantity.text ?? "1") ?? 1
+                
+                
+                if let amountText = tfAmount.text {
+                    let cleanedAmount = amountText.replacingOccurrences(of: "[^0-9.]", with: "", options: .regularExpression)
+                    selectedProdModel.amount = Double(cleanedAmount) ?? 0.0
+                }
+                
+                
+                newProductAdded!(selectedProdModel)
+            }
+            
+            navigationController?.popViewController(animated: true)
+            
+        }
+        
+        else
+        {
+            showToast("Select from list first", msg: ".", position: .top)
+        }
     }
 }
 

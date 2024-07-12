@@ -103,6 +103,10 @@ extension ChooseProductVC: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let model = editableProductModel
+        {
+            editableProductModel = filteredProducts[indexPath.row]
+        }
         tappedIndex = indexPath.row
         print("tapped: \(indexPath.row)")
         tfProdName.text = filteredProducts[indexPath.row].pName
