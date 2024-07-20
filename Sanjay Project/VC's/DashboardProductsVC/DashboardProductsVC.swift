@@ -27,7 +27,11 @@ class DashboardProductsVC: UIViewController {
         super.viewDidLoad()
          tableView.register(UINib(nibName: "ProductMainCell", bundle: nil), forCellReuseIdentifier: "ProductMainCell")
         tableView.register(UINib(nibName: "HeaderViewCell", bundle: nil), forCellReuseIdentifier: "HeaderViewCell")
-        tableView.sectionHeaderHeight = 70
+        tableView.sectionHeaderHeight = 80
+        
+       // tableView.estimatedRowHeight = 200 // Set an estimated row height
+        tableView.rowHeight = UITableView.automaticDimension
+
         
     }
     
@@ -119,7 +123,7 @@ extension DashboardProductsVC : UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

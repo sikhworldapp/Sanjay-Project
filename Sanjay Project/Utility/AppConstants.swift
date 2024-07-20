@@ -35,7 +35,7 @@ class AppConstants
     func loadProducts() -> [ProductModel]
     {
         let products = [
-               ProductModel(id: 0, pName: "Glister Paste", price: 3.514, inStock: 10, addedByCustomer: 0),
+               ProductModel(id: 0, pName: "Glister Paste dlkj flkdj fldj flkjd lfj dlkfj dlkfj dlkjf ldjf ldkjf ldkjf ldkj flkdj fljd fljk ", price: 3.514, inStock: 10, addedByCustomer: 0),
                ProductModel(id: 1, pName: "Sanitizer", price: 6.5, inStock: 5, addedByCustomer: 0),
                ProductModel(id: 2, pName: "Hand wash", price: 2.5, inStock: 20, addedByCustomer: 0),
                ProductModel(id: 3, pName: "Apple", price: 1.2, inStock: 50, addedByCustomer: 0),

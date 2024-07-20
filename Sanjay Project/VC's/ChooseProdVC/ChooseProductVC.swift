@@ -58,7 +58,7 @@ class ChooseProductVC: BaseViewController, UITextFieldDelegate {
         tfProdName.delegate = self
         tfQuantity.delegate = self
         
-        arrProducts.append(contentsOf: AppConstants.shared.loadProducts())
+        arrProducts.append(contentsOf: AppConstants.shared.loadProducts())//addAll()
         filteredProducts.append(contentsOf: arrProducts)
         
         if let modelToEdit = editableProductModel

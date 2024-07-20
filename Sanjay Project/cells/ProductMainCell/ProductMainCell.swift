@@ -9,8 +9,10 @@ import UIKit
 
 class ProductMainCell: UITableViewCell {
 
+    @IBOutlet weak var stackViewLast: UIStackView!
+  //  @IBOutlet weak var constraintHeight: NSLayoutConstraint!
     @IBOutlet weak var btnEdit: UIButton!
-    @IBOutlet weak var viewBack: UIView!
+    //@IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var btnDelete: UIButton!
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblUnit: UILabel!
@@ -19,6 +21,27 @@ class ProductMainCell: UITableViewCell {
     @IBOutlet weak var lblName: UILabel!
     
     var btnEditTapped: (()->())? = nil
+    
+    override func awakeFromNib() {
+        /*if stackViewLast.isHidden
+        {
+            UIView.animate(withDuration: 0.3) {
+                self.constraintHeight.constant = 130
+                self.layoutIfNeeded()
+            }
+            
+            
+        }
+        else
+        {
+            UIView.animate(withDuration: 0.3) {
+                self.constraintHeight.constant = 200
+                self.layoutIfNeeded()
+            }
+        }
+         */
+        
+    }
 
     @IBAction func actionEdit(_ sender: Any) {
         btnEditTapped?()
