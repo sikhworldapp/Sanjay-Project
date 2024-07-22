@@ -21,6 +21,7 @@ class ProductMainCell: UITableViewCell {
     @IBOutlet weak var lblName: UILabel!
     
     var btnEditTapped: (()->())? = nil
+    var btnDeleteTapped: (()->())? = nil
     
     override func awakeFromNib() {
         /*if stackViewLast.isHidden
@@ -42,9 +43,11 @@ class ProductMainCell: UITableViewCell {
          */
         
     }
-
+    @IBAction func actionDelete(_ sender: Any) {
+        btnDeleteTapped?()
+    }
+    
     @IBAction func actionEdit(_ sender: Any) {
         btnEditTapped?()
     }
-    
 }

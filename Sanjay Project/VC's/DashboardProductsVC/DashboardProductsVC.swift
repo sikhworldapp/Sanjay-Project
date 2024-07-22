@@ -11,10 +11,21 @@ import UIKit
 class DashboardProductsVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var lblAmount: UILabel!
+    @IBOutlet weak var lblQuantity: UILabel!
     
     var arrSelectedProducts = [MainProductModel]()
     {
         didSet{
+            var totalQuan = 0
+            var totalAmount = 0.0
+            for i in arrSelectedProducts
+            {
+                totalQuan += i.selectedProduct.qty ?? 0
+                totalAmount += i.selectedProduct.amount ?? 0.0
+            }
+            lblAmount.text = totalAmount.description
+            lblQuantity.text = totalQuan.description
             tableView.reloadData()
         }
     }
@@ -22,6 +33,11 @@ class DashboardProductsVC: UIViewController {
     var appConstants = AppConstants.shared
     var tappedIndex = 0
     
+    @IBAction func actionAddDiscount(_ sender: Any) {
+        print("to add discount")
+        
+        performSegue(withIdentifier: "toAddDiscount", sender: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +47,9 @@ class DashboardProductsVC: UIViewController {
         
        // tableView.estimatedRowHeight = 200 // Set an estimated row height
         tableView.rowHeight = UITableView.automaticDimension
+        
+        lblQuantity.text = "--"
+        lblAmount.text = "--"
 
         
     }
@@ -45,7 +64,7 @@ class DashboardProductsVC: UIViewController {
             if let vc = segue.destination as? ChooseProductVC{
                // Step 1 //  assign Another class's vc
                 vc.newProductAdded =  { productModel in //Step 4
-                    self.arrSelectedProducts.append(MainProductModel(id: productModel.id, selectedProduct: productModel))
+                    self.arrSelectedProducts.append(MainProductModel(id: productModel.id ?? 0, selectedProduct: productModel))
                     
                 }
                 
@@ -64,7 +83,7 @@ class DashboardProductsVC: UIViewController {
                     vc.tappedIndex = index
                     vc.sameProductEdited =  { productModel in //Step 4
                         
-                        self.arrSelectedProducts[index] = MainProductModel(id: productModel.id, selectedProduct: productModel)
+                        self.arrSelectedProducts[index] = MainProductModel(id: productModel.id ?? 0, selectedProduct: productModel)
 
                         
                     }
@@ -75,6 +94,31 @@ class DashboardProductsVC: UIViewController {
             else
             {
                 print("index sender is nil")
+            }
+        }
+        else  if segue.identifier == "toAddDiscount"
+        {
+            
+            if let vc = segue.destination as? AddDiscountVC
+            {
+                var amountDouble = Double(lblAmount.text ?? "0.0") ?? 0.0
+                vc.totalAmount = (amountDouble * 10 ) / 100
+                vc.ledgerApplied =  { ledgerModel in
+                    
+                   print("ledger applied: \(ledgerModel as Any)")
+                    var ledgerModelInProductModel =
+                    ProductModel(id: 0, modelType: TypeItem.ledger, ledgerType: ledgerModel,
+                                 pName: ledgerModel.ledgerType,
+                                 qty: 0,
+                                 amount: ledgerModel.amount,
+                                 price: 0,
+                                 inStock: 0,
+                                 addedByCustomer: 0)
+                    
+                    self.arrSelectedProducts.append(MainProductModel(id: 0, selectedProduct: ledgerModelInProductModel))
+                    self.tableView.reloadData()
+                    
+                }
             }
         }
     }
@@ -100,6 +144,14 @@ extension DashboardProductsVC : UITableViewDataSource, UITableViewDelegate
         {
             print("called \(indexPath.row)")
             self.performSegue(withIdentifier: "toEditProduct", sender: indexPath.row)
+        }
+        
+        cell?.btnDeleteTapped =
+        { [self] in
+            print("called \(indexPath.row)")
+            arrSelectedProducts.remove(at: indexPath.row)
+            tableView.reloadData()
+            
         }
         
         return cell ?? UITableViewCell()

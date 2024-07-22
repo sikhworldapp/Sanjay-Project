@@ -24,6 +24,8 @@
 		6D69BCEB2C04D36F00D03B3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D69BCE92C04D36F00D03B3E /* Main.storyboard */; };
 		6D69BCED2C04D37100D03B3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D69BCEC2C04D37100D03B3E /* Assets.xcassets */; };
 		6D69BCF02C04D37100D03B3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D69BCEE2C04D37100D03B3E /* LaunchScreen.storyboard */; };
+		6D701AE62C4EB050000342C4 /* AddDiscountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D701AE52C4EB050000342C4 /* AddDiscountVC.swift */; };
+		6D701AE82C4EB175000342C4 /* AddDiscountVC ++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D701AE72C4EB175000342C4 /* AddDiscountVC ++.swift */; };
 		6D8275782C189A1200C9D8A1 /* Home2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8275772C189A1200C9D8A1 /* Home2VC.swift */; };
 		6D90D16A2C25C267002C36FA /* AddStudentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D90D1692C25C267002C36FA /* AddStudentVC.swift */; };
 		6DA344232C0E16C500E08102 /* HomeItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA344222C0E16C500E08102 /* HomeItemCell.swift */; };
@@ -73,6 +75,8 @@
 		6D69BCEC2C04D37100D03B3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D69BCEF2C04D37100D03B3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D69BCF12C04D37100D03B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D701AE52C4EB050000342C4 /* AddDiscountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiscountVC.swift; sourceTree = "<group>"; };
+		6D701AE72C4EB175000342C4 /* AddDiscountVC ++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddDiscountVC ++.swift"; sourceTree = "<group>"; };
 		6D8275772C189A1200C9D8A1 /* Home2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home2VC.swift; sourceTree = "<group>"; };
 		6D90D1692C25C267002C36FA /* AddStudentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentVC.swift; sourceTree = "<group>"; };
 		6DA344222C0E16C500E08102 /* HomeItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemCell.swift; sourceTree = "<group>"; };
@@ -251,6 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				6D342E232C36F3BA00526247 /* ChooseProductVC.swift */,
+				6D701AE72C4EB175000342C4 /* AddDiscountVC ++.swift */,
+				6D701AE52C4EB050000342C4 /* AddDiscountVC.swift */,
 				6DDD75AC2C3AD60100A3F595 /* ChooseProductVC ++.swift */,
 			);
 			path = ChooseProdVC;
@@ -381,11 +387,13 @@
 				6D0C308F2C10BB8B00E5B550 /* StudentModel.swift in Sources */,
 				6DEE5B202C232553005D4F54 /* AppConstants.swift in Sources */,
 				6D106BDF2C2DBA7A00186BA5 /* SignUpForm.swift in Sources */,
+				6D701AE82C4EB175000342C4 /* AddDiscountVC ++.swift in Sources */,
 				6D69BCE82C04D36F00D03B3E /* SignUpVC.swift in Sources */,
 				6D342E272C36F5BA00526247 /* ProductCell.swift in Sources */,
 				6DDD75AD2C3AD60100A3F595 /* ChooseProductVC ++.swift in Sources */,
 				6DEE5B222C232BD0005D4F54 /* SecondDrawerVC.swift in Sources */,
 				6DBE41292C1C1E050028C994 /* ImageCell.swift in Sources */,
+				6D701AE62C4EB050000342C4 /* AddDiscountVC.swift in Sources */,
 				6DEE5B1C2C23229D005D4F54 /* GridItem.swift in Sources */,
 				6D4150372C305D730041A848 /* CallsVC.swift in Sources */,
 				6D90D16A2C25C267002C36FA /* AddStudentVC.swift in Sources */,
