@@ -11,8 +11,14 @@ import UIKit
 class DashboardProductsVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var lblAmount: UILabel!
-    @IBOutlet weak var lblQuantity: UILabel!
+    @IBOutlet weak var lblTotalAmount: UILabel!
+    @IBOutlet weak var lblTotalQuantity: UILabel!
+    
+    @IBOutlet weak var lblVat: UILabel!
+    @IBOutlet weak var lblDiscount: UILabel!
+    
+    @IBOutlet weak var btnDateSelecting: UIButton!
+    
     
     var arrSelectedProducts = [MainProductModel]()
     {
@@ -24,8 +30,8 @@ class DashboardProductsVC: UIViewController {
                 totalQuan += i.selectedProduct.qty ?? 0
                 totalAmount += i.selectedProduct.amount ?? 0.0
             }
-            lblAmount.text = totalAmount.description
-            lblQuantity.text = totalQuan.description
+            lblTotalAmount.text = totalAmount.description
+            lblTotalQuantity.text = totalQuan.description
             tableView.reloadData()
         }
     }
@@ -48,11 +54,43 @@ class DashboardProductsVC: UIViewController {
        // tableView.estimatedRowHeight = 200 // Set an estimated row height
         tableView.rowHeight = UITableView.automaticDimension
         
-        lblQuantity.text = "--"
-        lblAmount.text = "--"
-
+        lblTotalQuantity.text = "--"
+        lblTotalAmount.text = "--"
         
+        lblVat.addTapGesture { [self] in
+            performSegue(withIdentifier: "toEditVAT", sender: nil)
+            //navigateToSecondViewController()
+        }
+        
+        lblDiscount.addTapGesture { [self] in
+            performSegue(withIdentifier: "toEditDiscount", sender: nil)
+        }
+        
+       
+        updateButtonDateTitle()
     }
+    
+    private func updateButtonDateTitle() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "  dd/MM/yyyy" // Specify the desired date format
+        let formattedDate = dateFormatter.string(from: Date())
+        
+        btnDateSelecting.setTitle(formattedDate, for: .normal)
+    }
+    
+    func navigateToSecondViewController() {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let secondVC = storyboard.instantiateViewController(withIdentifier: "BottomSheetValueEditingVC") as? BottomSheetValueEditingVC {
+                secondVC.callBack = { [weak self] firstValue, secondValue in
+                   print("getting: \(firstValue), \(secondValue)")
+                }
+                secondVC.modalPresentationStyle = .formSheet
+                navigationController?.pushViewController(secondVC, animated: true)
+            } else {
+                print("Failed to instantiate SecondViewController from storyboard.")
+            }
+        }
+   
     
     @IBAction func actionAddNewStudent(_ sender: Any) {
         performSegue(withIdentifier: "toAddNewProduct", sender: nil)
@@ -101,7 +139,7 @@ class DashboardProductsVC: UIViewController {
             
             if let vc = segue.destination as? AddDiscountVC
             {
-                var amountDouble = Double(lblAmount.text ?? "0.0") ?? 0.0
+                var amountDouble = Double(lblTotalAmount.text ?? "0.0") ?? 0.0
                 vc.totalAmount = (amountDouble * 10 ) / 100
                 vc.ledgerApplied =  { ledgerModel in
                     
@@ -121,7 +159,45 @@ class DashboardProductsVC: UIViewController {
                 }
             }
         }
+        else if segue.identifier == "toEditDiscount"
+          {
+              if let vc = segue.destination as? BottomSheetValueEditingVC{
+                  vc.headingString = "Edit Discount"
+                 // Step 1 //  assign Another class's vc
+                  vc.callBack = { [weak self] firstValue, discountDouble in
+                      print("getting: " + firstValue.description + discountDouble.description)
+                      self?.lblDiscount.text = discountDouble.description
+                      
+                      var amountDouble = Double(self?.lblTotalAmount.text ?? "0.0") ?? 0.0
+                      self?.lblTotalAmount.text = (amountDouble - (amountDouble / discountDouble)).description
+                      vc.dismiss(animated: true)
+                  }
+                  
+              }
+          }
+        
+        else if segue.identifier == "toEditVAT"
+          {
+              if let vc = segue.destination as? BottomSheetValueEditingVC{
+                  vc.headingString = "Edit VAT"
+                 // Step 1 //  assign Another class's vc
+                  vc.callBack = { [weak self] firstValue, vatDouble in
+                      print("getting: " + firstValue.description + vatDouble.description)
+                      self?.lblVat.text = vatDouble.description
+                      
+                      var amountDouble = Double(self?.lblTotalAmount.text ?? "0.0") ?? 0.0
+                      self?.lblTotalAmount.text = (amountDouble + (amountDouble / vatDouble)).description
+                      vc.dismiss(animated: true)
+                  }
+                  
+                  
+              }
+          }
     }
+    @IBAction func actionChooseDate(_ sender: Any) {
+        
+    }
+    
 }
 
 extension DashboardProductsVC : UITableViewDataSource, UITableViewDelegate
@@ -182,5 +258,7 @@ extension DashboardProductsVC : UITableViewDataSource, UITableViewDelegate
         print("you tapped: \(indexPath.row)")
        
     }
+
 }
+
 
