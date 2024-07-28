@@ -7,18 +7,31 @@
 
 import Foundation
 
-struct ProductModel
+class ProductModel
 {
-    var id: Int?
-    var modelType : TypeItem? // ledger or item product
-    var ledgerType : LedgerModel?
-    var pName: String
+   
+    var id: Int? = 0
+    var modelType : TypeItem? = nil// ledger or item product
+    var ledgerType : LedgerModel? = nil
+    var pName: String = ""
     var qty: Int? = 0
     var amount: Double? = 0.0 //its total of all same item.
-    var price: Double
-    var inStock: Int
-    var addedByCustomer: Int
+    var price: Double = 0.0
+    var inStock: Int = 0
+    var addedByCustomer: Int = 0
     var discountedAmount: Double? = 0.0
+    
+    init(){
+        
+    }
+    init(id: Int, pName: String, price: Double, inStock: Int, addedByCustomer: Int)
+    {
+        self.id = id
+        self.pName = pName
+        self.price  = price
+        self.inStock = inStock
+        self.addedByCustomer = addedByCustomer
+    }
 }
 
 struct MainProductModel

@@ -46,6 +46,8 @@ class ChooseProductVC: BaseViewController, UITextFieldDelegate {
     var newProductAdded: ((ProductModel) ->())? = nil //will be set from previous vc..already displaying..
     var sameProductEdited: ((ProductModel) ->())? = nil //will be set from previous vc..already displaying.
     
+    var prefs = UserDefaults.standard
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +60,8 @@ class ChooseProductVC: BaseViewController, UITextFieldDelegate {
         tfProdName.delegate = self
         tfQuantity.delegate = self
         
-        arrProducts.append(contentsOf: AppConstants.shared.loadProducts())//addAll()
+        checkLogicSavingProducts()
+        
         filteredProducts.append(contentsOf: arrProducts)
         
         if let modelToEdit = editableProductModel
@@ -78,6 +81,43 @@ class ChooseProductVC: BaseViewController, UITextFieldDelegate {
         }
         
         
+    }
+    
+    func checkLogicSavingProducts()
+    {
+        if prefs.bool(forKey: "isProductsSaved")
+        {
+            print("fetch from local db then")
+            
+           loadFromDb()
+          
+            
+        }
+        else
+        {
+            print("save all products into core data..")
+            let allProds = AppConstants.shared.loadProducts()
+            for i in allProds
+            {
+                
+                CoreDataStack.shared.insertProduct(model: i)
+            }
+            prefs.setValue(true, forKey: "isProductsSaved")
+            loadFromDb()
+        }
+    }
+    
+    func loadFromDb()
+    {
+        for coreModel in CoreDataStack.shared.readAllProducts()
+        {
+            var prodModel = ProductModel()
+            prodModel.modelType = .prodItem
+            prodModel.pName = coreModel.pName ?? ""
+            prodModel.price = coreModel.price
+            prodModel.id = Int(coreModel.prodId)
+            arrProducts.append(prodModel)//addAll()
+        }
     }
     
     @IBAction func actionDoneAdding(_ sender: Any) {

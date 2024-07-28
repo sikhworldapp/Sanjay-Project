@@ -31,13 +31,14 @@ class AppConstants
         
     }
     
+   
     
     func loadProducts() -> [ProductModel]
     {
         let products = [
             ProductModel(id: 0, pName: "Glister Paste dlkj flkdj fldj flkjd lfj dlkfj dlkfj dlkjf ldjf ldkjf ldkjf ldkj flkdj fljd fljk ", price: 3.514, inStock: 10, addedByCustomer: 0),
             ProductModel(id: 1, pName: "Sanitizer", price: 6.5, inStock: 5, addedByCustomer: 0),
-            ProductModel(id: 2, pName: "Hand wash", price: 2.5, inStock: 20, addedByCustomer: 0),
+        /*    ProductModel(id: 2, pName: "Hand wash", price: 2.5, inStock: 20, addedByCustomer: 0),
             ProductModel(id: 3, pName: "Apple", price: 1.2, inStock: 50, addedByCustomer: 0),
             ProductModel(id: 4, pName: "Banana", price: 0.5, inStock: 100, addedByCustomer: 0),
             ProductModel(id: 5, pName: "Orange", price: 1.1, inStock: 30, addedByCustomer: 0),
@@ -134,7 +135,7 @@ class AppConstants
             ProductModel(id: 96, pName: "USB Cable", price: 3.0, inStock: 40, addedByCustomer: 0),
             ProductModel(id: 97, pName: "HDMI Cable", price: 8.0, inStock: 30, addedByCustomer: 0),
             ProductModel(id: 98, pName: "Mouse", price: 12.0, inStock: 15, addedByCustomer: 0),
-            ProductModel(id: 99, pName: "Keyboard", price: 20.0, inStock: 10, addedByCustomer: 0),
+            ProductModel(id: 99, pName: "Keyboard", price: 20.0, inStock: 10, addedByCustomer: 0),*/
         ]
         
         

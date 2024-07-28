@@ -13,12 +13,9 @@ class DashboardProductsVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblTotalAmount: UILabel!
     @IBOutlet weak var lblTotalQuantity: UILabel!
-    
     @IBOutlet weak var lblVat: UILabel!
     @IBOutlet weak var lblDiscount: UILabel!
-    
     @IBOutlet weak var btnDateSelecting: UIButton!
-    
     
     var arrSelectedProducts = [MainProductModel]()
     {
@@ -47,7 +44,7 @@ class DashboardProductsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         tableView.register(UINib(nibName: "ProductMainCell", bundle: nil), forCellReuseIdentifier: "ProductMainCell")
+        tableView.register(UINib(nibName: "ProductMainCell", bundle: nil), forCellReuseIdentifier: "ProductMainCell")
         tableView.register(UINib(nibName: "HeaderViewCell", bundle: nil), forCellReuseIdentifier: "HeaderViewCell")
         tableView.sectionHeaderHeight = 80
         
@@ -144,16 +141,17 @@ class DashboardProductsVC: UIViewController {
                 vc.ledgerApplied =  { ledgerModel in
                     
                    print("ledger applied: \(ledgerModel as Any)")
-                    var ledgerModelInProductModel =
-                    ProductModel(id: 0, modelType: TypeItem.ledger, ledgerType: ledgerModel,
-                                 pName: ledgerModel.ledgerType,
-                                 qty: 0,
-                                 amount: ledgerModel.amount,
-                                 price: 0,
-                                 inStock: 0,
-                                 addedByCustomer: 0)
+                    var prodLedgeModel = ProductModel()
+                    prodLedgeModel.id = 0
+                    prodLedgeModel.ledgerType = ledgerModel
+                    prodLedgeModel.pName = ledgerModel.ledgerType
+                    prodLedgeModel.amount = ledgerModel.amount
+                    prodLedgeModel.price = ledgerModel.amount
                     
-                    self.arrSelectedProducts.append(MainProductModel(id: 0, selectedProduct: ledgerModelInProductModel))
+                    
+                   
+                    
+                    self.arrSelectedProducts.append(MainProductModel(id: 0, selectedProduct: prodLedgeModel))
                     self.tableView.reloadData()
                     
                 }
