@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UILabel {
+extension UIView {
     func addTapGesture(closure: @escaping () -> Void) {
         self.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))

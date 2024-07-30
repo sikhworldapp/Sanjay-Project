@@ -112,7 +112,7 @@ class ChooseProductVC: BaseViewController, UITextFieldDelegate {
         for coreModel in CoreDataStack.shared.readAllProducts()
         {
             var prodModel = ProductModel()
-            prodModel.modelType = .prodItem
+            prodModel.modelType = TypeItem.prodItem
             prodModel.pName = coreModel.pName ?? ""
             prodModel.price = coreModel.price
             prodModel.id = Int(coreModel.prodId)
