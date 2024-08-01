@@ -60,8 +60,9 @@ class AddDiscountVC: BaseViewController, UITextFieldDelegate {
         filteredProducts.append(contentsOf: arrProducts)
         
         
-        
     }
+    
+  
     
     @IBAction func actionDoneAdding(_ sender: Any) {
         var appliedLedger = filteredProducts[tappedIndex]
@@ -70,6 +71,8 @@ class AddDiscountVC: BaseViewController, UITextFieldDelegate {
         ledgerApplied?(appliedLedger)
         navigationController?.popViewController(animated: true)
     }
+    
+    
 }
 
 

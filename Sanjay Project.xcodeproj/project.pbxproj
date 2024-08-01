@@ -32,6 +32,8 @@
 		6D90D16A2C25C267002C36FA /* AddStudentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D90D1692C25C267002C36FA /* AddStudentVC.swift */; };
 		6D92FF552C5697C00054C0BD /* LocalDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D92FF532C5697C00054C0BD /* LocalDB.xcdatamodeld */; };
 		6D92FF582C5698C50054C0BD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D92FF572C5698C50054C0BD /* CoreDataStack.swift */; };
+		6D97132C2C5BE11800AA8068 /* ListAllProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97132A2C5BE0FB00AA8068 /* ListAllProductsVC.swift */; };
+		6D97132D2C5BE11C00AA8068 /* ListAllProductsVC++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97132B2C5BE0FC00AA8068 /* ListAllProductsVC++.swift */; };
 		6DA344232C0E16C500E08102 /* HomeItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA344222C0E16C500E08102 /* HomeItemCell.swift */; };
 		6DA617E62C32F85B0006D3C2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA617E52C32F85B0006D3C2 /* BaseViewController.swift */; };
 		6DA617E92C32F9690006D3C2 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 6DA617E82C32F9690006D3C2 /* Toast */; };
@@ -88,6 +90,8 @@
 		6D90D1692C25C267002C36FA /* AddStudentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentVC.swift; sourceTree = "<group>"; };
 		6D92FF542C5697C00054C0BD /* LocalDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalDB.xcdatamodel; sourceTree = "<group>"; };
 		6D92FF572C5698C50054C0BD /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		6D97132A2C5BE0FB00AA8068 /* ListAllProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAllProductsVC.swift; sourceTree = "<group>"; };
+		6D97132B2C5BE0FC00AA8068 /* ListAllProductsVC++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListAllProductsVC++.swift"; sourceTree = "<group>"; };
 		6DA344222C0E16C500E08102 /* HomeItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemCell.swift; sourceTree = "<group>"; };
 		6DA617E52C32F85B0006D3C2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6DA6F4352C59410C001F4974 /* AddNewProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProductVC.swift; sourceTree = "<group>"; };
@@ -206,6 +210,15 @@
 			path = DB;
 			sourceTree = "<group>";
 		};
+		6D9713292C5BE0E100AA8068 /* ListAllProductsVC */ = {
+			isa = PBXGroup;
+			children = (
+				6D97132A2C5BE0FB00AA8068 /* ListAllProductsVC.swift */,
+				6D97132B2C5BE0FC00AA8068 /* ListAllProductsVC++.swift */,
+			);
+			path = ListAllProductsVC;
+			sourceTree = "<group>";
+		};
 		6DA344212C0E166800E08102 /* cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +270,7 @@
 		6DD9012F2C0A1D58000A14D4 /* VC's */ = {
 			isa = PBXGroup;
 			children = (
+				6D9713292C5BE0E100AA8068 /* ListAllProductsVC */,
 				6DA6F4372C594135001F4974 /* AddNewProdVC */,
 				6DDD75AE2C3AE1B300A3F595 /* DashboardProductsVC */,
 				6DDD75AB2C3AD5E500A3F595 /* ChooseProdVC */,
@@ -418,6 +432,8 @@
 				6D0C308F2C10BB8B00E5B550 /* StudentModel.swift in Sources */,
 				6DEE5B202C232553005D4F54 /* AppConstants.swift in Sources */,
 				6D106BDF2C2DBA7A00186BA5 /* SignUpForm.swift in Sources */,
+				6D97132D2C5BE11C00AA8068 /* ListAllProductsVC++.swift in Sources */,
+				6D97132C2C5BE11800AA8068 /* ListAllProductsVC.swift in Sources */,
 				6D701AE82C4EB175000342C4 /* AddDiscountVC ++.swift in Sources */,
 				6D69BCE82C04D36F00D03B3E /* SignUpVC.swift in Sources */,
 				6D342E272C36F5BA00526247 /* ProductCell.swift in Sources */,
@@ -604,6 +620,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R67NCQS28C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sanjay Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -632,6 +649,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R67NCQS28C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sanjay Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

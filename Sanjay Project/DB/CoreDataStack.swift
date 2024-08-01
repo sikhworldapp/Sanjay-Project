@@ -50,7 +50,7 @@ class CoreDataStack {
     }
     
     // Insert product along with its image
-    func insertProductWithImage(pName: String, price: Double, imageData: Data?) {
+    func insertProductWithImage(pName: String, price: Double, imageData: Data?, saved: ()->()) {
         let newProduct = ProductsTable(context: context)
         newProduct.prodId = getNextProdId()
         newProduct.pName = pName
@@ -62,6 +62,7 @@ class CoreDataStack {
         }
         
         saveContext()
+        saved()
     }
 
     func insertProduct(model: ProductModel) {

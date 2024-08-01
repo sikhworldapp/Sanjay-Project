@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddNewProductVC: BaseViewController {
+class AddNewProductVC: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var tfProdName: UITextField!
     @IBOutlet weak var tfPrice: UITextField!
@@ -36,13 +36,41 @@ class AddNewProductVC: BaseViewController {
         }
         
         checkLogicSavingProducts()
+        tfPrice.delegate = self
+        tfProdName.delegate = self
+        view.addTapGesture {
+            self.tfPrice.resignFirstResponder()
+        }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if textField == tfProdName
+//        {
+//            if textField.text?.count ?? 0 > 2
+//            {
+//                return false
+//            }
+//        }
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           textField.resignFirstResponder()
+           return true
+       }
     
     @IBAction func actionAddNewItem(_ sender: Any) {
         CoreDataStack.shared.insertProductWithImage(pName: tfProdName.text ?? "",
                                                     price: Double(tfPrice.text ?? "0.0" ) ?? 0.0,
-                                                    imageData: encodedImgData)
-                }
+                                                    imageData: encodedImgData){
+            
+            print("done adding/saving your entry..")
+            
+            navigationController?.popViewController(animated: true)
+        }
+     
+    }
     
     
     @objc func openGallery() {
@@ -82,6 +110,7 @@ class AddNewProductVC: BaseViewController {
 }
 
 extension AddNewProductVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
