@@ -15,7 +15,11 @@ class AddNewProductVC: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var imgAddImage: UIImageView!
     @IBOutlet weak var imgProdImage: UIImageView!
     
+    @IBOutlet weak var lblHeadingAddNewPro: UILabel!
+    @IBOutlet weak var lblAddNewItem: UILabel!
+    
     var editableProductModel : ProductModel? = nil
+    var addedNewItem : (()->())? = nil
     
     var tappedIndex = 0
     
@@ -30,6 +34,9 @@ class AddNewProductVC: BaseViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lblHeadingAddNewPro.text = NSLocalizedString("add_new_product", comment: "")
+        lblAddNewItem.text = NSLocalizedString("Add new item", comment: "")
         
         imgAddImage.addTapGesture {
             self.openGallery()
@@ -66,7 +73,7 @@ class AddNewProductVC: BaseViewController, UITextFieldDelegate {
                                                     imageData: encodedImgData){
             
             print("done adding/saving your entry..")
-            
+            addedNewItem?()
             navigationController?.popViewController(animated: true)
         }
      

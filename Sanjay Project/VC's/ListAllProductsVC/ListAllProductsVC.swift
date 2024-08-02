@@ -51,16 +51,31 @@ class ListAllProductsVC: BaseViewController, UITextFieldDelegate, UISearchBarDel
         
         checkLogicSavingProducts()
         
-        filteredProducts.append(contentsOf: arrProducts)
+       
         
         searchBar.delegate = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear")
-        loadFromDb()
+    @IBAction func actionAddNewItem(_ sender: Any) {
+        performSegue(withIdentifier: "toAddNewProduct", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAddNewProduct"
+        {
+            if let vc = segue.destination as? AddNewProductVC{
+                // Step 1 //  assign Another class's vc
+                vc.addedNewItem =  {
+                   
+                    self.loadFromDb()
+                }
+                
+                
+            }
+        }
+    }
+    
+ 
     // This method gets called whenever the text in the search bar changes
        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
            print("Search text is now: \(searchText)")
@@ -113,6 +128,9 @@ class ListAllProductsVC: BaseViewController, UITextFieldDelegate, UISearchBarDel
     
     func loadFromDb()
     {
+        print("loadFromDb")
+        arrProducts.removeAll()
+        filteredProducts.removeAll()
         for coreModel in CoreDataStack.shared.readAllProducts()
         {
             var prodModel = ProductModel()
@@ -122,6 +140,8 @@ class ListAllProductsVC: BaseViewController, UITextFieldDelegate, UISearchBarDel
             prodModel.id = Int(coreModel.prodId)
             arrProducts.append(prodModel)//addAll()
         }
+        filteredProducts.append(contentsOf: arrProducts)
+        tableViewProducts.reloadData()
     }
     
 }

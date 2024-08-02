@@ -1,0 +1,261 @@
+
+/* Class = "UITextField"; placeholder = "Type searching your product"; ObjectID = "071-Hc-qpB"; */
+"071-Hc-qpB.placeholder" = "Type searching your product";
+
+/* Class = "UIButton"; configuration.title = "Button"; ObjectID = "0h8-FT-ry9"; */
+"0h8-FT-ry9.configuration.title" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "0h8-FT-ry9"; */
+"0h8-FT-ry9.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "1EN-KP-lyk"; */
+"1EN-KP-lyk.text" = "10";
+
+/* Class = "UILabel"; text = "Vat"; ObjectID = "3Td-cN-bFA"; */
+"3Td-cN-bFA.text" = "Vat";
+
+/* Class = "UITextView"; text = "Enter name"; ObjectID = "3gX-8a-6RO"; */
+"3gX-8a-6RO.text" = "Enter name";
+
+/* Class = "UIButton"; configuration.title = "finish"; ObjectID = "6ck-XT-18S"; */
+"6ck-XT-18S.configuration.title" = "finish";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "6ck-XT-18S"; */
+"6ck-XT-18S.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Enter school name"; ObjectID = "6ji-S9-5Vt"; */
+"6ji-S9-5Vt.text" = "Enter school name";
+
+/* Class = "UILabel"; text = "Choose Quantity"; ObjectID = "790-jn-Kxf"; */
+"790-jn-Kxf.text" = "Choose Quantity";
+
+/* Class = "UILabel"; text = "Labeldfd ljk dklfj ldkjf lkdj flkdj flkj dlfkj dlfkj d"; ObjectID = "7QP-lu-6JF"; */
+"7QP-lu-6JF.text" = "Labeldfd ljk dklfj ldkjf lkdj flkdj flkj dlfkj dlfkj d";
+
+/* Class = "UITabBarItem"; title = "Billing"; ObjectID = "7rp-if-DBM"; */
+"7rp-if-DBM.title" = "Billing";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "8VA-GT-b92"; */
+"8VA-GT-b92.text" = "2";
+
+/* Class = "UITextField"; placeholder = "Enter Last Name"; ObjectID = "8oZ-Mb-EG9"; */
+"8oZ-Mb-EG9.placeholder" = "Enter Last Name";
+
+/* Class = "UITextField"; text = "kumar"; ObjectID = "8oZ-Mb-EG9"; */
+"8oZ-Mb-EG9.text" = "kumar";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "9UF-w7-0BZ"; */
+"9UF-w7-0BZ.text" = "Amount";
+
+/* Class = "UIButton"; configuration.title = "Button"; ObjectID = "ApY-VT-t1v"; */
+"ApY-VT-t1v.configuration.title" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ApY-VT-t1v"; */
+"ApY-VT-t1v.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "List of added products"; ObjectID = "B0I-pT-HQB"; */
+"B0I-pT-HQB.text" = "List of added products";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ELq-xI-YZ6"; */
+"ELq-xI-YZ6.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "Dashboard Products"; ObjectID = "FoZ-Dk-C9P"; */
+"FoZ-Dk-C9P.title" = "Dashboard Products";
+
+/* Class = "UITextField"; placeholder = "Amout"; ObjectID = "G5K-p2-VYs"; */
+"G5K-p2-VYs.placeholder" = "Amout";
+
+/* Class = "UILabel"; text = "Product Image:"; ObjectID = "G9n-rB-uJC"; */
+"G9n-rB-uJC.text" = "Product Image:";
+
+/* Class = "UILabel"; text = "Add new product"; ObjectID = "HTN-wQ-EBY"; */
+"HTN-wQ-EBY.text" = "Add new product";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "IXQ-oT-DHC"; */
+"IXQ-oT-DHC.text" = "Price";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "JsY-qx-jW2"; */
+"JsY-qx-jW2.normalTitle" = "Add";
+
+/* Class = "UILabel"; text = "Add Discount/ VAT"; ObjectID = "K9a-bn-I3S"; */
+"K9a-bn-I3S.text" = "Add Discount/ VAT";
+
+/* Class = "UILabel"; text = "Dynamic heading"; ObjectID = "Lg6-PM-cmN"; */
+"Lg6-PM-cmN.text" = "Dynamic heading";
+
+/* Class = "UILabel"; text = "Add new product"; ObjectID = "M1E-uL-k0j"; */
+"M1E-uL-k0j.text" = "Add new product";
+
+/* Class = "UIBarButtonItem"; title = "Go to Home"; ObjectID = "MI1-ec-Lvc"; */
+"MI1-ec-Lvc.title" = "Go to Home";
+
+/* Class = "UILabel"; text = "Unit"; ObjectID = "MKR-31-5kK"; */
+"MKR-31-5kK.text" = "Unit";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "MKc-CA-z0P"; */
+"MKc-CA-z0P.text" = "0";
+
+/* Class = "UITextField"; placeholder = "Price"; ObjectID = "MMb-1m-v9B"; */
+"MMb-1m-v9B.placeholder" = "Price";
+
+/* Class = "UILabel"; text = "List of added items"; ObjectID = "MUb-db-B3B"; */
+"MUb-db-B3B.text" = "List of added items";
+
+/* Class = "UITextField"; placeholder = "Amout"; ObjectID = "NPh-mC-Gj2"; */
+"NPh-mC-Gj2.placeholder" = "Amout";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Oxe-7x-cua"; */
+"Oxe-7x-cua.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "PSy-ba-JZU"; */
+"PSy-ba-JZU.normalTitle" = "Add";
+
+/* Class = "UIButton"; configuration.title = "Done"; ObjectID = "QPU-ws-Fad"; */
+"QPU-ws-Fad.configuration.title" = "Done";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "QPU-ws-Fad"; */
+"QPU-ws-Fad.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "QU5-cR-Bx5"; */
+"QU5-cR-Bx5.text" = "Price";
+
+/* Class = "UITextField"; placeholder = "Enter First Name"; ObjectID = "Qqy-OK-gbL"; */
+"Qqy-OK-gbL.placeholder" = "Enter First Name";
+
+/* Class = "UITextField"; text = "Sanjay"; ObjectID = "Qqy-OK-gbL"; */
+"Qqy-OK-gbL.text" = "Sanjay";
+
+/* Class = "UILabel"; text = "Qnt"; ObjectID = "SLe-iQ-cLK"; */
+"SLe-iQ-cLK.text" = "Qnt";
+
+/* Class = "UILabel"; text = "Sign up"; ObjectID = "Tgo-HP-t7G"; */
+"Tgo-HP-t7G.text" = "Sign up";
+
+/* Class = "UIButton"; configuration.title = "Add new Item"; ObjectID = "ThY-T9-4W0"; */
+"ThY-T9-4W0.configuration.title" = "Add new Item";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ThY-T9-4W0"; */
+"ThY-T9-4W0.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Enter username"; ObjectID = "Ths-Jg-eJb"; */
+"Ths-Jg-eJb.placeholder" = "Enter username";
+
+/* Class = "UITextField"; text = "Username"; ObjectID = "Ths-Jg-eJb"; */
+"Ths-Jg-eJb.text" = "Username";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "WFp-Rh-nOv"; */
+"WFp-Rh-nOv.text" = "10";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "WeW-t6-UM0"; */
+"WeW-t6-UM0.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "Wfz-Mb-gDM"; */
+"Wfz-Mb-gDM.text" = "Amount";
+
+/* Class = "UILabel"; text = "Choose your product"; ObjectID = "XqF-Xd-PR1"; */
+"XqF-Xd-PR1.text" = "Choose your product";
+
+/* Class = "UITextField"; placeholder = "Add new item name"; ObjectID = "Yil-xh-jL2"; */
+"Yil-xh-jL2.placeholder" = "Add new item name";
+
+/* Class = "UILabel"; text = "Labeldfd ljk dklfj ldkjf lkdj flkdj flkj dlfkj dlfkj d"; ObjectID = "Zc1-BX-ZCp"; */
+"Zc1-BX-ZCp.text" = "Labeldfd ljk dklfj ldkjf lkdj flkdj flkj dlfkj dlfkj d";
+
+/* Class = "UILabel"; text = "Rate"; ObjectID = "d08-2H-3G3"; */
+"d08-2H-3G3.text" = "Rate";
+
+/* Class = "UITextField"; placeholder = "Unit"; ObjectID = "dBJ-IK-GRc"; */
+"dBJ-IK-GRc.placeholder" = "Unit";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "dKx-Z0-vBi"; */
+"dKx-Z0-vBi.text" = "1";
+
+/* Class = "UILabel"; text = "Quantity"; ObjectID = "dhp-mz-ptt"; */
+"dhp-mz-ptt.text" = "Quantity";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "e6B-Iq-p5j"; */
+"e6B-Iq-p5j.normalTitle" = "Submit";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "eUa-OP-frG"; */
+"eUa-OP-frG.normalTitle" = "Done";
+
+/* Class = "UIButton"; normalTitle = "Sign Out"; ObjectID = "ff8-KX-wNJ"; */
+"ff8-KX-wNJ.normalTitle" = "Sign Out";
+
+/* Class = "UIBarButtonItem"; title = "Go to Home"; ObjectID = "h1K-sG-i9S"; */
+"h1K-sG-i9S.title" = "Go to Home";
+
+/* Class = "UITabBarItem"; title = "Add item"; ObjectID = "hKh-fL-yK4"; */
+"hKh-fL-yK4.title" = "Add item";
+
+/* Class = "UILabel"; text = "Discount"; ObjectID = "heq-uP-6Ap"; */
+"heq-uP-6Ap.text" = "Discount";
+
+/* Class = "UIButton"; normalTitle = "Date"; ObjectID = "huO-Ar-jxX"; */
+"huO-Ar-jxX.normalTitle" = "Date";
+
+/* Class = "UIButton"; normalTitle = "Select Student"; ObjectID = "hzz-5l-RxU"; */
+"hzz-5l-RxU.normalTitle" = "Select Student";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "i5s-B3-Tdy"; */
+"i5s-B3-Tdy.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Add fees"; ObjectID = "ink-Bc-rc5"; */
+"ink-Bc-rc5.normalTitle" = "Add fees";
+
+/* Class = "UITextField"; placeholder = "Rate"; ObjectID = "k1n-Q4-OWG"; */
+"k1n-Q4-OWG.placeholder" = "Rate";
+
+/* Class = "UIButton"; configuration.title = "finish"; ObjectID = "kve-ap-sbb"; */
+"kve-ap-sbb.configuration.title" = "finish";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "kve-ap-sbb"; */
+"kve-ap-sbb.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "Astrology"; ObjectID = "le2-9u-Lks"; */
+"le2-9u-Lks.title" = "Astrology";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "lfu-3V-79p"; */
+"lfu-3V-79p.title" = "Item";
+
+/* Class = "UILabel"; text = "Are you sure to logout?"; ObjectID = "lr5-Aj-25M"; */
+"lr5-Aj-25M.text" = "Are you sure to logout?";
+
+/* Class = "UILabel"; text = "Add item name"; ObjectID = "m96-eV-nCs"; */
+"m96-eV-nCs.text" = "Add item name";
+
+/* Class = "UILabel"; text = "Total: "; ObjectID = "nwz-2h-POh"; */
+"nwz-2h-POh.text" = "Total: ";
+
+/* Class = "UIBarButtonItem"; title = "   Add Ledger"; ObjectID = "qZN-xU-ikN"; */
+"qZN-xU-ikN.title" = "   Add Ledger";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "qpP-pb-cJO"; */
+"qpP-pb-cJO.text" = "0";
+
+/* Class = "UILabel"; text = "Add your fees"; ObjectID = "s8b-gg-8FK"; */
+"s8b-gg-8FK.text" = "Add your fees";
+
+/* Class = "UILabel"; text = "Choose class (Grade) : "; ObjectID = "srE-sh-Vid"; */
+"srE-sh-Vid.text" = "Choose class (Grade) : ";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "t16-ao-MFa"; */
+"t16-ao-MFa.normalTitle" = "Add";
+
+/* Class = "UILabel"; text = "Item name"; ObjectID = "uo1-tN-VyG"; */
+"uo1-tN-VyG.text" = "Item name";
+
+/* Class = "UILabel"; text = "Labeldfd ljk dklfj ldkjf lkdj flkdj flkj dlfkj dlfkj d"; ObjectID = "up1-1w-UBt"; */
+"up1-1w-UBt.text" = "Labeldfd ljk dklfj ldkjf lkdj flkdj flkj dlfkj dlfkj d";
+
+/* Class = "UITextField"; placeholder = "Quantity"; ObjectID = "v6n-Hj-iC9"; */
+"v6n-Hj-iC9.placeholder" = "Quantity";
+
+/* Class = "UIButton"; configuration.title = "No account, Sign up now."; ObjectID = "vXe-uu-06N"; */
+"vXe-uu-06N.configuration.title" = "No account, Sign up now.";
+
+/* Class = "UIButton"; normalTitle = "No account, Sign up now."; ObjectID = "vXe-uu-06N"; */
+"vXe-uu-06N.normalTitle" = "No account, Sign up now.";
+
+/* Class = "UITextField"; placeholder = "Type searching your product"; ObjectID = "wuj-CT-w97"; */
+"wuj-CT-w97.placeholder" = "Type searching your product";
