@@ -51,10 +51,34 @@ class ListAllProductsVC: BaseViewController, UITextFieldDelegate, UISearchBarDel
         
         checkLogicSavingProducts()
         
-       
+        
         
         searchBar.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .refreshList, object: nil)
+        
+        
     }
+    
+    //Notifcation Center.
+    //1. Notificatin.Name
+    //2. addObserver
+    //3. handleNotification reciver waht recveed parse display
+    //4. Notifcation .post...culprit post, trigger, hamlaa
+    //5. deinit..removeObserver
+  
+    
+    
+    @objc func handleNotification(_ notification: Notification) {
+        if let array = notification.userInfo?["array"] as? [Int] {
+            print("Received array: \(array as Any), count is: \(array.count)")
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     
     @IBAction func actionAddNewItem(_ sender: Any) {
         performSegue(withIdentifier: "toAddNewProduct", sender: nil)
@@ -66,7 +90,20 @@ class ListAllProductsVC: BaseViewController, UITextFieldDelegate, UISearchBarDel
             if let vc = segue.destination as? AddNewProductVC{
                 // Step 1 //  assign Another class's vc
                 vc.addedNewItem =  {
-                   
+                    
+                    self.loadFromDb()
+                }
+                
+                
+            }
+        }
+        else if segue.identifier == "toUpdateProduct"
+        {
+            if let vc = segue.destination as? UpdateProductVC{
+                vc.editableProductModel = filteredProducts[tappedIndex]
+                // Step 1 //  assign Another class's vc
+                vc.itemUpdated =  {
+                    
                     self.loadFromDb()
                 }
                 
@@ -75,24 +112,24 @@ class ListAllProductsVC: BaseViewController, UITextFieldDelegate, UISearchBarDel
         }
     }
     
- 
+    
     // This method gets called whenever the text in the search bar changes
-       func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-           print("Search text is now: \(searchText)")
-           
-           // If searchText is empty, display all products
-           if searchText.isEmpty {
-               filteredProducts = arrProducts
-           } else {
-               // Filter products based on searchText
-               filteredProducts = arrProducts.filter { product in
-                   return product.pName.lowercased().contains(searchText.lowercased())
-               }
-           }
-           
-           // Reload the table view with filtered data
-           tableViewProducts.reloadData()
-       }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("Search text is now: \(searchText)")
+        
+        // If searchText is empty, display all products
+        if searchText.isEmpty {
+            filteredProducts = arrProducts
+        } else {
+            // Filter products based on searchText
+            filteredProducts = arrProducts.filter { product in
+                return product.pName.lowercased().contains(searchText.lowercased())
+            }
+        }
+        
+        // Reload the table view with filtered data
+        tableViewProducts.reloadData()
+    }
     
     // This method gets called when the search button (Return key) is clicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -108,8 +145,8 @@ class ListAllProductsVC: BaseViewController, UITextFieldDelegate, UISearchBarDel
         {
             print("fetch from local db then")
             
-           loadFromDb()
-          
+            loadFromDb()
+            
             
         }
         else
@@ -137,6 +174,7 @@ class ListAllProductsVC: BaseViewController, UITextFieldDelegate, UISearchBarDel
             prodModel.modelType = TypeItem.prodItem
             prodModel.pName = coreModel.pName ?? ""
             prodModel.price = coreModel.price
+            prodModel.imageData = coreModel.prodImage
             prodModel.id = Int(coreModel.prodId)
             arrProducts.append(prodModel)//addAll()
         }

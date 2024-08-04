@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddNewProductVC: BaseViewController, UITextFieldDelegate {
+class UpdateProductVC: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var tfProdName: UITextField!
     @IBOutlet weak var tfPrice: UITextField!
@@ -19,7 +19,7 @@ class AddNewProductVC: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var lblAddNewItem: UILabel!
     
     var editableProductModel : ProductModel? = nil
-    var addedNewItem : (()->())? = nil
+    var itemUpdated : (()->())? = nil
     
     var tappedIndex = 0
     
@@ -37,6 +37,17 @@ class AddNewProductVC: BaseViewController, UITextFieldDelegate {
         
         lblHeadingAddNewPro.text = NSLocalizedString("add_new_product", comment: "")
         lblAddNewItem.text = NSLocalizedString("Add new item", comment: "")
+        
+        if let model = editableProductModel
+        {
+            tfProdName.text = model.pName
+            tfPrice.text = model.price.description
+            if let dataThere = model.imageData
+            {
+                imgProdImage.image = UIImage(data: dataThere)
+            }
+            
+        }
         
         imgAddImage.addTapGesture {
             self.openGallery()
@@ -67,13 +78,14 @@ class AddNewProductVC: BaseViewController, UITextFieldDelegate {
            return true
        }
     
-    @IBAction func actionAddNewItem(_ sender: Any) {
+    @IBAction func actionUpdateItem(_ sender: Any) {
+        print("to udpate.")
         CoreDataStack.shared.insertProductWithImage(pName: tfProdName.text ?? "",
                                                     price: Double(tfPrice.text ?? "0.0" ) ?? 0.0,
                                                     imageData: encodedImgData){
             
             print("done adding/saving your entry..")
-            addedNewItem?()
+            itemUpdated?()
             
          /*   func postNotification() {
                 let userInfo: [String: Any] = ["array": [1,2,3,4]]
@@ -88,6 +100,9 @@ class AddNewProductVC: BaseViewController, UITextFieldDelegate {
      
     }
     
+    @IBAction func actionDeleteItem(_ sender: Any) {
+        print("to delete")
+    }
     
     @objc func openGallery() {
         // Check if the photo library is available
@@ -125,7 +140,7 @@ class AddNewProductVC: BaseViewController, UITextFieldDelegate {
     }
 }
 
-extension AddNewProductVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
+extension UpdateProductVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)

@@ -164,3 +164,7 @@ struct LedgerModel
     var amount: Double
 }
 
+
+extension Notification.Name {
+    static let refreshList = Notification.Name("refreshList")
+}

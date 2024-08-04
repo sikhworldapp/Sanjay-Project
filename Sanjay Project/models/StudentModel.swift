@@ -20,6 +20,7 @@ class ProductModel
     var inStock: Int = 0
     var addedByCustomer: Int = 0
     var discountedAmount: Double? = 0.0
+    var imageData: Data? = nil
     
     init(){
         
