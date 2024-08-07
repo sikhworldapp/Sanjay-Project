@@ -15,6 +15,7 @@ class UpdateProductVC: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var imgAddImage: UIImageView!
     @IBOutlet weak var imgProdImage: UIImageView!
     
+    @IBOutlet weak var imgCross: UIImageView!
     @IBOutlet weak var lblHeadingAddNewPro: UILabel!
     @IBOutlet weak var lblAddNewItem: UILabel!
     
@@ -30,22 +31,22 @@ class UpdateProductVC: BaseViewController, UITextFieldDelegate {
     
     var prefs = UserDefaults.standard
     var encodedImgData : Data? = nil
-    
+    var originalPname = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lblHeadingAddNewPro.text = NSLocalizedString("add_new_product", comment: "")
-        lblAddNewItem.text = NSLocalizedString("Add new item", comment: "")
-        
         if let model = editableProductModel
         {
             tfProdName.text = model.pName
+            originalPname = model.pName
             tfPrice.text = model.price.description
             if let dataThere = model.imageData
             {
                 imgProdImage.image = UIImage(data: dataThere)
+                imgCross.isHidden = false
             }
+            
             
         }
         
@@ -58,6 +59,11 @@ class UpdateProductVC: BaseViewController, UITextFieldDelegate {
         tfProdName.delegate = self
         view.addTapGesture {
             self.tfPrice.resignFirstResponder()
+        }
+        
+        imgCross.addTapGesture { [weak self] in
+            self?.imgProdImage.image = nil
+            self?.imgCross.isHidden = true
         }
     }
     
@@ -80,28 +86,33 @@ class UpdateProductVC: BaseViewController, UITextFieldDelegate {
     
     @IBAction func actionUpdateItem(_ sender: Any) {
         print("to udpate.")
-        CoreDataStack.shared.insertProductWithImage(pName: tfProdName.text ?? "",
-                                                    price: Double(tfPrice.text ?? "0.0" ) ?? 0.0,
-                                                    imageData: encodedImgData){
-            
-            print("done adding/saving your entry..")
+        CoreDataStack.shared.updateProduct(oldPName: originalPname,
+                                           newPName: tfProdName.text ?? "",
+                                           prodImage: encodedImgData,
+                                           newPrice: Double(tfPrice.text ?? "0.0" ) ?? 0.0) { isDone in
+            print("isDone: \(isDone)")
             itemUpdated?()
-            
-         /*   func postNotification() {
-                let userInfo: [String: Any] = ["array": [1,2,3,4]]
-                NotificationCenter.default.post(name: .refreshList, object: nil, userInfo: userInfo)
-            }
-            
-            postNotification()
-           */
-            
             navigationController?.popViewController(animated: true)
         }
-     
     }
     
     @IBAction func actionDeleteItem(_ sender: Any) {
-        print("to delete")
+        AppConstants.shared.showAlert(on: self, with: "Do you want to delete : \(originalPname)") { [weak self] in
+            
+            CoreDataStack.shared.deleteProduct(pName: self?.originalPname ?? "") {  isTrue in
+                
+                self?.showToast(isTrue ? "Deleted successfully" : "Some issue persists.", msg: ".", position: .top)
+                
+            }
+               
+            self?.itemUpdated?()
+            self?.navigationController?.popViewController(animated: true)
+            
+        } noAction: {
+            print("no tapped.")
+        }
+
+       
     }
     
     @objc func openGallery() {
@@ -148,7 +159,7 @@ extension UpdateProductVC: UIImagePickerControllerDelegate & UINavigationControl
         // Get the selected image
         if let selectedImage = info[.originalImage] as? UIImage {
             imgProdImage.image = selectedImage
-            
+            imgCross.isHidden = false
             
             if let imageData = selectedImage.pngData() {
                 encodedImgData = imageData

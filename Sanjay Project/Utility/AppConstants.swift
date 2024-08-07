@@ -5,7 +5,7 @@
 //  Created by Amanpreet Singh on 19/06/24.
 //
 
-import Foundation
+import UIKit
 
 class AppConstants
 {
@@ -27,9 +27,25 @@ class AppConstants
         arrProducts.append(prod3)
         
         return arrProducts
-        
-        
     }
+    
+    
+    func showAlert(on viewController: UIViewController, with message: String, yesAction: @escaping () -> Void, noAction: @escaping () -> Void) {
+          let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+          
+          let yesButton = UIAlertAction(title: "Yes", style: .default) { _ in
+              yesAction()
+          }
+          
+          let noButton = UIAlertAction(title: "No", style: .cancel) { _ in
+              noAction()
+          }
+          
+          alert.addAction(yesButton)
+          alert.addAction(noButton)
+          
+          viewController.present(alert, animated: true, completion: nil)
+      }
     
    
     

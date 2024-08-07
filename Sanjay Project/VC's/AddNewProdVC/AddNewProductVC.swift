@@ -68,21 +68,19 @@ class AddNewProductVC: BaseViewController, UITextFieldDelegate {
        }
     
     @IBAction func actionAddNewItem(_ sender: Any) {
-        CoreDataStack.shared.insertProductWithImage(pName: tfProdName.text ?? "",
+        let name = tfProdName.text ?? ""
+        CoreDataStack.shared.insertProductWithImage(pName: name,
                                                     price: Double(tfPrice.text ?? "0.0" ) ?? 0.0,
-                                                    imageData: encodedImgData){
-            
-            print("done adding/saving your entry..")
-            addedNewItem?()
-            
-         /*   func postNotification() {
-                let userInfo: [String: Any] = ["array": [1,2,3,4]]
-                NotificationCenter.default.post(name: .refreshList, object: nil, userInfo: userInfo)
+                                                    imageData: encodedImgData) { [self] isSaved in
+            if isSaved{
+                showToast("Saved", msg: "", position: .center)
             }
-            
-            postNotification()
-           */
-            
+            else
+            {
+                print("name getting: \(name)")
+                showToast("Not Saved", msg: "", position: .center)
+            }
+            addedNewItem?()
             navigationController?.popViewController(animated: true)
         }
      

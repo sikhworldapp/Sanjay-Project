@@ -49,8 +49,7 @@ class CoreDataStack {
         }
     }
     
-    // Insert product along with its image
-    func insertProductWithImage(pName: String, price: Double, imageData: Data?, saved: ()->()) {
+    func insertProductWithImage(pName: String, price: Double, imageData: Data?, completion: @escaping (Bool) -> Void) {
         let newProduct = ProductsTable(context: context)
         newProduct.prodId = getNextProdId()
         newProduct.pName = pName
@@ -61,8 +60,13 @@ class CoreDataStack {
             newProduct.prodImage = imageData
         }
         
-        saveContext()
-        saved()
+        do {
+            try context.save()
+            completion(true)
+        } catch {
+            print("Failed to save product: \(error)")
+            completion(false)
+        }
     }
 
     func insertProduct(model: ProductModel) {
@@ -86,22 +90,42 @@ class CoreDataStack {
     }
 
     // Example for updating and deleting if needed
-    func updateProduct(pName: String, newPrice: Double) {
-        let fetchRequest: NSFetchRequest<ProductsTable> = ProductsTable.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "pName == %@", pName)
-
+    func updateProduct(oldPName: String, newPName: String?, prodImage: Data?,  newPrice: Double?, doneUpdating: (Bool) ->()) {
         do {
+        let fetchRequest: NSFetchRequest<ProductsTable> = ProductsTable.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "pName == %@", oldPName)
+
+      
             let results = try context.fetch(fetchRequest)
             if let product = results.first {
-                product.price = newPrice
+                if let newName = newPName
+                {
+                    product.pName = newName
+                }
+                
+                if let img = prodImage
+                {
+                    product.prodImage = img
+                }
+                
+                if let newPrice1 = newPrice
+                {
+                    product.price = newPrice1
+                }
+                
+                
+                
                 saveContext()
+                doneUpdating(true)
+                
             }
         } catch {
             print("Failed to fetch entities: \(error)")
+            doneUpdating(false)
         }
     }
 
-    func deleteProduct(pName: String) {
+    func deleteProduct(pName: String, isDeleted: (Bool) ->()) {
         let fetchRequest: NSFetchRequest<ProductsTable> = ProductsTable.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "pName == %@", pName)
 
@@ -110,9 +134,11 @@ class CoreDataStack {
             if let product = results.first {
                 context.delete(product)
                 saveContext()
+                isDeleted(true)
             }
         } catch {
             print("Failed to fetch entities: \(error)")
+            isDeleted(false)
         }
     }
 }
