@@ -81,11 +81,12 @@ class AddNewProductVC: BaseViewController, UITextFieldDelegate {
                 showToast("Not Saved", msg: "", position: .center)
             }
             addedNewItem?()
-            navigationController?.popViewController(animated: true)
+            
+            if let tabBarController = self.tabBarController {
+                  tabBarController.selectedIndex = 1
+              }
         }
-     
     }
-    
     
     @objc func openGallery() {
         // Check if the photo library is available

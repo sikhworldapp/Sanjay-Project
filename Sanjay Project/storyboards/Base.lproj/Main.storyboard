@@ -550,7 +550,7 @@ EEVudGVyIExhc3QgTmFtZQ
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFR-Ed-e4l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4305" y="614"/>
+            <point key="canvasLocation" x="4390" y="711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Toz-EM-nhO">
@@ -1797,9 +1797,6 @@ EEVudGVyIExhc3QgTmFtZQ
                                         <rect key="frame" x="210" y="10" width="155" height="41"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Add new product"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="button_key"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actionAddNewItem:" destination="0ZD-0o-ZuF" eventType="touchUpInside" id="zeN-UO-lVG"/>
                                         </connections>
@@ -1876,12 +1873,12 @@ EEVudGVyIExhc3QgTmFtZQ
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
-        <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
-        <image name="arrowshape.down.circle" catalog="system" width="128" height="123"/>
-        <image name="arrowshape.right" catalog="system" width="128" height="104"/>
+        <image name="arrowshape.backward.fill" catalog="system" width="32" height="32"/>
+        <image name="arrowshape.down.circle" catalog="system" width="32" height="32"/>
+        <image name="arrowshape.right" catalog="system" width="32" height="32"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="cart" catalog="system" width="128" height="102"/>
-        <image name="cart.fill" catalog="system" width="128" height="102"/>
+        <image name="cart.fill" catalog="system" width="32" height="32"/>
         <image name="doc.fill" catalog="system" width="115" height="128"/>
         <image name="newspaper.fill" catalog="system" width="128" height="112"/>
         <image name="plus" catalog="system" width="128" height="113"/>

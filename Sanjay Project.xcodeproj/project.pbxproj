@@ -40,6 +40,10 @@
 		6DA617E62C32F85B0006D3C2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA617E52C32F85B0006D3C2 /* BaseViewController.swift */; };
 		6DA617E92C32F9690006D3C2 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 6DA617E82C32F9690006D3C2 /* Toast */; };
 		6DA6F4382C594475001F4974 /* AddNewProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA6F4352C59410C001F4974 /* AddNewProductVC.swift */; };
+		6DB6F6452C6524340009EF87 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DB6F6442C6524340009EF87 /* Dashboard.storyboard */; };
+		6DB6F6482C6524790009EF87 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB6F6472C6524790009EF87 /* DashboardVC.swift */; };
+		6DB6F64C2C6525220009EF87 /* DashboardItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB6F64A2C6525220009EF87 /* DashboardItemCell.swift */; };
+		6DB6F64D2C6525220009EF87 /* DashboardItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DB6F64B2C6525220009EF87 /* DashboardItemCell.xib */; };
 		6DBE41292C1C1E050028C994 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBE41272C1C1E050028C994 /* ImageCell.swift */; };
 		6DBE412A2C1C1E050028C994 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBE41282C1C1E050028C994 /* ImageCell.xib */; };
 		6DBE41332C1C27C80028C994 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DBE41322C1C27C80028C994 /* SDWebImage */; };
@@ -100,6 +104,10 @@
 		6DA344222C0E16C500E08102 /* HomeItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemCell.swift; sourceTree = "<group>"; };
 		6DA617E52C32F85B0006D3C2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6DA6F4352C59410C001F4974 /* AddNewProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProductVC.swift; sourceTree = "<group>"; };
+		6DB6F6442C6524340009EF87 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
+		6DB6F6472C6524790009EF87 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
+		6DB6F64A2C6525220009EF87 /* DashboardItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardItemCell.swift; sourceTree = "<group>"; };
+		6DB6F64B2C6525220009EF87 /* DashboardItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardItemCell.xib; sourceTree = "<group>"; };
 		6DBE41272C1C1E050028C994 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		6DBE41282C1C1E050028C994 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		6DBE41372C1C2AAD0028C994 /* LifecycleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleVC.swift; sourceTree = "<group>"; };
@@ -167,6 +175,7 @@
 				6D69BCE92C04D36F00D03B3E /* Main.storyboard */,
 				6D106BDC2C2DB96D00186BA5 /* SignUp.storyboard */,
 				6D084E5C2C5FDBC3004B864C /* Main2.storyboard */,
+				6DB6F6442C6524340009EF87 /* Dashboard.storyboard */,
 			);
 			path = storyboards;
 			sourceTree = "<group>";
@@ -245,6 +254,7 @@
 		6DA344212C0E166800E08102 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				6DB6F6492C6525080009EF87 /* DashboardItemCell */,
 				6D5FF05A2C3EDA2200A9042A /* HeaderViewCell */,
 				6DDD75B12C3AE25C00A3F595 /* ProductMainCell */,
 				6D342E252C36F59400526247 /* ProductCell */,
@@ -272,6 +282,23 @@
 			path = AddNewProdVC;
 			sourceTree = "<group>";
 		};
+		6DB6F6462C6524640009EF87 /* DashboardVC */ = {
+			isa = PBXGroup;
+			children = (
+				6DB6F6472C6524790009EF87 /* DashboardVC.swift */,
+			);
+			path = DashboardVC;
+			sourceTree = "<group>";
+		};
+		6DB6F6492C6525080009EF87 /* DashboardItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				6DB6F64A2C6525220009EF87 /* DashboardItemCell.swift */,
+				6DB6F64B2C6525220009EF87 /* DashboardItemCell.xib */,
+			);
+			path = DashboardItemCell;
+			sourceTree = "<group>";
+		};
 		6DBE41262C1C1DEE0028C994 /* ImageCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +320,7 @@
 		6DD9012F2C0A1D58000A14D4 /* VC's */ = {
 			isa = PBXGroup;
 			children = (
+				6DB6F6462C6524640009EF87 /* DashboardVC */,
 				6D084E5E2C5FDC6E004B864C /* UpdateProductVC */,
 				6D9713292C5BE0E100AA8068 /* ListAllProductsVC */,
 				6DA6F4372C594135001F4974 /* AddNewProdVC */,
@@ -442,7 +470,9 @@
 				6DDD75B52C3AE27500A3F595 /* ProductMainCell.xib in Resources */,
 				6DEE5B1D2C23229D005D4F54 /* GridItem.xib in Resources */,
 				6DF53CCC2C5D386B008D6EE2 /* Localizable.strings in Resources */,
+				6DB6F6452C6524340009EF87 /* Dashboard.storyboard in Resources */,
 				6D106BDD2C2DB96D00186BA5 /* SignUp.storyboard in Resources */,
+				6DB6F64D2C6525220009EF87 /* DashboardItemCell.xib in Resources */,
 				6D69BCEB2C04D36F00D03B3E /* Main.storyboard in Resources */,
 				6DBE412A2C1C1E050028C994 /* ImageCell.xib in Resources */,
 				6DBEA6FA2C135A8D004543F1 /* HeavyCell.xib in Resources */,
@@ -481,6 +511,7 @@
 				6D342E242C36F3BA00526247 /* ChooseProductVC.swift in Sources */,
 				6DBEA6FC2C135D67004543F1 /* TableXibWala.swift in Sources */,
 				6DEE5B182C2321E7005D4F54 /* GridVC.swift in Sources */,
+				6DB6F64C2C6525220009EF87 /* DashboardItemCell.swift in Sources */,
 				6D57F9B32C53B31B000C6F48 /* Views_Utility.swift in Sources */,
 				6D5FF05D2C3EDA3400A9042A /* HeaderViewCell.swift in Sources */,
 				6D92FF552C5697C00054C0BD /* LocalDB.xcdatamodeld in Sources */,
@@ -497,6 +528,7 @@
 				6DD901312C0A20F2000A14D4 /* LogoutVC.swift in Sources */,
 				6DDD75B42C3AE27500A3F595 /* ProductMainCell.swift in Sources */,
 				6DBEA6F92C135A8D004543F1 /* HeavyCell.swift in Sources */,
+				6DB6F6482C6524790009EF87 /* DashboardVC.swift in Sources */,
 				6DA6F4382C594475001F4974 /* AddNewProductVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,9 +701,10 @@
 				DEVELOPMENT_TEAM = R67NCQS28C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sanjay Project/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to let you choose a profile picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Dashboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -698,9 +731,10 @@
 				DEVELOPMENT_TEAM = R67NCQS28C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sanjay Project/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to let you choose a profile picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Dashboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;

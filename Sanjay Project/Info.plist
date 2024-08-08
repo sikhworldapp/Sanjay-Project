@@ -16,12 +16,10 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
+					<string>Dashboard</string>
 				</dict>
 			</array>
 		</dict>
 	</dict>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>We need access to your photo library to let you choose a profile picture.</string>
 </dict>
 </plist>

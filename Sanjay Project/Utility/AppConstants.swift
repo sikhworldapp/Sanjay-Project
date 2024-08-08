@@ -30,6 +30,17 @@ class AppConstants
     }
     
     
+    func getDashboardOptions() -> [IconTitle]
+    {
+        var arrOptions = [IconTitle]()
+        arrOptions.append(IconTitle(title: "Add Item", img: UIImage(systemName: "plus.circle")!))
+        arrOptions.append(IconTitle(title: "Item List", img: UIImage(systemName: "list.bullet")!))
+        arrOptions.append(IconTitle(title: "Customer", img: UIImage(systemName: "person.circle")!))
+        
+       return arrOptions
+    }
+    
+    
     func showAlert(on viewController: UIViewController, with message: String, yesAction: @escaping () -> Void, noAction: @escaping () -> Void) {
           let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
           
@@ -51,7 +62,8 @@ class AppConstants
     
     func loadProducts() -> [ProductModel]
     {
-        let products = [
+        return []
+        /* let products = [
             ProductModel(id: 0, pName: "Glister Paste", price: 3.514, inStock: 10, addedByCustomer: 0),
             ProductModel(id: 1, pName: "Sanitizer", price: 6.5, inStock: 5, addedByCustomer: 0),
             ProductModel(id: 3, pName: "Apple", price: 1.2, inStock: 50, addedByCustomer: 0),
@@ -64,7 +76,7 @@ class AppConstants
             ProductModel(id: 10, pName: "Butter", price: 3.2, inStock: 25, addedByCustomer: 0),
             ProductModel(id: 11, pName: "Yogurt", price: 2.0, inStock: 20, addedByCustomer: 0),
             ProductModel(id: 12, pName: "Chicken Breast", price: 5.5, inStock: 10, addedByCustomer: 0),
-        /*    ProductModel(id: 2, pName: "Hand wash", price: 2.5, inStock: 20, addedByCustomer: 0),
+           ProductModel(id: 2, pName: "Hand wash", price: 2.5, inStock: 20, addedByCustomer: 0),
            
             ProductModel(id: 13, pName: "Ground Beef", price: 7.0, inStock: 8, addedByCustomer: 0),
             ProductModel(id: 14, pName: "Salmon", price: 12.0, inStock: 6, addedByCustomer: 0),
@@ -153,10 +165,10 @@ class AppConstants
             ProductModel(id: 97, pName: "HDMI Cable", price: 8.0, inStock: 30, addedByCustomer: 0),
             ProductModel(id: 98, pName: "Mouse", price: 12.0, inStock: 15, addedByCustomer: 0),
             ProductModel(id: 99, pName: "Keyboard", price: 20.0, inStock: 10, addedByCustomer: 0),*/
-        ]
+        //]
         
         
-        return products
+        //return products
         
         
     }
@@ -183,4 +195,11 @@ struct LedgerModel
 
 extension Notification.Name {
     static let refreshList = Notification.Name("refreshList")
+}
+
+
+struct IconTitle
+{
+    var title : String
+    var img: UIImage
 }

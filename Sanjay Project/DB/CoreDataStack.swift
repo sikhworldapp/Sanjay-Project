@@ -31,51 +31,71 @@ class CoreDataStack {
         }
     }
 
-    func getNextProdId() -> Int16 {
-        let fetchRequest: NSFetchRequest<ProductsTable> = ProductsTable.fetchRequest()
-        fetchRequest.fetchLimit = 1
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "prodId", ascending: false)]
+    func getNextProdId() -> Int16? {
+        var result: Int16?
+        
+        context.performAndWait {
+            let fetchRequest: NSFetchRequest<ProductsTable> = ProductsTable.fetchRequest()
 
-        do {
-            let results = try context.fetch(fetchRequest)
-            if let maxProduct = results.first {
-                return maxProduct.prodId + 1
-            } else {
-                return 1
+            // Sort the array by 'prodId' in ascending order
+            let sortDescriptor = NSSortDescriptor(key: "prodId", ascending: true)
+            fetchRequest.sortDescriptors = [sortDescriptor]
+
+            do {
+                let array = try context.fetch(fetchRequest)
+              //  print("array in local (sorted): \(array as Any)")
+                
+                // Return the last prodId, which will be the highest due to sorting
+                result = Int16(array.last?.prodId ?? 0) + 1
+            } catch {
+                print("Failed to fetch entities: \(error)")
+                result = nil
             }
-        } catch {
-            print("Failed to fetch max prodId: \(error)")
-            return 1
         }
+        
+        return result
     }
+
     
     func insertProductWithImage(pName: String, price: Double, imageData: Data?, completion: @escaping (Bool) -> Void) {
-        let newProduct = ProductsTable(context: context)
-        newProduct.prodId = getNextProdId()
-        newProduct.pName = pName
-        newProduct.price = price
-        
-        // Save image data if available
-        if let imageData = imageData {
-            newProduct.prodImage = imageData
+        if let newIdGenerated = getNextProdId(){
+            
+            let newProduct = ProductsTable(context: context)
+            newProduct.prodId = newIdGenerated
+            print("newIdGenerated: \(newIdGenerated)")
+            
+            newProduct.pName = pName
+            newProduct.price = price
+            
+            // Save image data if available
+            if let imageData = imageData {
+                newProduct.prodImage = imageData
+            }
+            
+            do {
+                try context.save()
+                completion(true)
+            } catch {
+                print("Failed to save product: \(error)")
+                context.rollback()
+                completion(false)
+            }
         }
-        
-        do {
-            try context.save()
-            completion(true)
-        } catch {
-            print("Failed to save product: \(error)")
+        else
+        {
+            context.rollback()
             completion(false)
         }
     }
 
     func insertProduct(model: ProductModel) {
-        let newProduct = ProductsTable(context: context)
-        newProduct.prodId = getNextProdId()
-        newProduct.pName = model.pName
-        newProduct.price = model.price
-
-        saveContext()
+         let newProduct = ProductsTable(context: context)
+        if let idGot = getNextProdId(){
+            newProduct.prodId = idGot
+            newProduct.pName = model.pName
+            newProduct.price = model.price
+            saveContext()
+        }
     }
 
     func readAllProducts() -> [ProductsTable] {
