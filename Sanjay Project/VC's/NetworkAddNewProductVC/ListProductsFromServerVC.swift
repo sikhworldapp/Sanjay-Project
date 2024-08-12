@@ -1,6 +1,6 @@
 //
 //  ChooseProductVC.swift
-//  Sanjay Project
+//  Sanjay Prject
 //
 //  Created by Amanpreet Singh on 04/07/24.
 //
@@ -22,11 +22,17 @@ class ListProductsFromServerVC: BaseViewController, UITextFieldDelegate, UISearc
             filteredProducts.removeAll()
             filteredProducts.append(contentsOf: arrProducts)
             activityIndicator.stopAnimating()
-           
+            
             tableViewProducts.reloadData()
+            if !arrProducts.isEmpty {
+                
+                let lastIndexPath = IndexPath(row: arrProducts.count - 1, section: 0)
+                tableViewProducts.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
+            }
+            
         }
     }
-    
+
     var filteredProducts = [Item]()
     {
         willSet{
@@ -55,7 +61,7 @@ class ListProductsFromServerVC: BaseViewController, UITextFieldDelegate, UISearc
     
     @objc func hitApiLoadProducts() {
         activityIndicator.startAnimating()
-        
+        arrProducts.removeAll()
         // Call the method to fetch all items
         NetworkManagerService.shared.fetchAllItems { result in
             DispatchQueue.main.async { [self] in
@@ -89,7 +95,7 @@ class ListProductsFromServerVC: BaseViewController, UITextFieldDelegate, UISearc
     
     
     @IBAction func actionAddNewItem(_ sender: Any) {
-        performSegue(withIdentifier: "toAddNewProduct", sender: nil)
+        performSegue(withIdentifier: "toAddNewItem", sender: nil)
     }
     
     // This method gets called whenever the text in the search bar changes
@@ -118,6 +124,18 @@ class ListProductsFromServerVC: BaseViewController, UITextFieldDelegate, UISearc
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // Hide the keyboard
         searchBar.resignFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAddNewItem"
+        {
+            if let vc = segue.destination as? AddNewProductNetworkVC
+            {
+                vc.isDataSaved = {
+                    self.hitApiLoadProducts()
+                }
+            }
+        }
     }
 }
 

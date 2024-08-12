@@ -54,26 +54,24 @@ class NetworkManagerService {
         fetchData(from: Endpoint.updateItem(id: id).urlString, completion: completion)
     }
     
-    // Method to insert a new item
-    func insertItem(_ item: Item, completion: @escaping (Result<SomeResponseModel, Error>) -> Void) {
-        guard let url = URL(string: Endpoint.insertItem.urlString) else {
+    func postProduct(product: Product, completion: @escaping (Result<PostResponse, Error>) -> Void) {
+        print("Getting object: \(product as Any)")
+        let urlString = "\(domainName)AddProduct.php"
+        
+        guard let url = URL(string: urlString) else {
             completion(.failure(NetworkError.invalidURL))
             return
         }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
-        do {
-            let jsonData = try JSONEncoder().encode(item)
-            request.httpBody = jsonData
-        } catch {
-            completion(.failure(error))
-            return
-        }
+        // Append parameters to the body as key-value pairs
+        let bodyString = "Name=\(product.name)&Price=\(product.price)&Date=\(product.date)"
+        request.httpBody = bodyString.data(using: .utf8)
         
-        let task = session.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -85,8 +83,8 @@ class NetworkManagerService {
             }
             
             do {
-                let decodedData = try JSONDecoder().decode(SomeResponseModel.self, from: data)
-                completion(.success(decodedData))
+                let decodedResponse = try JSONDecoder().decode(PostResponse.self, from: data)
+                completion(.success(decodedResponse))
             } catch let decodingError {
                 completion(.failure(decodingError))
             }
@@ -94,6 +92,8 @@ class NetworkManagerService {
         
         task.resume()
     }
+
+
     
     private func fetchData<T: Codable>(from urlString: String, completion: @escaping (Result<T, Error>) -> Void) {
         guard let url = URL(string: urlString) else {
@@ -136,4 +136,15 @@ enum NetworkErrorCases: Error {
     case serverError(statusCode: Int)
     case decodingError(Error)
     case customError(String)
+}
+
+struct Product: Codable {
+    let name: String
+    let price: String
+    let date: String
+}
+
+struct PostResponse: Codable {
+    let status: String
+    let message: String
 }

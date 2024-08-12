@@ -31,6 +31,71 @@ class BaseViewController: BaseVC {
             }
         }
     }
+    
+    func showToastMsg(_ titles: String, msg: String, position: ToastPosition?)
+    {
+        self.view.makeToast(msg, duration: 2.0, position: position ?? ToastPosition.bottom,  title: titles ) { didTap in
+            if didTap {
+                print("completion from tap")
+            } else {
+                print("completion without tap")
+            }
+        }
+    }
+    
+    func showAlert(title: String, message: String) {
+        // Step 2: Create an instance of UIAlertController
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        // Step 3: Add actions (buttons)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            // Code to execute when the OK button is pressed
+            print("OK button tapped")
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            // Code to execute when the OK button is pressed
+            print("cancel button tapped")
+        }
+        
+        let proceedAction = UIAlertAction(title: "Proceed", style: .destructive) { _ in
+            // Code to execute when the OK button is pressed
+            print("proceedAction button tapped")
+        }
+        
+        // Add the action to the alert controller
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        alertController.addAction(proceedAction)
+        
+        // Step 4: Present the alert
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func showAlertMsg(title: String, message: String) {
+        // Step 2: Create an instance of UIAlertController
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // Step 3: Add actions (buttons)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            // Code to execute when the OK button is pressed
+            print("OK button tapped")
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            // Code to execute when the OK button is pressed
+            print("cancel button tapped")
+        }
+        
+      
+        
+        // Add the action to the alert controller
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        // Step 4: Present the alert
+        self.present(alertController, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

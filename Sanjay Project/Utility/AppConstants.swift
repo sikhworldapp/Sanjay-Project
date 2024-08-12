@@ -29,7 +29,14 @@ class AppConstants
         return arrProducts
     }
     
-    
+ 
+    func getCurrentDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let todayDate = Date()
+        return dateFormatter.string(from: todayDate)
+    }
+ 
     func getDashboardOptions() -> [IconTitle]
     {
         var arrOptions = [IconTitle]()
