@@ -7,13 +7,38 @@
 
 import UIKit
 import Toast
+import SVProgressHUD
 
 class BaseViewController: BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func showProgress(_ msg: String? = "")
+    {
+        if let msgExists = msg, msgExists.count > 0
+        {
+            SVProgressHUD.show(withStatus: msg)
+        }
+        else
+        {
+            SVProgressHUD.show()
+        }
+        
+    }
+    
+    func hideProgress()
+    {
+        SVProgressHUD.dismiss()
+    }
+    
+    func finish()
+    {
+        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     func printOut(msg: String)

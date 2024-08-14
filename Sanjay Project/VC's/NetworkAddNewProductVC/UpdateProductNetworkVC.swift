@@ -7,34 +7,50 @@
 
 import UIKit
 
-class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
+
+class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var tfProdName: UITextField!
     @IBOutlet weak var tfPrice: UITextField!
     @IBOutlet weak var btnAddEditDel: UIButton!
     @IBOutlet weak var imgAddImage: UIImageView!
     @IBOutlet weak var imgProdImage: UIImageView!
+    
+    @IBOutlet weak var imgCross: UIImageView!
     @IBOutlet weak var lblHeadingAddNewPro: UILabel!
     @IBOutlet weak var lblAddNewItem: UILabel!
     
-    var isDataSaved : (()->())? = nil
+    var editableProductModel : Item? = nil
+    var itemUpdated : (()->())? = nil
     
     var tappedIndex = 0
     
     var crossImg = UIImage(systemName: "xmark.circle.fill")
     var downArrowImg = UIImage(systemName: "arrow.down.circle.fill")
-    var newProductAdded: ((ProductModel) ->())? = nil //will be set from previous vc..already displaying..
-    var sameProductEdited: ((ProductModel) ->())? = nil //will be set from previous vc..already displaying.
+    var newProductAdded: ((Item) ->())? = nil //will be set from previous vc..already displaying..
+    var sameProductEdited: ((Item) ->())? = nil //will be set from previous vc..already displaying.
     
     var prefs = UserDefaults.standard
     var encodedImgData : Data? = nil
-    
+    var originalPname = ""
+    var receivingModel : Item? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lblHeadingAddNewPro.text = NSLocalizedString("add_new_product", comment: "")
-        lblAddNewItem.text = NSLocalizedString("Add new item", comment: "")
+        if let model = editableProductModel
+        {
+            tfProdName.text = model.name
+            originalPname = model.name ?? ""
+            tfPrice.text = model.price?.description
+//            if let dataThere = model.imageData
+//            {
+//                imgProdImage.image = UIImage(data: dataThere)
+//                imgCross.isHidden = false
+//            }
+            
+            
+        }
         
         imgAddImage.addTapGesture {
             self.openGallery()
@@ -46,9 +62,12 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
         view.addTapGesture {
             self.tfPrice.resignFirstResponder()
         }
+        
+        imgCross.addTapGesture { [weak self] in
+            self?.imgProdImage.image = nil
+            self?.imgCross.isHidden = true
+        }
     }
-    
-    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 //        if textField == tfProdName
@@ -67,34 +86,25 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
            return true
        }
     
-    @IBAction func actionAddNewItem(_ sender: Any) {
-        if let name = tfProdName.text, name.count > 0, let price = tfPrice.text, price.count > 0
-        {
-            
-            let prod = Product(id: "", name: name, price: price, date: AppConstants.shared.getCurrentDate())
-            postProductHitApi(model: prod)
-        }
-        else
-        {
-            showToastMsg("Please fill all the fields correctly.", msg: "", position: .bottom)
-        }
-    }
-    
-    func postProductHitApi(model: Product) {
-        showProgress("Adding...")
-        NetworkManagerService.shared.addProduct(product: model) { [self] result in
+    @IBAction func actionUpdateItem(_ sender: Any) {
+        showProgress("Updating")
+        var product = Product(id: editableProductModel?.id ?? "",
+                              name: tfProdName.text ?? "",
+                              price: tfPrice.text ?? "",
+                              date: AppConstants.shared.getCurrentDate())
+        
+        NetworkManagerService.shared.updateProduct(product: product) { [self] result in
             switch result {
             case .success(let response):
-                print("Response: \(response)")
+             
                 if response.status == "true" {
                     print("Success: \(response.message)")
                     
                     DispatchQueue.main.async
                     { [self] in
-                        showToastMsg("Saved successfully.", msg: "", position: .bottom)
-                        dismiss(animated: true)
-                        navigationController?.popViewController(animated: true)
-                        isDataSaved?()
+                        showToastMsg("Update successfully.", msg: "", position: .bottom)
+                        finish()
+                        
                     }
                    
                     // Handle success, update UI, etc.
@@ -116,9 +126,64 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
                 // Handle error, show an alert, etc.
             }
             hideProgress()
+            itemUpdated?()
+        }
+       
+    }
+    
+    @IBAction func actionDeleteItem(_ sender: Any) {
+        AppConstants.shared.showAlert(on: self, with: "Do you want to delete : \(originalPname)") { [weak self] in
+            self?.hitDeleteApi()
+            
+        } noAction: {
+            print("no tapped.")
         }
     }
-
+    
+    func hitDeleteApi()
+    {
+        showProgress("Deleting")
+        var product = Product(id: editableProductModel?.id ?? "",
+                              name: tfProdName.text ?? "",
+                              price: tfPrice.text ?? "",
+                              date: AppConstants.shared.getCurrentDate())
+        
+        NetworkManagerService.shared.deleteProduct(product: product) { [self] result in
+            switch result {
+            case .success(let response):
+             
+                if response.status == "true" {
+                    print("Success: \(response.message)")
+                    
+                    DispatchQueue.main.async
+                    { [self] in
+                        showToastMsg("Deleted successfully.", msg: "", position: .bottom)
+                        finish()
+                        
+                    }
+                   
+                    // Handle success, update UI, etc.
+                } else {
+                    print("Failed: \(response.message)")
+                    DispatchQueue.main.async
+                    { [self] in
+                        self.showAlertMsg(title: "Issue", message: response.message)
+                    }
+                    
+                    // Handle failure, show an error message
+                }
+            case .failure(let error):
+                print("Failed to add product: \(error)")
+                DispatchQueue.main.async
+                { [self] in
+                    showToastMsg(error.localizedDescription, msg: "", position: .bottom)
+                }
+                // Handle error, show an alert, etc.
+            }
+            hideProgress()
+            itemUpdated?()
+        }
+    }
     
     @objc func openGallery() {
         // Check if the photo library is available
@@ -156,7 +221,7 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
     }
 }
 
-extension AddNewProductNetworkVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
+extension UpdateProductNetworkVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
@@ -164,7 +229,7 @@ extension AddNewProductNetworkVC: UIImagePickerControllerDelegate & UINavigation
         // Get the selected image
         if let selectedImage = info[.originalImage] as? UIImage {
             imgProdImage.image = selectedImage
-            
+            imgCross.isHidden = false
             
             if let imageData = selectedImage.pngData() {
                 encodedImgData = imageData

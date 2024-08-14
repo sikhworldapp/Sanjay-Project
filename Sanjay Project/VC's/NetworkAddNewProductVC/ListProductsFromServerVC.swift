@@ -60,8 +60,11 @@ class ListProductsFromServerVC: BaseViewController, UITextFieldDelegate, UISearc
     }
     
     @objc func hitApiLoadProducts() {
-        activityIndicator.startAnimating()
-        arrProducts.removeAll()
+        DispatchQueue.main.async{[self] in
+            activityIndicator.startAnimating()
+            arrProducts.removeAll()
+            showProgress()
+        }
         // Call the method to fetch all items
         NetworkManagerService.shared.fetchAllItems { result in
             DispatchQueue.main.async { [self] in
@@ -88,12 +91,11 @@ class ListProductsFromServerVC: BaseViewController, UITextFieldDelegate, UISearc
                     self.lblError.isHidden = false
                     // Handle the error, show an alert, etc.
                 }
+                hideProgress()
             }
         }
     }
 
-    
-    
     @IBAction func actionAddNewItem(_ sender: Any) {
         performSegue(withIdentifier: "toAddNewItem", sender: nil)
     }
@@ -134,6 +136,19 @@ class ListProductsFromServerVC: BaseViewController, UITextFieldDelegate, UISearc
                 vc.isDataSaved = {
                     self.hitApiLoadProducts()
                 }
+            }
+        }
+        else if segue.identifier == "toUpdateProduct"
+        {
+            if let vc = segue.destination as? UpdateProductNetworkVC{
+                vc.editableProductModel = arrProducts[tappedIndex]
+               
+                // Step 1 //  assign Another class's vc
+                vc.itemUpdated =  {
+                    self.hitApiLoadProducts()
+                }
+                
+                
             }
         }
     }

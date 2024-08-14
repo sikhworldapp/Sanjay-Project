@@ -10,8 +10,9 @@ import Foundation
 enum Endpoint {
     case getAllItems
     case getItem(id: String)
-    case updateItem(id: String)
-    case insertItem
+    case updateItem
+    case addProduct
+    case deleteProduct
     
     var urlString: String {
         switch self {
@@ -19,10 +20,12 @@ enum Endpoint {
             return "\(NetworkManagerService.shared.domainName)getAllitem.php"
         case .getItem(let id):
             return "\(NetworkManagerService.shared.domainName)getItem.php?id=\(id)"
-        case .updateItem(let id):
-            return "\(NetworkManagerService.shared.domainName)updateItem.php?id=\(id)"
-        case .insertItem:
-            return "\(NetworkManagerService.shared.domainName)insertItem.php"
+        case .updateItem:
+            return "\(NetworkManagerService.shared.domainName)updateProduct.php"
+        case .deleteProduct:
+            return "\(NetworkManagerService.shared.domainName)deleteProduct.php"
+        case .addProduct:
+            return "\(NetworkManagerService.shared.domainName)AddProduct.php"
         }
     }
 }
@@ -49,16 +52,9 @@ class NetworkManagerService {
         fetchData(from: Endpoint.getItem(id: id).urlString, completion: completion)
     }
     
-    // Method to update a specific item
-    func updateItem(id: String, completion: @escaping (Result<SomeResponseModel, Error>) -> Void) {
-        fetchData(from: Endpoint.updateItem(id: id).urlString, completion: completion)
-    }
-    
-    func postProduct(product: Product, completion: @escaping (Result<PostResponse, Error>) -> Void) {
-        print("Getting object: \(product as Any)")
-        let urlString = "\(domainName)AddProduct.php"
+    func addProduct(product: Product, completion: @escaping (Result<PostResponse, Error>) -> Void) {
         
-        guard let url = URL(string: urlString) else {
+        guard let url = URL(string: Endpoint.addProduct.urlString) else {
             completion(.failure(NetworkError.invalidURL))
             return
         }
@@ -69,6 +65,7 @@ class NetworkManagerService {
         
         // Append parameters to the body as key-value pairs
         let bodyString = "Name=\(product.name)&Price=\(product.price)&Date=\(product.date)"
+        print("sending body: \(bodyString)")
         request.httpBody = bodyString.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -92,6 +89,83 @@ class NetworkManagerService {
         
         task.resume()
     }
+    
+    func updateProduct(product: Product, completion: @escaping (Result<PostResponse, Error>) -> Void) {
+        
+        guard let url = URL(string: Endpoint.updateItem.urlString) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        // Append parameters to the body as key-value pairs
+        let bodyString = "ID=\(product.id)&Name=\(product.name)&Price=\(product.price)&Date=\(product.date)"
+        print("body string: \(bodyString)")
+        request.httpBody = bodyString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(PostResponse.self, from: data)
+                completion(.success(decodedResponse))
+            } catch let decodingError {
+                completion(.failure(decodingError))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func deleteProduct(product: Product, completion: @escaping (Result<PostResponse, Error>) -> Void) {
+        
+        guard let url = URL(string: Endpoint.deleteProduct.urlString) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        // Append parameters to the body as key-value pairs
+        let bodyString = "ID=\(product.id)"
+        print("body string: \(bodyString)")
+        request.httpBody = bodyString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(PostResponse.self, from: data)
+                completion(.success(decodedResponse))
+            } catch let decodingError {
+                completion(.failure(decodingError))
+            }
+        }
+        
+        task.resume()
+    }
+
 
 
     
@@ -139,9 +213,17 @@ enum NetworkErrorCases: Error {
 }
 
 struct Product: Codable {
+    let id: String
     let name: String
     let price: String
     let date: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case name = "Name"
+        case price = "Price"
+        case date = "Date"
+    }
 }
 
 struct PostResponse: Codable {
