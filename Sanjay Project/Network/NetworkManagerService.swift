@@ -13,9 +13,12 @@ enum Endpoint {
     case updateItem
     case addProduct
     case deleteProduct
+    case productEntry
     
     var urlString: String {
         switch self {
+        case .productEntry:
+            return "\(NetworkManagerService.shared.domainName)ProductEntry.php"
         case .getAllItems:
             return "\(NetworkManagerService.shared.domainName)getAllitem.php"
         case .getItem(let id):
@@ -26,6 +29,7 @@ enum Endpoint {
             return "\(NetworkManagerService.shared.domainName)deleteProduct.php"
         case .addProduct:
             return "\(NetworkManagerService.shared.domainName)AddProduct.php"
+            
         }
     }
 }
@@ -90,6 +94,55 @@ class NetworkManagerService {
         task.resume()
     }
     
+    func addMultiProducts(products: [Product], completion: @escaping (Result<PostResponse, Error>) -> Void) {
+        
+        guard let url = URL(string: Endpoint.productEntry.urlString) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            // Convert the array of Product objects to JSON data
+            let jsonData = try JSONEncoder().encode(products)
+            
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                    print("JSON String: \(jsonString)") //json formatted array will be printed with dis line
+                }
+            
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error as Any)
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+            
+            print("data is : \(data)")
+            print("response si: \(response)")
+            do {
+                let decodedResponse = try JSONDecoder().decode(PostResponse.self, from: data)
+                completion(.success(decodedResponse))
+            } catch let decodingError {
+                completion(.failure(decodingError))
+            }
+        }
+        task.resume()
+    }
+
     func updateProduct(product: Product, completion: @escaping (Result<PostResponse, Error>) -> Void) {
         
         guard let url = URL(string: Endpoint.updateItem.urlString) else {

@@ -71,8 +71,16 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
         if let name = tfProdName.text, name.count > 0, let price = tfPrice.text, price.count > 0
         {
             
-            let prod = Product(id: "", name: name, price: price, date: AppConstants.shared.getCurrentDate())
-            postProductHitApi(model: prod)
+            var arrProducts = [Product]()
+            for i in 0 ..< 3
+            {
+                let prod = Product(id: "", name: name + "\(i)", price: price + i.description, date: AppConstants.shared.getCurrentDate())
+                arrProducts.append(prod)
+            }
+            postMultiProductsHitApi(models: arrProducts)
+            
+            //postProductHitApi(model: prod)
+            
         }
         else
         {
@@ -118,6 +126,47 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
             hideProgress()
         }
     }
+    
+    func postMultiProductsHitApi(models: [Product]) {
+        showProgress("Adding...")
+        
+        NetworkManagerService.shared.addMultiProducts(products: models) { [self] result in
+            switch result {
+            case .success(let response):
+                print("Response: \(response)")
+                if response.status == "true" {
+                    print("Success: \(response.message)")
+                    
+                    DispatchQueue.main.async
+                    { [self] in
+                        showToastMsg("Saved successfully.", msg: "", position: .bottom)
+                        dismiss(animated: true)
+                        navigationController?.popViewController(animated: true)
+                        isDataSaved?()
+                    }
+                   
+                    // Handle success, update UI, etc.
+                } else {
+                    print("Failed: \(response.message)")
+                    DispatchQueue.main.async
+                    { [self] in
+                        self.showAlertMsg(title: "Issue", message: response.message)
+                    }
+                    
+                    // Handle failure, show an error message
+                }
+            case .failure(let error):
+                print("Failed to add product: \(error)")
+                DispatchQueue.main.async
+                { [self] in
+                    showToastMsg(error.localizedDescription, msg: "", position: .bottom)
+                }
+                // Handle error, show an alert, etc.
+            }
+            hideProgress()
+        }
+    }
+    
 
     
     @objc func openGallery() {

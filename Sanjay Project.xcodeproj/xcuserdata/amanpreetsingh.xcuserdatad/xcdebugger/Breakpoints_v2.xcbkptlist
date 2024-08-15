@@ -110,10 +110,88 @@
             filePath = "Sanjay Project/Network/NetworkManagerService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "addProduct(product:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1FF7119-1B98-49C6-A5DB-E1077D94FD43"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sanjay Project/VC&apos;s/NetworkAddNewProductVC/AddNewProductNetworkVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "postMultiProductsHitApi(models:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F1FF7119-1B98-49C6-A5DB-E1077D94FD43 - 74bff03f070117c4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sanjay_Project.AddNewProductNetworkVC.postMultiProductsHitApi(models: Swift.Array&lt;Sanjay_Project.Product&gt;) -&gt; ()"
+                  moduleName = "Sanjay Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amanpreetsingh/Documents/Xcode%20Projects/Sanjay%20Project/Sanjay%20Project/VC&apos;s/NetworkAddNewProductVC/AddNewProductNetworkVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  uuid = "F1FF7119-1B98-49C6-A5DB-E1077D94FD43 - 8fdca735a00be60a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Sanjay_Project.PostResponse, Swift.Error&gt;) -&gt; () in Sanjay_Project.AddNewProductNetworkVC.postMultiProductsHitApi(models: Swift.Array&lt;Sanjay_Project.Product&gt;) -&gt; ()"
+                  moduleName = "Sanjay Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amanpreetsingh/Documents/Xcode%20Projects/Sanjay%20Project/Sanjay%20Project/VC&apos;s/NetworkAddNewProductVC/AddNewProductNetworkVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "F1FF7119-1B98-49C6-A5DB-E1077D94FD43 - 74bff03f070117a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sanjay_Project.AddNewProductNetworkVC.postMultiProductsHitApi(models: Swift.Array&lt;Sanjay_Project.Product&gt;) -&gt; ()"
+                  moduleName = "Sanjay Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amanpreetsingh/Documents/Xcode%20Projects/Sanjay%20Project/Sanjay%20Project/VC&apos;s/NetworkAddNewProductVC/AddNewProductNetworkVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  uuid = "F1FF7119-1B98-49C6-A5DB-E1077D94FD43 - 8fdca735a00be1e9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Sanjay_Project.PostResponse, Swift.Error&gt;) -&gt; () in Sanjay_Project.AddNewProductNetworkVC.postMultiProductsHitApi(models: Swift.Array&lt;Sanjay_Project.Product&gt;) -&gt; ()"
+                  moduleName = "Sanjay Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amanpreetsingh/Documents/Xcode%20Projects/Sanjay%20Project/Sanjay%20Project/VC&apos;s/NetworkAddNewProductVC/AddNewProductNetworkVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

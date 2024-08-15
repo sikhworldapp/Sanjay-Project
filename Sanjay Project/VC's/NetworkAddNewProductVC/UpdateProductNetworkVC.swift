@@ -128,8 +128,7 @@ class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
             hideProgress()
             itemUpdated?()
         }
-       
-    }
+     }
     
     @IBAction func actionDeleteItem(_ sender: Any) {
         AppConstants.shared.showAlert(on: self, with: "Do you want to delete : \(originalPname)") { [weak self] in
