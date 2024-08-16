@@ -14,6 +14,7 @@ enum Endpoint {
     case addProduct
     case deleteProduct
     case productEntry
+    case GettemByName
     
     var urlString: String {
         switch self {
@@ -29,6 +30,8 @@ enum Endpoint {
             return "\(NetworkManagerService.shared.domainName)deleteProduct.php"
         case .addProduct:
             return "\(NetworkManagerService.shared.domainName)AddProduct.php"
+        case .GettemByName:
+            return "\(NetworkManagerService.shared.domainName)GettemByName1.php"
             
         }
     }
@@ -180,6 +183,62 @@ class NetworkManagerService {
         
         task.resume()
     }
+
+    func getProductJson(name: String? = nil, id: String? = nil, completion: @escaping (Result<GetSingleReponseByName, Error>) -> Void) {
+        
+        guard let url = URL(string: Endpoint.GettemByName.urlString) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        // Append parameters to the body as key-value pairs
+        var bodyString: String = ""//0
+       
+        if let nameString = name
+        {
+            bodyString += "Name=\(nameString)"
+        }
+        
+        if let idString = id
+        {
+            if bodyString.count > 0
+            {
+                bodyString += "&ID=\(idString)"
+            }
+            else{
+                bodyString += "ID=\(idString)"
+            }
+        }
+        
+        
+        print("body string: \(bodyString)")
+        request.httpBody = bodyString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(GetSingleReponseByName.self, from: data)
+                completion(.success(decodedResponse))
+            } catch let decodingError {
+                completion(.failure(decodingError))
+            }
+        }
+        
+        task.resume()
+    }
     
     func deleteProduct(product: Product, completion: @escaping (Result<PostResponse, Error>) -> Void) {
         
@@ -282,4 +341,27 @@ struct Product: Codable {
 struct PostResponse: Codable {
     let status: String
     let message: String
+}
+
+struct GetSingleReponseByName: Codable {
+    let data: ProductWithImage?
+    let status: String?
+    let message: String?
+}
+
+    
+struct ProductWithImage: Codable {
+    let id: String?
+    let name: String?
+    let price: String?
+    let date: String?
+    let image: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case name = "Name"
+        case price = "Price"
+        case date = "Date"
+        case image = "Image"
+    }
 }

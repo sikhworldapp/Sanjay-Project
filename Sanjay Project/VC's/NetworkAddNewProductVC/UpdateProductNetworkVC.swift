@@ -34,11 +34,12 @@ class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
     var encodedImgData : Data? = nil
     var originalPname = ""
     var receivingModel : Item? = nil
+    let viewModel = UpdateServicesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let model = editableProductModel
+      /*  if let model = editableProductModel
         {
             tfProdName.text = model.name
             originalPname = model.name ?? ""
@@ -51,6 +52,9 @@ class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
             
             
         }
+       */
+        
+        getNameResponseFromViewModel()//fetching from backend api
         
         imgAddImage.addTapGesture {
             self.openGallery()
@@ -68,6 +72,74 @@ class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
             self?.imgCross.isHidden = true
         }
     }
+    
+    func getNameResponseFromViewModel()
+    {
+        showProgress()
+        viewModel.getNameResponse(name: editableProductModel?.name ?? "" ,
+                                  id: editableProductModel?.id ?? "") { someResponseModel, errorString in
+            DispatchQueue.main.async
+            { [self] in
+                if let modelFromBackend = someResponseModel
+                {
+                    showToastMsg("Got successfully.", msg: "", position: .bottom)
+                    tfProdName.text = modelFromBackend.data?.name
+                    tfPrice.text = modelFromBackend.data?.price
+                }
+                else
+                {
+                    showToastMsg(errorString!, msg: "", position: .bottom)
+                }
+                hideProgress()
+            }
+        }
+    }
+    
+    func getNameResponse() {
+        showProgress("Getting by Name")
+        
+        NetworkManagerService.shared.getProductJson(name: editableProductModel?.name, id: editableProductModel?.id) { [self] result in
+            switch result {
+            case .success(let response):
+             
+                if response.status == "true" {
+                    print("Success: \(response.message)")
+                    print("getting response: \(response.data as Any)")
+                    
+                   if let modelFromBackend: ProductWithImage = response.data
+                   {
+                       DispatchQueue.main.async
+                       { [self] in
+                           showToastMsg("Got successfully.", msg: "", position: .bottom)
+                           tfProdName.text = modelFromBackend.name
+                           tfPrice.text = modelFromBackend.price
+                           
+                           
+                       }
+                   }
+           
+                    // Handle success, update UI, etc.
+                } else {
+                    print("Failed: \(response.message)")
+                    DispatchQueue.main.async
+                    { [self] in
+                        self.showAlertMsg(title: "Issue", message: response.message ?? "")
+                    }
+                    
+                    // Handle failure, show an error message
+                }
+            case .failure(let error):
+                print("Failed to add product: \(error)")
+                DispatchQueue.main.async
+                { [self] in
+                    showToastMsg(error.localizedDescription, msg: "", position: .bottom)
+                }
+                // Handle error, show an alert, etc.
+            }
+            hideProgress()
+            
+        }
+     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 //        if textField == tfProdName
