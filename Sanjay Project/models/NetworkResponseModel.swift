@@ -57,6 +57,7 @@ struct Item: Codable {
     let name: String?
     let price: String?
     let date: String?
+    let image: String?
 
     // Custom initializer to use decodeIfPresent
     init(from decoder: Decoder) throws {
@@ -65,6 +66,11 @@ struct Item: Codable {
         name = try container.decodeIfPresent(String.self, forKey: .name)
         price = try container.decodeIfPresent(String.self, forKey: .price)
         date = try container.decodeIfPresent(String.self, forKey: .date)
+        if let imagePath = try container.decodeIfPresent(String.self, forKey: .image) {
+            image = "\(NetworkManagerService.shared.domainName)/Images/\(imagePath)"
+        } else {
+            image = nil
+        }
     }
 
     // Map JSON keys to struct properties
@@ -73,5 +79,6 @@ struct Item: Codable {
         case name = "Name"
         case price = "Price"
         case date = "Date"
+        case image = "Image"
     }
 }

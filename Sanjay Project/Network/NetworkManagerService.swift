@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Endpoint {
     case getAllItems
@@ -15,6 +16,7 @@ enum Endpoint {
     case deleteProduct
     case productEntry
     case GettemByName
+    case addItem
     
     var urlString: String {
         switch self {
@@ -31,7 +33,9 @@ enum Endpoint {
         case .addProduct:
             return "\(NetworkManagerService.shared.domainName)AddProduct.php"
         case .GettemByName:
-            return "\(NetworkManagerService.shared.domainName)GettemByName1.php"
+            return "\(NetworkManagerService.shared.domainName)GettemByName.php"
+        case .addItem:
+            return "\(NetworkManagerService.shared.domainName)addItem.php"
             
         }
     }
@@ -96,6 +100,78 @@ class NetworkManagerService {
         
         task.resume()
     }
+    
+    func addProductWithImage(product: Product, image: UIImage, completion: @escaping (Result<PostResponse, Error>) -> Void) {
+        
+        guard let url = URL(string: Endpoint.addItem.urlString) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let boundary = UUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        var body = Data()
+        
+        // Add parameters as form-data
+        let params = [
+            "Name": product.name,
+            "Price": "\(product.price)",
+            "Date": product.date
+        ]
+        
+        for (key, value) in params {
+            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
+            body.append("\(value)\r\n".data(using: .utf8)!)
+        }
+        
+        // Convert UIImage to Data (JPEG format)
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        // Assign a file name (e.g., based on the product name or a UUID)
+        let fileName = "\(UUID().uuidString).jpg"
+        
+        // Add image data as form-data
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"Image\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+        body.append(imageData)//big image converted to data is appended to body at here..
+        body.append("\r\n".data(using: .utf8)!)
+        
+        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        request.httpBody = body
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(PostResponse.self, from: data)
+                completion(.success(decodedResponse))
+            } catch let decodingError {
+                completion(.failure(decodingError))
+            }
+        }
+        
+        task.resume()
+    }
+
+
     
     func addMultiProducts(products: [Product], completion: @escaping (Result<PostResponse, Error>) -> Void) {
         
