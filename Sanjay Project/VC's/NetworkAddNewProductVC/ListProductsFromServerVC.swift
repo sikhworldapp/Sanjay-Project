@@ -159,17 +159,7 @@ extension ListProductsFromServerVC: UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as? ProductCell
-        cell?.lblProdName.text = filteredProducts[indexPath.row].name
-        cell?.lblPrice.text =  "$" + String(filteredProducts[indexPath.row].price ?? "")
-        cell?.imgProd.sd_setImage(with: URL(string: filteredProducts[indexPath.row].image ?? ""), placeholderImage: UIImage(named: "calendar"))
-        
-     /*   if let imageData = filteredProducts[indexPath.row].imageData {
-            cell?.imgProd.image = UIImage(data: imageData)
-        } else {
-            // Handle the case where imageData is nil or not valid
-            cell?.imgProd.image = UIImage(named: "goods") // Or set a placeholder image
-        }
-       */
+        cell?.configure(model: filteredProducts[indexPath.row])
         return cell ?? UITableViewCell()
     }
     

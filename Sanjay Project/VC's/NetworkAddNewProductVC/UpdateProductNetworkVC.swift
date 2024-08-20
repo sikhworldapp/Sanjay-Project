@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 
 class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
     
@@ -15,7 +15,6 @@ class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var btnAddEditDel: UIButton!
     @IBOutlet weak var imgAddImage: UIImageView!
     @IBOutlet weak var imgProdImage: UIImageView!
-    
     @IBOutlet weak var imgCross: UIImageView!
     @IBOutlet weak var lblHeadingAddNewPro: UILabel!
     @IBOutlet weak var lblAddNewItem: UILabel!
@@ -57,6 +56,7 @@ class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
         getNameResponseFromViewModel()//fetching from backend api
         
         imgAddImage.addTapGesture {
+            SVProgressHUD.show()
             self.openGallery()
         }
         
@@ -71,7 +71,7 @@ class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
             self?.imgProdImage.image = nil
             self?.imgCross.isHidden = true
         }
-    }
+     }
     
     func getNameResponseFromViewModel()
     {
@@ -85,6 +85,8 @@ class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
                     showToastMsg("Got successfully.", msg: "", position: .bottom)
                     tfProdName.text = modelFromBackend.data?.name
                     tfPrice.text = modelFromBackend.data?.price
+                    let urlString = "\(NetworkManagerService.shared.domainName)/Images/\(modelFromBackend.data?.image ?? "")"
+                    imgProdImage.sd_setImage(with: URL(string: urlString), placeholderImage: UIImage(named: "noImageFound"))
                 }
                 else
                 {
@@ -268,7 +270,9 @@ class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.allowsEditing = false
         
-        present(imagePickerController, animated: true, completion: nil)
+        present(imagePickerController, animated: true){
+            SVProgressHUD.dismiss()
+        }
     }
     
     func checkLogicSavingProducts()

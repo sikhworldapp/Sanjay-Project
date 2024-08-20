@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
     
@@ -37,6 +38,7 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
         lblAddNewItem.text = NSLocalizedString("Add new item", comment: "")
         
         imgAddImage.addTapGesture {
+            SVProgressHUD.show()
             self.openGallery()
         }
         
@@ -47,9 +49,7 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
             self.tfPrice.resignFirstResponder()
         }
     }
-    
-    
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 //        if textField == tfProdName
 //        {
@@ -70,20 +70,19 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
     @IBAction func actionAddNewItem(_ sender: Any) {
         if let name = tfProdName.text, name.count > 0, let price = tfPrice.text, price.count > 0
         {
-            postProductHitApi(model: Product(id: "", name: name, price: price, date: AppConstants.shared.getCurrentDate()))
-            /*var arrProducts = [Product]()
-            for i in 0 ..< 3
+            if imgProdImage.image != nil
             {
-                let prod = Product(id: "", name: name + "\(i)", price: price + i.description, date: AppConstants.shared.getCurrentDate())
-                arrProducts.append(prod)
+                print("with image.")
+                postProductHitApi(model: Product(id: "", name: name, price: price, date: AppConstants.shared.getCurrentDate()))
             }
-            postMultiProductsHitApi(models: arrProducts)
-            
-            //postProductHitApi(model: prod)
-             */
-            
-            
-            
+            else
+            { 
+                print("hitting wihtout iamge ")
+                var arrProducts = [Product]()
+                let prod = Product(id: "", name: name, price: price, date: AppConstants.shared.getCurrentDate())
+                arrProducts.append(prod)
+                postMultiProductsHitApi(models: arrProducts)
+            }
         }
         else
         {
@@ -92,52 +91,46 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
     }
     
     func postProductHitApi(model: Product) {
+        
         showProgress("Adding...")
         
         // Adjust compressionQuality as needed
         NetworkManagerService.shared.addProductWithImage(product: model, image: imgProdImage.image!) { [self] result in
-                    switch result {
-                    case .success(let response):
-                        print("Response: \(response)")
-                        if response.status == "true" {
-                            print("Success: \(response.message)")
-                            
-                            DispatchQueue.main.async
-                            { [self] in
-                                showToastMsg("Saved successfully.", msg: "", position: .bottom)
-                                dismiss(animated: true)
-                                navigationController?.popViewController(animated: true)
-                                isDataSaved?()
-                            }
-                           
-                            // Handle success, update UI, etc.
-                        } else {
-                            print("Failed: \(response.message)")
-                            DispatchQueue.main.async
-                            { [self] in
-                                self.showAlertMsg(title: "Issue", message: response.message)
-                            }
-                            
-                            // Handle failure, show an error message
-                        }
-                    case .failure(let error):
-                        print("Failed to add product: \(error)")
-                        DispatchQueue.main.async
-                        { [self] in
-                            showToastMsg(error.localizedDescription, msg: "", position: .bottom)
-                        }
-                        // Handle error, show an alert, etc.
+            switch result {
+            case .success(let response):
+                print("Response: \(response)")
+                if response.status == "true" {
+                    print("Success: \(response.message)")
+                    
+                    DispatchQueue.main.async
+                    { [self] in
+                        showToastMsg("Saved successfully.", msg: "", position: .bottom)
+                        dismiss(animated: true)
+                        navigationController?.popViewController(animated: true)
+                        isDataSaved?()
                     }
-                    hideProgress()
+                    
+                    // Handle success, update UI, etc.
+                } else {
+                    print("Failed: \(response.message)")
+                    DispatchQueue.main.async
+                    { [self] in
+                        self.showAlertMsg(title: "Issue", message: response.message)
+                    }
+                    
+                    // Handle failure, show an error message
                 }
-                
+            case .failure(let error):
+                print("Failed to add product: \(error)")
+                DispatchQueue.main.async
+                { [self] in
+                    showToastMsg(error.localizedDescription, msg: "", position: .bottom)
+                }
+                // Handle error, show an alert, etc.
             }
-        
-
-
-        
-       
-    
+            hideProgress()
+        }
+    }
     
     func postMultiProductsHitApi(models: [Product]) {
         showProgress("Adding...")
@@ -193,7 +186,12 @@ class AddNewProductNetworkVC: BaseViewController, UITextFieldDelegate {
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.allowsEditing = false
         
-        present(imagePickerController, animated: true, completion: nil)
+        
+        
+        present(imagePickerController, animated: true) { [weak self] in
+            // Stop the activity indicator after the image picker is presented
+            SVProgressHUD.dismiss()
+        }
     }
     
     func checkLogicSavingProducts()
