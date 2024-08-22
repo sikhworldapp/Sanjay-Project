@@ -37,7 +37,7 @@ class UpdateProductNetworkVC: BaseViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        var x = editableProductModel
       /*  if let model = editableProductModel
         {
             tfProdName.text = model.name

@@ -9,7 +9,7 @@ import UIKit
 
 class AppConstants
 {
-    static var shared = AppConstants()
+    static var shared = AppConstants() //new
     private init(){
         print("initialized")
     }
