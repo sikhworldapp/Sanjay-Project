@@ -10,6 +10,7 @@ import UIKit
 class DashboardVC: BaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var lblUserName: UILabel!
     
     var arrOptions = [IconTitle]()
     
@@ -31,12 +32,30 @@ class DashboardVC: BaseViewController {
         
         collectionView.reloadData()
         
+        if let userModel = appConstants.loadLoginResponseFromUserDefaults()
+        {
+            lblUserName.text = "Hi \(userModel.data.username)"
+        }
+        
         // Do any additional setup after loading the view.
     }
     
     @IBAction func actionAddNewStudent(_ sender: Any) {
         performSegue(withIdentifier: "toAddStudent", sender: nil)
     }
+    
+    @IBAction func actionLogout(_ sender: Any) {
+        appConstants.clearUserDefaults {
+            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+            if let homeVC = storyboard.instantiateViewController(withIdentifier: "Home") as? Home {
+                let navigationController = UINavigationController(rootViewController: homeVC)
+                navigationController.modalPresentationStyle = .fullScreen
+                UIApplication.shared.windows.first?.rootViewController = navigationController
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
+            }
+        }
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       /* if segue.identifier == "openNext"

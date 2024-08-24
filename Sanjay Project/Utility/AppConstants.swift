@@ -10,6 +10,7 @@ import UIKit
 class AppConstants
 {
     static var shared = AppConstants() //new
+    let isLoggedIn = "isLoggedIn"
     private init(){
         print("initialized")
     }
@@ -29,7 +30,53 @@ class AppConstants
         return arrProducts
     }
     
- 
+    func saveLoginResponseToUserDefaults(_ response: LoginResponse) {
+        let defaults = UserDefaults.standard
+        
+        do {
+            // Encode the LoginResponse to Data
+            let encodedData = try JSONEncoder().encode(response)
+            
+            // Save the encoded data to UserDefaults
+            defaults.set(encodedData, forKey: "loginResponse")
+            
+            print("Login response saved successfully")
+        } catch {
+            print("Failed to encode login response: \(error)")
+        }
+    }
+    
+    func clearUserDefaults(completion: @escaping () -> Void) {
+        if let appDomain = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: appDomain)
+            UserDefaults.standard.synchronize() // Force the UserDefaults to save the changes
+        }
+        
+        // Call the completion block after clearing user defaults
+        completion()
+    }
+
+
+    
+    func loadLoginResponseFromUserDefaults() -> LoginResponse? {
+        let defaults = UserDefaults.standard
+        
+        // Retrieve the data from UserDefaults
+        if let savedData = defaults.data(forKey: "loginResponse") {
+            do {
+                // Decode the data back into LoginResponse
+                let decodedResponse = try JSONDecoder().decode(LoginResponse.self, from: savedData)
+                return decodedResponse
+            } catch {
+                print("Failed to decode login response: \(error)")
+                return nil
+            }
+        }
+        
+        return nil
+    }
+
+
     func getCurrentDate() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
@@ -65,6 +112,21 @@ class AppConstants
           viewController.present(alert, animated: true, completion: nil)
       }
     
+    // Function to validate password strength (basic validation)
+       func isValidPassword(_ password: String) -> Bool {
+           // Example criteria: At least 8 characters, contains at least one letter and one number
+           let passwordRegEx = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d!@#$%^&*()-_=+\\[\\]{}|;:'\",.<>?/]{8,}$"
+           let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
+           return passwordPredicate.evaluate(with: password)
+       }
+    
+    // Function to validate email format (basic validation)
+    func isValidEmail(_ email: String) -> Bool {
+        // Basic regex for validating email format
+        let emailRegEx = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return emailPredicate.evaluate(with: email)
+    }
    
     
     func loadProducts() -> [ProductModel]

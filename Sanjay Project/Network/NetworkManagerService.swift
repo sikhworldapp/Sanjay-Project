@@ -17,6 +17,8 @@ enum Endpoint {
     case productEntry
     case GettemByName
     case addItem
+    case userRegistration
+    case userLogin
     
     var urlString: String {
         switch self {
@@ -36,6 +38,10 @@ enum Endpoint {
             return "\(NetworkManagerService.shared.domainName)GettemByName.php"
         case .addItem:
             return "\(NetworkManagerService.shared.domainName)addItem.php"
+        case .userRegistration:
+            return "\(NetworkManagerService.shared.domainName)userRegistration.php"
+        case .userLogin:
+            return "\(NetworkManagerService.shared.domainName)userLogin.php"
             
         }
     }
@@ -92,6 +98,84 @@ class NetworkManagerService {
             
             do {
                 let decodedResponse = try JSONDecoder().decode(PostResponse.self, from: data)
+                completion(.success(decodedResponse))
+            } catch let decodingError {
+                completion(.failure(decodingError))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func userRegistration(userModel: UserProfileModel, completion: @escaping (Result<PostResponse, Error>) -> Void) {
+        
+        guard let url = URL(string: Endpoint.userRegistration.urlString) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        // Append parameters to the body as key-value pairs
+        let bodyString = "username=\(userModel.username)&email=\(userModel.email)&password=\(userModel.password)&Date=\(userModel.Date)&Time=\(userModel.Time)"
+        print("sending body: \(bodyString)")
+        
+        request.httpBody = bodyString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(PostResponse.self, from: data)
+                completion(.success(decodedResponse))
+            } catch let decodingError {
+                completion(.failure(decodingError))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func userLogin(userModel: LoginModel, completion: @escaping (Result<LoginResponse, Error>) -> Void) {
+        
+        guard let url = URL(string: Endpoint.userLogin.urlString) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        // Append parameters to the body as key-value pairs
+        let bodyString = "email=\(userModel.email)&password=\(userModel.password)"
+        print("sending body: \(bodyString)")
+        
+        request.httpBody = bodyString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
                 completion(.success(decodedResponse))
             } catch let decodingError {
                 completion(.failure(decodingError))

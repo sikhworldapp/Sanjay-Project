@@ -21,10 +21,14 @@ class RegistrationForm: BaseViewController {
     private var timePicker: UIDatePicker?
     
     var isPasswordVisible = false
+    let appConstants = AppConstants.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if UserDefaults.standard.bool(forKey: appConstants.isLoggedIn)
+        {
+            self.performSegue(withIdentifier: "toDashboard", sender: nil)
+        }
         initDate()
         initTime()
         btnSubmit.addTapGesture {
@@ -92,19 +96,21 @@ class RegistrationForm: BaseViewController {
         timePicker?.datePickerMode = .time
         timePicker?.preferredDatePickerStyle = .wheels
         
-        // Optionally set a time range if needed
+        // Set the locale to ensure AM/PM format (en_US_POSIX is a common choice)
+        timePicker?.locale = Locale(identifier: "en_US_POSIX")
+        
         let calendar = Calendar.current
         let currentDate = Date()
         
-        // Example: Set the minimum time to 8:00 AM
+        // Set the minimum time to 8:00 AM
         var minComponents = calendar.dateComponents([.hour, .minute], from: currentDate)
         minComponents.hour = 8
         minComponents.minute = 0
         let minTime = calendar.date(from: minComponents)
         
-        // Example: Set the maximum time to 10:00 PM
+        // Set the maximum time to 10:00 PM
         var maxComponents = calendar.dateComponents([.hour, .minute], from: currentDate)
-        maxComponents.hour = 22
+        maxComponents.hour = 22  // 10:00 PM
         maxComponents.minute = 0
         let maxTime = calendar.date(from: maxComponents)
         
@@ -124,18 +130,19 @@ class RegistrationForm: BaseViewController {
         // Set a default time (optional)
         let timeFormatter = DateFormatter()
         timeFormatter.timeStyle = .short
+        timeFormatter.locale = Locale(identifier: "en_US_POSIX")  // Ensure AM/PM format
         txtTime.text = timeFormatter.string(from: currentDate)
     }
     
     @objc func donePressedForTime() {
-        let timeFormatter = DateFormatter()
-        timeFormatter.timeStyle = .short
+        if let timePicker = timePicker {
+            let timeFormatter = DateFormatter()
+            timeFormatter.timeStyle = .short
+            timeFormatter.locale = Locale(identifier: "en_US_POSIX")  // Ensure AM/PM format
+            txtTime.text = timeFormatter.string(from: timePicker.date)
+        }
         
-        // Format the selected time and set it as the text of txtTime
-        txtTime.text = timeFormatter.string(from: timePicker?.date ?? Date())
-        
-        // Dismiss the time picker
-        self.view.endEditing(true)
+        txtTime.resignFirstResponder()
     }
     
 }
@@ -161,7 +168,7 @@ extension RegistrationForm: UITextFieldDelegate
                let newString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
                
                // Validate email format (basic validation)
-               if isValidEmail(newString) {
+               if appConstants.isValidEmail(newString) {
                    textField.textColor = .black
                } else {
                    textField.textColor = .red
@@ -194,7 +201,7 @@ extension RegistrationForm: UITextFieldDelegate
                let newString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
                
                // Optionally, validate password strength or other criteria
-               if isValidPassword(newString) {
+               if appConstants.isValidPassword(newString) {
                    textField.textColor = .black
                } else {
                    textField.textColor = .red
@@ -203,22 +210,6 @@ extension RegistrationForm: UITextFieldDelegate
            
            return true
        }
-    
-    // Function to validate password strength (basic validation)
-       func isValidPassword(_ password: String) -> Bool {
-           // Example criteria: At least 8 characters, contains at least one letter and one number
-           let passwordRegEx = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d!@#$%^&*()-_=+\\[\\]{}|;:'\",.<>?/]{8,}$"
-           let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
-           return passwordPredicate.evaluate(with: password)
-       }
-    
-    // Function to validate email format (basic validation)
-    func isValidEmail(_ email: String) -> Bool {
-        // Basic regex for validating email format
-        let emailRegEx = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
-        return emailPredicate.evaluate(with: email)
-    }
     
     @objc func togglePasswordVisibility() {
            // Toggle the password visibility
@@ -240,7 +231,49 @@ extension RegistrationForm: UITextFieldDelegate
     @objc func submitForm() {
            if areFieldsValid() {
                // Perform segue to the Dashboard
-               self.performSegue(withIdentifier: "toDashboard", sender: nil)
+            
+               
+               var model = UserProfileModel(username: /txtUsername.text,
+                                            email: /txtEmail.text,
+                                            password: /txtPassword.text,
+                                            Date: /txtDate.text,
+                                            Time: /txtTime.text)
+               showProgress()
+               NetworkManagerService.shared.userRegistration(userModel: model) { [self] result in
+                   switch result
+                   {
+                   case .success(let response):
+                       
+                           print("getting response: \(response.message)")
+                       if response.status == "true"
+                       {
+                           UserDefaults.standard.setValue(true,forKey: AppConstants.shared.isLoggedIn)
+                           DispatchQueue.main.async{
+                               self.performSegue(withIdentifier: "toDashboard", sender: nil)
+                           }
+                           
+                           
+                       }
+                       else
+                       {
+                           DispatchQueue.main.async{
+                               let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                               if let newViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC {
+                                   newViewController.modalPresentationStyle = .fullScreen // or .overFullScreen for a transparent background
+                                   present(newViewController, animated: true, completion: nil)
+                               }
+                               
+                             
+                           }
+
+                       }
+                    
+                   case .failure(let error):
+                           print("getting error: \(error.localizedDescription)")
+                   }
+                   self.hideProgress()
+                   
+               }
            } else {
                // Optionally, show an alert or feedback to the user
                showAlert(title: "Please fill in all fields correctly.", message: "")
@@ -249,6 +282,6 @@ extension RegistrationForm: UITextFieldDelegate
        
        func areFieldsValid() -> Bool {
            // Check if all fields are non-empty and valid
-           return isValidEmail(txtEmail.text!) && !txtUsername.text!.isEmpty && isValidPassword(txtPassword.text!)
+           return appConstants.isValidEmail(txtEmail.text!) && !txtUsername.text!.isEmpty && appConstants.isValidPassword(txtPassword.text!)
        }
 }
