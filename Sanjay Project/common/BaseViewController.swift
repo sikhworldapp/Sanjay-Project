@@ -15,7 +15,14 @@ class BaseViewController: BaseVC {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        displayCurrentViewControllerName()
     }
+    
+    func displayCurrentViewControllerName() {
+           if let className = NSStringFromClass(type(of: self)).components(separatedBy: ".").last {
+               print("Current View Controller: \(className)")
+           }
+       }
     
     func showProgress(_ msg: String? = "")
     {

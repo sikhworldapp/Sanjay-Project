@@ -125,7 +125,7 @@ extension LoginVC: UITextFieldDelegate
                            print("getting response: \(response.message)")
                        if response.status == "true"
                        {
-                           UserDefaults.standard.setValue(true,forKey: AppConstants.shared.isLoggedIn)
+                           prefs.setValue(true, forKey: AppConstants.shared.isLoggedIn)
                            appConstants.saveLoginResponseToUserDefaults(response)
                            DispatchQueue.main.async{
                                self.performSegue(withIdentifier: "toDashboard", sender: nil)

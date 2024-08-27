@@ -12,7 +12,11 @@ class Home: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if prefs.bool(forKey: AppConstants.shared.isLoggedIn)
+        {
+            performSegue(withIdentifier: "toDashboard", sender: nil)
+        }
+      
     }
  
 

@@ -7,6 +7,8 @@
 
 import UIKit
 
+let prefs = UserDefaults.standard
+
 class AppConstants
 {
     static var shared = AppConstants() //new
@@ -58,7 +60,7 @@ class AppConstants
 
 
     
-    func loadLoginResponseFromUserDefaults() -> LoginResponse? {
+    func loadLoginResponseFromUserDefaults() -> LoginResponse? { // data > json > decode > model
         let defaults = UserDefaults.standard
         
         // Retrieve the data from UserDefaults
@@ -89,7 +91,7 @@ class AppConstants
         var arrOptions = [IconTitle]()
         arrOptions.append(IconTitle(title: "Add Item", img: UIImage(systemName: "plus.circle")!))
         arrOptions.append(IconTitle(title: "Item List", img: UIImage(systemName: "list.bullet")!))
-        arrOptions.append(IconTitle(title: "Customer", img: UIImage(systemName: "person.circle")!))
+        arrOptions.append(IconTitle(title: "Billing", img: UIImage(systemName: "person.circle")!))
         
        return arrOptions
     }
