@@ -51,6 +51,7 @@ class ListProductsFromServerVC: BaseViewController, UITextFieldDelegate, UISearc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableViewProducts.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ProductCell")
         refreshControl.addTarget(self, action: #selector(hitApiLoadProducts), for: .valueChanged)
         tableViewProducts.refreshControl = refreshControl
         tableViewProducts.delegate = self

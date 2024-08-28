@@ -71,7 +71,7 @@ extension AddDiscountVC: UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as? ProductCell
-        cell?.lblProdName.text = filteredProducts[indexPath.row].ledgerType
+        cell?.configureLedger(model: filteredProducts[indexPath.row])
         
         return cell ?? UITableViewCell()
     }

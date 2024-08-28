@@ -89,12 +89,12 @@ class DashboardProductsVC: UIViewController {
         }
    
     
-    @IBAction func actionAddNewStudent(_ sender: Any) {
-        performSegue(withIdentifier: "toAddNewProduct", sender: nil)
+    @IBAction func actionAddInventory(_ sender: Any) {
+        performSegue(withIdentifier: "addInventory", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      if segue.identifier == "toAddNewProduct"
+      if segue.identifier == "addInventory"
         {
             if let vc = segue.destination as? ChooseProductVC{
                // Step 1 //  assign Another class's vc
@@ -106,7 +106,7 @@ class DashboardProductsVC: UIViewController {
                 
             }
         }
-        else  if segue.identifier == "toEditProduct"
+        else  if segue.identifier == "editInventory"
         {
             
             if let index = sender as? Int {
@@ -217,7 +217,7 @@ extension DashboardProductsVC : UITableViewDataSource, UITableViewDelegate
         cell?.btnEditTapped =
         {
             print("called \(indexPath.row)")
-            self.performSegue(withIdentifier: "toEditProduct", sender: indexPath.row)
+            self.performSegue(withIdentifier: "editInventory", sender: indexPath.row)
         }
         
         cell?.btnDeleteTapped =

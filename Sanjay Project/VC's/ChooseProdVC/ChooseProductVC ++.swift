@@ -26,7 +26,7 @@ extension ChooseProductVC
                 // If the new text is not empty, filter the products and show the table view
                 showTable()
                 filteredProducts.removeAll()
-                filteredProducts.append(contentsOf: arrProducts.filter { $0.pName.lowercased().contains(newText.lowercased()) })
+                filteredProducts.append(contentsOf: arrProducts.filter { $0.name!.lowercased().contains(newText.lowercased()) })
                 imgDownArrow.image = crossImg
             }
             
@@ -36,8 +36,8 @@ extension ChooseProductVC
         else if textField == tfQuantity
         {
             let quantity = Double(tfQuantity.text ?? "0.0") ?? 0.0
-                   let price = arrProducts[tappedIndex].price
-            let totalAmount = price * quantity
+            let price = Double(arrProducts[tappedIndex].price ?? "0.0")
+            let totalAmount = (price ?? 0.0) * quantity
             let roundedAmount = round(totalAmount * 1000) / 1000
                     
                     // Format as currency with 2 decimal places explicitly
@@ -93,8 +93,7 @@ extension ChooseProductVC: UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as? ProductCell
-        cell?.lblProdName.text = filteredProducts[indexPath.row].pName
-        cell?.lblPrice.text =  "$" + String(filteredProducts[indexPath.row].price)
+        cell?.configure(model: filteredProducts[indexPath.row])
         return cell ?? UITableViewCell()
     }
     
@@ -103,13 +102,14 @@ extension ChooseProductVC: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let model = editableProductModel
+       /* if let model = editableProductModel
         {
             editableProductModel = filteredProducts[indexPath.row]
         }
+        */
         tappedIndex = indexPath.row
         print("tapped: \(indexPath.row)")
-        tfProdName.text = filteredProducts[indexPath.row].pName
+        tfProdName.text = filteredProducts[indexPath.row].name
         imgDownArrow.image = crossImg
         hideTable()
         
@@ -122,10 +122,10 @@ extension ChooseProductVC: UITableViewDataSource, UITableViewDelegate
         tfUnit.text =  stringPcs
         
         //PRICE SETTING
-        tfPrice.text =  "$" + String(filteredProducts[indexPath.row].price)
+        tfPrice.text =  "$" + String(filteredProducts[indexPath.row].price ?? "0.0")
         
         //Total amount setting
-        tfAmount.text = "$\(filteredProducts[indexPath.row].price)"
+        tfAmount.text = "$\(/filteredProducts[indexPath.row].price)"
         
         tfUnit.resignFirstResponder()
         

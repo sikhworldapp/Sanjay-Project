@@ -18,14 +18,15 @@ class ChooseProductVC: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var tfAmount: UITextField!
     @IBOutlet weak var btnAddEditDel: UIButton!
     
-    var arrProducts = [ProductModel](){
+    var arrProducts = [Item](){
         didSet{
             print("didSet set of arrProducts just called.")
+            filteredProducts.append(contentsOf: arrProducts)
             tableViewProducts.reloadData()
         }
     }
     
-    var filteredProducts = [ProductModel]()
+    var filteredProducts = [Item]()
     {
         willSet{
             print("will set of filteredProducts just called.")
@@ -51,19 +52,21 @@ class ChooseProductVC: BaseViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadIfEditing()
         tableViewProducts.isHidden = true
-        
+        tableViewProducts.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ProductCell")
         imgDownArrow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleTable)))
         
         tableViewProducts.delegate = self
         tableViewProducts.dataSource = self
         tfProdName.delegate = self
         tfQuantity.delegate = self
+        loadFromServer()
         
-        checkLogicSavingProducts()
-        
-        filteredProducts.append(contentsOf: arrProducts)
-        
+    }
+    
+    func loadIfEditing()
+    {
         if let modelToEdit = editableProductModel
         {
             print("to edit and fill the contents.")
@@ -79,87 +82,98 @@ class ChooseProductVC: BaseViewController, UITextFieldDelegate {
         {
             print("you need to select")
         }
-        
-        
     }
     
-    func checkLogicSavingProducts()
-    {
-        if prefs.bool(forKey: "isProductsSaved")
-        {
-            print("fetch from local db then")
-            
-           loadFromDb()
-          
-            
+    @objc func loadFromServer() {
+        DispatchQueue.main.async{[self] in
+            arrProducts.removeAll()
+            showProgress()
         }
-        else
-        {
-            print("save all products into core data..")
-            let allProds = AppConstants.shared.loadProducts()
-            for i in allProds
-            {
+        // Call the method to fetch all items
+        NetworkManagerService.shared.fetchAllItems { result in
+            DispatchQueue.main.async { [self] in
                 
-                CoreDataStack.shared.insertProduct(model: i)
+                
+                switch result {
+                case .success(let model):
+                    //self.lblError.isHidden = true
+                    if let items = model.data {
+                        print("Options received: \(items)")
+                        
+                        DispatchQueue.main.async{self.arrProducts = items}
+                        
+                    } else {
+                        print("No data received.")
+                        // Handle the case where there is no data
+                    }
+                    
+                case .failure(let error):
+                    print("Failed to fetch data: \(error)")
+                    // self.showToast(error.localizedDescription, msg: "issue", position: .top)
+                    //self.lblError.text = error.localizedDescription
+                   // self.lblError.isHidden = false
+                    // Handle the error, show an alert, etc.
+                }
+                hideProgress()
             }
-            prefs.setValue(true, forKey: "isProductsSaved")
-            loadFromDb()
         }
     }
     
-    func loadFromDb()
-    {
-        for coreModel in CoreDataStack.shared.readAllProducts()
-        {
-            var prodModel = ProductModel()
-            prodModel.modelType = TypeItem.prodItem
-            prodModel.pName = coreModel.pName ?? ""
-            prodModel.price = coreModel.price
-            prodModel.id = Int(coreModel.prodId)
-            arrProducts.append(prodModel)//addAll()
-        }
-    }
     
     @IBAction func actionDoneAdding(_ sender: Any) {
         if tappedIndex >= 0 {
-            if let modelToEdit = editableProductModel
-            {
-                var selectedProdModel = modelToEdit
-                selectedProdModel.qty = Int(tfQuantity.text ?? "1") ?? 1
-                
-                
-                if let amountText = tfAmount.text {
-                    let cleanedAmount = amountText.replacingOccurrences(of: "[^0-9.]", with: "", options: .regularExpression)
-                    selectedProdModel.amount = Double(cleanedAmount) ?? 0.0
+            
+                if let modelToEdit = editableProductModel{
+                    whileEditingInventory()}
+                else
+                {
+                    whileAddingNewInventory()
                 }
-                
-                sameProductEdited!(selectedProdModel)
-                
-            }
-            
-            else //it will add new entry
-            {
-                var selectedProdModel = filteredProducts[tappedIndex]
-                selectedProdModel.qty = Int(tfQuantity.text ?? "1") ?? 1
-                
-                
-                if let amountText = tfAmount.text {
-                    let cleanedAmount = amountText.replacingOccurrences(of: "[^0-9.]", with: "", options: .regularExpression)
-                    selectedProdModel.amount = Double(cleanedAmount) ?? 0.0
-                }
-                
-                
-                newProductAdded!(selectedProdModel)
-            }
-            
-            navigationController?.popViewController(animated: true)
-            
         }
-        
         else
         {
             showToast("Select from list first", msg: ".", position: .top)
         }
+    }
+    
+    func whileAddingNewInventory()
+    {
+        var selectedProdModel = filteredProducts[tappedIndex]
+        
+        var modelPrev = ProductModel(id: Int(/selectedProdModel.id) ?? 0,
+                                     pName: selectedProdModel.name ?? "",
+                                     price: Double(selectedProdModel.price ?? "0.0") ?? 0.0,
+                                     inStock: 0, addedByCustomer: 1)
+        
+        
+        modelPrev.qty = Int(tfQuantity.text ?? "1") ?? 1
+        
+        
+        if let amountText = tfAmount.text {
+            let cleanedAmount = amountText.replacingOccurrences(of: "[^0-9.]", with: "", options: .regularExpression)
+            modelPrev.amount = Double(cleanedAmount) ?? 0.0
+        }
+        newProductAdded!(modelPrev)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func whileEditingInventory()
+    {
+        if let modelToEdit = editableProductModel
+                   {
+                       var selectedProdModel = modelToEdit
+                       selectedProdModel.qty = Int(tfQuantity.text ?? "1") ?? 1
+                       
+                       
+                       if let amountText = tfAmount.text {
+                           let cleanedAmount = amountText.replacingOccurrences(of: "[^0-9.]", with: "", options: .regularExpression)
+                           selectedProdModel.amount = Double(cleanedAmount) ?? 0.0
+                       }
+                       
+                      
+            sameProductEdited!(selectedProdModel)
+                   }
+        navigationController?.popViewController(animated: true)
     }
 }
 
